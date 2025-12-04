@@ -76,16 +76,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
           <div className={`p-4 border-b flex justify-between items-center transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-200'}`}>
             <div className="flex items-center gap-3">
               <div className={`w-8 h-8 rounded-full border flex items-center justify-center overflow-hidden transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
-                 {/* Mini TiC Logo */}
-                <svg viewBox="0 0 100 40" fill="none" className="w-full h-full scale-125">
-                    <defs>
-                        <linearGradient id="mini_tic_gradient" x1="0" y1="0" x2="100" y2="0">
-                        <stop offset="0%" stopColor="#23bddf" />
-                        <stop offset="100%" stopColor="#cf29f5" />
-                        </linearGradient>
-                    </defs>
-                    <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="24" fontWeight="900" fill="url(#mini_tic_gradient)" fontFamily="sans-serif">TiC</text>
-                </svg>
+                <img src="/assets/bot-icon.png" alt="TiC Bot" className="w-full h-full object-contain p-1" />
               </div>
               <div>
                 <h3 className={`font-bold text-sm ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>TiC AI</h3>
@@ -156,36 +147,12 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
       {/* Launcher Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`pointer-events-auto w-16 h-16 rounded-full border shadow-[0_0_20px_rgba(35,189,223,0.3)] hover:shadow-[0_0_30px_rgba(207,41,245,0.5)] transition-all duration-300 flex items-center justify-center overflow-hidden group hover:scale-105 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}
+        className={`pointer-events-auto w-20 h-20 rounded-full border shadow-[0_0_20px_rgba(35,189,223,0.3)] hover:shadow-[0_0_30px_rgba(207,41,245,0.5)] transition-all duration-300 flex items-center justify-center overflow-hidden group hover:scale-105 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}
       >
         {isOpen ? (
-            <X size={32} className={isDarkMode ? 'text-white' : 'text-slate-900'} />
+            <X size={36} className={isDarkMode ? 'text-white' : 'text-slate-900'} />
         ) : (
-            // Recreated TiC Logo SVG
-            <svg viewBox="0 0 200 100" className="w-full h-full p-2">
-                <defs>
-                    <linearGradient id="tic_gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#23bddf" />
-                        <stop offset="50%" stopColor="#8b5cf6" />
-                        <stop offset="100%" stopColor="#cf29f5" />
-                    </linearGradient>
-                </defs>
-                
-                {/* T */}
-                <path d="M20 20 H80 V40 H60 V90 H40 V40 H20 Z" fill="#23bddf" />
-                
-                {/* i */}
-                <rect x="90" y="45" width="20" height="45" fill="#8b5cf6" />
-                <circle cx="100" cy="25" r="10" fill="#8b5cf6" />
-                
-                {/* C */}
-                <path d="M180 35 C 170 25, 150 25, 140 35 C 130 45, 130 75, 140 85 C 150 95, 170 95, 180 85" 
-                      fill="none" 
-                      stroke="url(#tic_gradient)" 
-                      strokeWidth="20" 
-                      strokeLinecap="butt"
-                />
-            </svg>
+            <img src="/assets/bot-icon.png" alt="TiC Bot" className="w-full h-full object-contain p-2" />
         )}
       </button>
     </div>

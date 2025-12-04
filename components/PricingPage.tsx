@@ -2,6 +2,31 @@ import React, { useState } from 'react';
 import { Check, X, ArrowLeft, Zap, Crown, Rocket, Sun, Moon } from 'lucide-react';
 import Footer from './Footer';
 
+// Social Media Icons using Font Awesome CDN
+const SocialIcon = ({ platform }: { platform: string }) => {
+  const iconMap: { [key: string]: string } = {
+    'TikTok': 'fab fa-tiktok',
+    'Instagram': 'fab fa-instagram',
+    'YouTube': 'fab fa-youtube',
+    'Facebook': 'fab fa-facebook',
+    'LinkedIn': 'fab fa-linkedin',
+    'X (Twitter)': 'fab fa-x-twitter',
+    'Reddit': 'fab fa-reddit',
+    'Twitch': 'fab fa-twitch',
+    'Pinterest': 'fab fa-pinterest',
+    'Snapchat': 'fab fa-snapchat',
+    'Discord': 'fab fa-discord',
+    'WhatsApp': 'fab fa-whatsapp',
+    'Telegram': 'fab fa-telegram',
+    'Bluesky': 'fab fa-bluesky',
+    'Mastodon': 'fab fa-mastodon',
+  };
+
+  return (
+    <i className={`${iconMap[platform]} text-2xl text-slate-500 hover:text-slate-400 transition-colors`}></i>
+  );
+};
+
 interface PricingPageProps {
   onBack: () => void;
   onSelectPlan: (plan: string) => void;
@@ -10,30 +35,32 @@ interface PricingPageProps {
 }
 
 const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkMode, setIsDarkMode }) => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annually'>('monthly');
+
+  // Add CSS for wave animation
+  React.useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes wave {
+        0% {
+          d: path('M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,138.7C1248,139,1344,149,1392,154.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z');
+        }
+        50% {
+          d: path('M0,80L48,96C96,112,192,144,288,154.7C384,165,480,155,576,144C672,133,768,123,864,122.7C960,123,1056,133,1152,138.7C1248,144,1344,160,1392,166.7L1440,173L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z');
+        }
+        100% {
+          d: path('M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,138.7C1248,139,1344,149,1392,154.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z');
+        }
+      }
+      .wave-path {
+        animation: wave 4s ease-in-out infinite;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
 
   const plans = [
-    {
-      name: 'Starter',
-      icon: Zap,
-      price: { monthly: 0, yearly: 0 },
-      description: 'Perfect for new creators just starting out',
-      features: [
-        '3 Social Profiles',
-        '10 AI Posts / month',
-        'Basic Analytics',
-        'Post Scheduling',
-        'Community Support',
-      ],
-      limitations: [
-        'No AI Tutor Access',
-        'No Marketplace Access',
-        'No Ad Automation',
-        'Limited Analytics',
-      ],
-      highlighted: false,
-      cta: 'Get Started',
-    },
     {
       name: 'Creator Pro',
       icon: Rocket,
@@ -85,48 +112,103 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#0B0F19] text-white' : 'bg-slate-50 text-slate-900'}`}>
-      {/* Ambient Background Glows */}
-      <div className="fixed top-0 left-0 w-[600px] h-[600px] bg-viral-purple/20 rounded-full blur-[120px] -z-10 pointer-events-none opacity-40 mix-blend-screen"></div>
-      <div className="fixed bottom-0 right-0 w-[800px] h-[600px] bg-viral-cyan/10 rounded-full blur-[120px] -z-10 pointer-events-none opacity-30 mix-blend-screen"></div>
+      {/* Navbar */}
+      <nav className={`fixed w-full z-50 top-0 border-b backdrop-blur-xl transition-all duration-300 ${isDarkMode ? 'bg-[#0B0F19]/80 border-white/5' : 'bg-white/80 border-slate-200'}`}>
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          
+          {/* Left Side: Logo */}
+          <a href="#" onClick={onBack} className="inline-flex items-center h-full md:mr-8">
+            <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[100px] w-auto object-contain" />
+            <span className="sr-only">Viralitics</span>
+          </a>
+          
+          {/* Desktop Nav (Center) */}
+          <div className={`hidden md:flex items-center gap-8 text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Home</button>
+            <a href="#ai-manager" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>AI Manager</a>
+            <a href="#influencers" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Influencers</a>
+            <a href="#ai-tutor" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>AI Tutor</a>
+            <a href="#ad-creator" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Ad Creator</a>
+            <button className={`transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'} font-bold`}>Pricing</button>
+          </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center justify-between mb-8">
-            <button
-              onClick={onBack}
-              className={`flex items-center gap-2 transition-colors font-['Courier_New',monospace] ${isDarkMode ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}
-            >
-              <ArrowLeft size={20} />
-              <span className="font-['Courier_New',monospace]">Back</span>
-            </button>
-            
-            {/* Theme Toggle */}
-            <button 
+          {/* Right Side: Theme Toggle, Log in, Get Activated */}
+          <div className="hidden md:flex items-center gap-4">
+             {/* Theme Toggle */}
+             <button 
               onClick={() => setIsDarkMode(!isDarkMode)} 
               className={`p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'}`}
               title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
+
+            <button className={`text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}>
+              Log in
+            </button>
+            <button 
+              onClick={() => onSelectPlan('Creator Pro')}
+              className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${isDarkMode ? 'bg-white text-black hover:bg-slate-200' : 'bg-slate-900 text-white hover:bg-slate-800'}`}
+            >
+              Get Activated
+            </button>
           </div>
+        </div>
+      </nav>
+
+      {/* Top Wave Gradient */}
+      <div className="absolute top-0 left-0 right-0 h-96 pointer-events-none overflow-hidden">
+        <svg className="w-full h-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style={{ stopColor: '#23bddf', stopOpacity: 0.3 }} />
+              <stop offset="50%" style={{ stopColor: '#cf29f5', stopOpacity: 0.2 }} />
+              <stop offset="100%" style={{ stopColor: '#23bddf', stopOpacity: 0.3 }} />
+            </linearGradient>
+          </defs>
+          <path className="wave-path" fill="url(#waveGradient)" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,138.7C1248,139,1344,149,1392,154.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+          <path className="wave-path" fill="url(#waveGradient)" fillOpacity="0.5" d="M0,128L48,133.3C96,139,192,149,288,144C384,139,480,117,576,112C672,107,768,117,864,128C960,139,1056,149,1152,149.3C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+      </div>
+      
+      {/* Bottom Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-t from-viral-purple/20 via-viral-cyan/10 to-transparent pointer-events-none"></div>
+
+      {/* Ambient Background Glows */}
+      <div className="fixed top-0 left-0 w-[600px] h-[600px] bg-viral-purple/20 rounded-full blur-[120px] -z-10 pointer-events-none opacity-40 mix-blend-screen"></div>
+      <div className="fixed bottom-0 right-0 w-[800px] h-[600px] bg-viral-cyan/10 rounded-full blur-[120px] -z-10 pointer-events-none opacity-30 mix-blend-screen"></div>
+
+      <div className="max-w-7xl mx-auto px-6 pt-32 pb-16 relative z-10">
+        {/* Header */}
+        <div className="mb-12">
 
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className={`text-5xl md:text-6xl font-bold mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-              Simple, transparent{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">pricing</span>
+            <h1 className={`text-5xl md:text-6xl font-bold mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+              Give Your Team the Right Tools to Succeed
             </h1>
-            <p className={`text-xl mb-8 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-              Start for free, scale as you grow. No hidden fees.
+            <p className={`text-base mb-8 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              Our goal is to make identity by Figr available to every team, no matter the size.
             </p>
 
             {/* Billing Toggle */}
-            <div className={`inline-flex items-center gap-4 p-1.5 rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-slate-200'}`}>
+            <div className={`inline-flex items-center gap-3 p-1 rounded-lg border ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-300'}`}>
+              <button
+                onClick={() => setBillingCycle('annually')}
+                className={`px-4 py-2 rounded-md text-sm font-semibold transition-all ${
+                  billingCycle === 'annually'
+                    ? isDarkMode ? 'bg-slate-700 text-white' : 'bg-slate-900 text-white'
+                    : isDarkMode
+                    ? 'text-slate-400 hover:text-white'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                Annually
+              </button>
               <button
                 onClick={() => setBillingCycle('monthly')}
-                className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${
+                className={`px-4 py-2 rounded-md text-sm font-semibold transition-all ${
                   billingCycle === 'monthly'
-                    ? 'bg-gradient-to-r from-viral-cyan to-viral-purple text-white'
+                    ? isDarkMode ? 'bg-slate-700 text-white' : 'bg-slate-900 text-white'
                     : isDarkMode
                     ? 'text-slate-400 hover:text-white'
                     : 'text-slate-600 hover:text-slate-900'
@@ -134,24 +216,12 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
               >
                 Monthly
               </button>
-              <button
-                onClick={() => setBillingCycle('yearly')}
-                className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${
-                  billingCycle === 'yearly'
-                    ? 'bg-gradient-to-r from-viral-cyan to-viral-purple text-white'
-                    : isDarkMode
-                    ? 'text-slate-400 hover:text-white'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                Yearly <span className="ml-1 text-xs">(Save up to 20%)</span>
-              </button>
             </div>
           </div>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 max-w-4xl mx-auto items-stretch justify-center">
           {plans.map((plan) => {
             const Icon = plan.icon;
             const price = billingCycle === 'monthly' ? plan.price.monthly : plan.price.yearly;
@@ -160,97 +230,95 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
             return (
               <div
                 key={plan.name}
-                className={`rounded-3xl p-8 transition-all relative ${
+                className={`rounded-2xl p-8 transition-all relative border hover:scale-110 hover:shadow-2xl cursor-pointer ${
                   plan.highlighted
-                    ? isDarkMode
-                      ? 'bg-[#131b2c] border-2 border-viral-purple shadow-2xl transform md:-translate-y-4'
-                      : 'bg-white border-2 border-viral-purple shadow-xl transform md:-translate-y-4'
-                    : isDarkMode
-                    ? 'bg-[#0B0F19] border border-white/10'
-                    : 'bg-white border border-slate-200'
+                    ? 'md:col-span-1 bg-teal-900/30 border-2 border-teal-400 md:scale-105 hover:shadow-teal-400/20'
+                    : 'border-slate-500/30 bg-slate-900/40 hover:shadow-slate-400/20'
                 }`}
               >
-                {/* Badge */}
-                {plan.badge && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-viral-purple text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                    {plan.badge}
-                  </div>
-                )}
-
-                {/* Icon */}
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${plan.highlighted ? 'bg-gradient-to-r from-viral-cyan to-viral-purple' : isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
-                  <Icon size={28} className={plan.highlighted ? 'text-white' : 'text-viral-cyan'} />
-                </div>
-
-                {/* Plan Name */}
-                <h3 className={`text-2xl font-bold mb-2 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                  {plan.name}
-                </h3>
-
-                {/* Price */}
-                <div className="mb-6">
-                  <div className="flex items-end gap-2">
-                    <span className={`text-5xl font-bold transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                      ${price}
-                    </span>
-                    <span className={`text-sm mb-2 transition-colors ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
-                      /{billingCycle === 'monthly' ? 'mo' : 'yr'}
-                    </span>
-                  </div>
-                  {billingCycle === 'yearly' && discount > 0 && (
-                    <p className="text-sm text-viral-cyan mt-2">Save {discount}% with yearly billing</p>
-                  )}
+                {/* Plan Label */}
+                <div className={`text-xs font-bold uppercase tracking-wider mb-2 ${plan.highlighted ? 'text-teal-400' : 'text-slate-400'}`}>
+                  {plan.name === 'Starter' && 'STARTER PLAN'}
+                  {plan.name === 'Creator Pro' && 'GROWTH PLAN'}
+                  {plan.name === 'Business' && 'ENTERPRISE PLAN'}
                 </div>
 
                 {/* Description */}
-                <p className={`text-sm mb-8 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                <p className="text-sm text-slate-300 mb-6">
                   {plan.description}
                 </p>
+
+                {/* Price */}
+                <div className="mb-6 pb-6 border-b border-slate-600/30">
+                  <div className="flex items-baseline gap-1">
+                    <span className={`text-4xl font-bold ${plan.highlighted ? 'text-white' : 'text-slate-200'}`}>
+                      ${price}
+                    </span>
+                    <span className="text-slate-400 text-sm">
+                      /{billingCycle === 'monthly' ? 'month' : 'year'}
+                    </span>
+                  </div>
+                </div>
 
                 {/* CTA Button */}
                 <button
                   onClick={() => onSelectPlan?.(plan.name)}
-                  className={`w-full py-3 rounded-xl font-bold transition-all mb-8 ${
+                  className={`w-full py-3 rounded-lg font-bold transition-all mb-6 ${
                     plan.highlighted
-                      ? 'bg-gradient-to-r from-viral-cyan to-viral-purple text-white hover:opacity-90 shadow-lg'
-                      : isDarkMode
-                      ? 'border border-slate-700 hover:bg-slate-800 text-white'
-                      : 'border border-slate-200 hover:bg-slate-50 text-slate-900'
+                      ? 'bg-white text-teal-900 hover:bg-teal-50'
+                      : 'border border-slate-600 text-slate-300 hover:bg-slate-800'
                   }`}
                 >
                   {plan.cta}
                 </button>
 
                 {/* Features */}
-                <div className="space-y-4">
-                  <p className={`text-xs font-bold uppercase tracking-wider ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
-                    What's included
-                  </p>
-                  <ul className="space-y-3">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3">
-                        <Check size={18} className={`flex-shrink-0 mt-0.5 ${plan.highlighted ? 'text-viral-purple' : 'text-viral-cyan'}`} />
-                        <span className={`text-sm transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                    {plan.limitations.map((limitation) => (
-                      <li key={limitation} className="flex items-start gap-3 opacity-50">
-                        <X size={18} className={`flex-shrink-0 mt-0.5 ${isDarkMode ? 'text-slate-600' : 'text-slate-400'}`} />
-                        <span className={`text-sm transition-colors ${isDarkMode ? 'text-slate-500' : 'text-slate-500'}`}>
-                          {limitation}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="space-y-4">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3">
+                      <Check size={20} className={`flex-shrink-0 ${plan.highlighted ? 'text-teal-400' : 'text-teal-500'}`} />
+                      <span className="text-sm text-slate-300">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                  {plan.limitations.map((limitation) => (
+                    <li key={limitation} className="flex items-start gap-3 opacity-40">
+                      <X size={20} className="flex-shrink-0 text-slate-600" />
+                      <span className="text-sm text-slate-500">
+                        {limitation}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             );
           })}
         </div>
 
-        {/* FAQ Section */}
+        {/* Trusted By Section */}
+        <div className="text-center mb-16">
+          <p className={`${isDarkMode ? 'text-slate-400' : 'text-slate-600'} text-sm mb-8`}>
+            Trusted by 15+ major social media platforms
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-8">
+            <SocialIcon platform="TikTok" />
+            <SocialIcon platform="Instagram" />
+            <SocialIcon platform="YouTube" />
+            <SocialIcon platform="Facebook" />
+            <SocialIcon platform="LinkedIn" />
+            <SocialIcon platform="X (Twitter)" />
+            <SocialIcon platform="Reddit" />
+            <SocialIcon platform="Twitch" />
+            <SocialIcon platform="Pinterest" />
+            <SocialIcon platform="Snapchat" />
+            <SocialIcon platform="Discord" />
+            <SocialIcon platform="WhatsApp" />
+            <SocialIcon platform="Telegram" />
+            <SocialIcon platform="Bluesky" />
+            <SocialIcon platform="Mastodon" />
+          </div>
+        </div>
         <div className="max-w-3xl mx-auto">
           <h2 className={`text-3xl font-bold text-center mb-12 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
             Frequently Asked Questions

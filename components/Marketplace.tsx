@@ -11,8 +11,7 @@ const mockInfluencers: Influencer[] = [
     score: 98,
     followers: '2.4M',
     engagementRate: '5.2%',
-    imageUrl: 'https://picsum.photos/200/200?random=1',
-    bio: 'NYC-based fashion curator sharing daily outfit inspiration and sustainable style tips for modern professionals.'
+    imageUrl: 'https://picsum.photos/200/200?random=1'
   },
   {
     id: '2',
@@ -22,8 +21,7 @@ const mockInfluencers: Influencer[] = [
     score: 94,
     followers: '850K',
     engagementRate: '8.7%',
-    imageUrl: 'https://picsum.photos/200/200?random=2',
-    bio: 'In-depth tech reviews and tutorials. Trusted by brands like Apple, Samsung, and Google for product launches.'
+    imageUrl: 'https://picsum.photos/200/200?random=2'
   },
   {
     id: '3',
@@ -33,8 +31,7 @@ const mockInfluencers: Influencer[] = [
     score: 91,
     followers: '1.1M',
     engagementRate: '4.1%',
-    imageUrl: 'https://picsum.photos/200/200?random=3',
-    bio: 'Michelin-trained chef making gourmet cooking accessible. Partnered with major culinary brands and kitchenware.'
+    imageUrl: 'https://picsum.photos/200/200?random=3'
   },
   {
     id: '4',
@@ -44,8 +41,7 @@ const mockInfluencers: Influencer[] = [
     score: 88,
     followers: '500K',
     engagementRate: '12.3%',
-    imageUrl: 'https://picsum.photos/200/200?random=4',
-    bio: 'Certified personal trainer and nutritionist. Authentic fitness journey inspiring 500K+ followers to live healthier.'
+    imageUrl: 'https://picsum.photos/200/200?random=4'
   },
   {
     id: '5',
@@ -55,8 +51,7 @@ const mockInfluencers: Influencer[] = [
     score: 85,
     followers: '3.2M',
     engagementRate: '3.5%',
-    imageUrl: 'https://picsum.photos/200/200?random=5',
-    bio: 'Adventure photographer exploring 150+ countries. Collaborating with tourism boards and hospitality brands worldwide.'
+    imageUrl: 'https://picsum.photos/200/200?random=5'
   },
    {
     id: '6',
@@ -66,47 +61,11 @@ const mockInfluencers: Influencer[] = [
     score: 96,
     followers: '4.5M',
     engagementRate: '9.2%',
-    imageUrl: 'https://picsum.photos/200/200?random=6',
-    bio: 'Professional esports player and streamer. Official partner with Xbox, PlayStation, and leading gaming peripherals.'
+    imageUrl: 'https://picsum.photos/200/200?random=6'
   },
 ];
 
 const Marketplace: React.FC = () => {
-  const influencerTiers = [
-    {
-      tier: 'Nano',
-      followers: '1K - 10K',
-      engagement: '5-10%',
-      avgCost: '$50-200',
-      description: 'Highly engaged niche audiences with authentic connections',
-      color: 'from-emerald-500 to-teal-500'
-    },
-    {
-      tier: 'Micro',
-      followers: '10K - 100K',
-      engagement: '3-7%',
-      avgCost: '$200-1K',
-      description: 'Strong community influence with targeted reach',
-      color: 'from-blue-500 to-cyan-500'
-    },
-    {
-      tier: 'Macro',
-      followers: '100K - 1M',
-      engagement: '2-5%',
-      avgCost: '$1K-10K',
-      description: 'Wide reach with established brand partnerships',
-      color: 'from-purple-500 to-pink-500'
-    },
-    {
-      tier: 'Mega',
-      followers: '1M+',
-      engagement: '1-3%',
-      avgCost: '$10K+',
-      description: 'Maximum visibility and celebrity-level impact',
-      color: 'from-orange-500 to-red-500'
-    }
-  ];
-
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex flex-col md:flex-row justify-between items-end gap-4">
@@ -124,33 +83,6 @@ const Marketplace: React.FC = () => {
                 Find Creators
             </button>
         </div>
-      </div>
-
-      {/* Influencer Tier Categories */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {influencerTiers.map((tier) => (
-          <div key={tier.tier} className="glass-card rounded-xl p-5 border border-slate-700/50 hover:border-slate-600 transition-all group">
-            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${tier.color} flex items-center justify-center mb-3`}>
-              <Star size={24} className="text-white" />
-            </div>
-            <h3 className="text-xl font-bold text-white mb-1">{tier.tier}</h3>
-            <p className="text-sm text-slate-400 mb-3">{tier.description}</p>
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs">
-                <span className="text-slate-500">Followers:</span>
-                <span className="text-slate-300 font-semibold">{tier.followers}</span>
-              </div>
-              <div className="flex justify-between text-xs">
-                <span className="text-slate-500">Engagement:</span>
-                <span className="text-green-400 font-semibold">{tier.engagement}</span>
-              </div>
-              <div className="flex justify-between text-xs">
-                <span className="text-slate-500">Avg Cost:</span>
-                <span className="text-viral-cyan font-semibold">{tier.avgCost}</span>
-              </div>
-            </div>
-          </div>
-        ))}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -185,10 +117,6 @@ const Marketplace: React.FC = () => {
                     {inf.niche}
                  </span>
               </div>
-
-              <p className="mt-4 text-sm text-slate-400 leading-relaxed line-clamp-2">
-                {(inf as any).bio}
-              </p>
 
               <div className="mt-6 grid grid-cols-2 gap-4 border-t border-slate-800 pt-4">
                  <div>

@@ -17,7 +17,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ onLaunch, isDarkMode = true
         </h2>
         
         <p className={`text-xl mb-10 max-w-xl mx-auto transition-colors duration-300 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-          Join thousands of creators and brands using Viralitics to dominate the algorithm.
+          Join multiple creators and brands transforming their social media presence with AI-powered automation.
         </p>
         
         <div className="flex justify-center">

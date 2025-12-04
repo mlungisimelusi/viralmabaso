@@ -27,7 +27,9 @@ import {
   ArrowRight,
   Zap,
   Award,
-  Crown
+  Crown,
+  Linkedin,
+  Youtube
 } from 'lucide-react';
 
 interface LandingPageProps {
@@ -41,8 +43,17 @@ interface LandingPageProps {
 const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing, isDarkMode, setIsDarkMode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [hoveredTier, setHoveredTier] = useState<string | null>(null);
+  const [selectedVariant, setSelectedVariant] = useState<'A' | 'B' | 'C'>('A');
+  const [showLanguages, setShowLanguages] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('English');
   
   const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const languages = [
+    'English', 'Español', 'Français', 'Deutsch', 'Italiano', 'Português',
+    '日本語', '한국어', '中文', 'العربية', 'हिन्दी', 'Русский',
+  ];
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
   
@@ -167,8 +178,22 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       {/* --- Hero Section (2-Column, Text Left, Image Right) --- */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 overflow-hidden flex items-center min-h-[90vh]" style={{ transform: `translateY(${scrollY * 0.1}px)` }}>
         
+        {/* Floating Gradient Particles */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+          <div className="absolute top-[10%] left-[5%] w-32 h-32 bg-viral-cyan/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '0s', animationDuration: '8s' }}></div>
+          <div className="absolute top-[60%] left-[15%] w-24 h-24 bg-viral-purple/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s', animationDuration: '10s' }}></div>
+          <div className="absolute top-[30%] right-[10%] w-40 h-40 bg-viral-cyan/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s', animationDuration: '12s' }}></div>
+          <div className="absolute bottom-[20%] right-[25%] w-28 h-28 bg-viral-purple/30 rounded-full blur-2xl animate-float" style={{ animationDelay: '3s', animationDuration: '9s' }}></div>
+          
+          {/* Sparkles / Light Streaks */}
+          <div className="absolute top-[20%] right-[30%] w-1 h-20 bg-gradient-to-b from-viral-cyan/60 to-transparent blur-sm animate-pulse" style={{ animationDuration: '3s' }}></div>
+          <div className="absolute top-[70%] left-[40%] w-1 h-16 bg-gradient-to-b from-viral-purple/50 to-transparent blur-sm animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '4s' }}></div>
+          <div className="absolute top-[45%] right-[15%] w-2 h-2 bg-viral-cyan rounded-full blur-sm animate-ping" style={{ animationDuration: '5s' }}></div>
+          <div className="absolute top-[55%] left-[20%] w-2 h-2 bg-viral-purple rounded-full blur-sm animate-ping" style={{ animationDelay: '2s', animationDuration: '6s' }}></div>
+        </div>
+
         {/* Background Image Layer (video removed) */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden -z-20">
+        <div className="absolute inset-0 w-full h-full overflow-hidden -z-20" style={{ transform: `translateY(${scrollY * 0.5}px)` }}>
             {/* Static background image replacing video */}
             <img
                 src="https://images.pexels.com/photos/3196024/pexels-photo-3196024.jpeg"
@@ -209,71 +234,53 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                   Get Activated
                 </button>
              </div>
+
+             {/* Mini Feature Bar */}
+             <div className={`mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+               <div className="flex items-center gap-2">
+                 <i className="fas fa-brain text-viral-cyan text-lg"></i>
+                 <span className="font-medium">AI Content Engine</span>
+               </div>
+               <div className="flex items-center gap-2">
+                 <i className="fas fa-calendar-check text-viral-purple text-lg"></i>
+                 <span className="font-medium">Auto Scheduling</span>
+               </div>
+               <div className="flex items-center gap-2">
+                 <i className="fas fa-chart-line text-viral-cyan text-lg"></i>
+                 <span className="font-medium">Smart Optimization</span>
+               </div>
+             </div>
           </div>
 
-           {/* Video Column (Right) */}
+           {/* Image Column (Right) */}
           <div className="relative z-10 lg:order-2 scroll-animate animate-delay-200 flex justify-center items-center">
-             {/* Glow Effect */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-viral-cyan/20 to-viral-purple/20 blur-[100px] rounded-full -z-10"></div>
+             {/* Multi-layer Radial Gradient Glow Behind Model */}
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] -z-20">
+               {/* Outer Purple Glow */}
+               <div className="absolute inset-0 bg-gradient-radial from-viral-purple/40 via-viral-purple/20 to-transparent blur-[120px] rounded-full hero-image-pulse"></div>
+               {/* Inner Cyan Glow */}
+               <div className="absolute inset-[10%] bg-gradient-radial from-viral-cyan/50 via-viral-cyan/25 to-transparent blur-[80px] rounded-full hero-image-pulse" style={{ animationDelay: '1s' }}></div>
+               {/* Vignette / Light Feathering */}
+               <div className="absolute inset-[20%] bg-gradient-radial from-white/10 via-transparent to-transparent blur-[60px] rounded-full"></div>
+             </div>
              
-             {/* Video Container */}
-             <div className={`relative w-full max-w-[400px] rounded-3xl overflow-hidden shadow-2xl group ${isDarkMode ? 'border border-white/10' : 'border border-slate-200'}`}>
-                <video 
-                   src="/assets/hero-video.mp4" 
-                   autoPlay 
-                   loop 
-                   muted 
-                   playsInline
-                   className="w-full h-full object-cover"
+             {/* Image Container with Sliding Out Animation */}
+             <div className={`relative w-full max-w-[450px] rounded-3xl overflow-hidden shadow-2xl group hero-image-float hero-image-shimmer hero-image-tilt transition-transform duration-700 hover:translate-x-2 hover:-translate-y-2 ${isDarkMode ? 'border border-white/10' : 'border border-slate-200'}`}>
+                <img 
+                   src="/assets/hero-image.png" 
+                   alt="Viralitics Hero"
+                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                {/* Sparkle overlay on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute top-[15%] right-[20%] w-3 h-3 bg-white rounded-full blur-sm animate-ping"></div>
+                  <div className="absolute top-[45%] left-[15%] w-2 h-2 bg-viral-cyan rounded-full blur-sm animate-ping" style={{ animationDelay: '0.5s' }}></div>
+                  <div className="absolute bottom-[25%] right-[30%] w-2 h-2 bg-viral-purple rounded-full blur-sm animate-ping" style={{ animationDelay: '1s' }}></div>
+                </div>
              </div>
           </div>
 
         </div>
-      </section>
-
-      {/* --- About Us Section --- */}
-      <section className={`py-24 px-6 relative transition-colors duration-300 ${isDarkMode ? 'bg-[#0B0F19]' : 'bg-slate-50'}`}>
-         {/* Background subtle effect */}
-         <div className={`absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l opacity-50 -z-10 ${isDarkMode ? 'from-[#111827] to-transparent' : 'from-slate-200 to-transparent'}`}></div>
-         
-         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            {/* Left Column: Image with Floating Card */}
-            <div className="relative scroll-animate">
-                <div className={`relative rounded-3xl overflow-hidden aspect-[4/5] lg:aspect-square shadow-2xl group ${isDarkMode ? 'border border-white/5' : 'border border-slate-200'}`}>
-                    <img 
-                      src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop" 
-                      alt="Social media analytics dashboard" 
-                      className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000"
-                    />
-                    {/* Overlay Gradient */}
-                    <div className={`absolute inset-0 bg-gradient-to-t opacity-60 ${isDarkMode ? 'from-[#0B0F19] via-transparent to-transparent' : 'from-slate-50 via-transparent to-transparent'}`}></div>
-                </div>
-            </div>
-
-            {/* Right Column: Content */}
-            <div className="scroll-animate animate-delay-200">
-                {/* Label */}
-                <div className={`inline-block px-3 py-1 rounded-full border text-viral-cyan text-xs font-bold tracking-wider mb-6 transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
-                    ABOUT VIRALITICS
-                </div>
-                
-                {/* Heading */}
-                <h2 className={`text-4xl md:text-5xl font-bold mb-6 leading-tight transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                    Empowering <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Social Media Success</span>
-                </h2>
-                
-                {/* Description */}
-                <div className={`space-y-6 text-lg leading-relaxed mb-8 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    <p>
-                        Viralitics is an AI-first, all-in-one social media management tool designed to replace traditional teams with a single, unified automation engine. We empower creators and brands to reclaim 90% of their time by automating the entire content lifecycle - from ideation and creation to scheduling and real-time optimization.
-                    </p>
-                    <p>
-                        Our intelligent control center integrates seamlessly with 15+ major platforms, including TikTok, Instagram, YouTube, and LinkedIn. Beyond just posting, Viralitics manages complex engagement strategies, scales influencer collaborations through AI-driven scoring, and optimizes paid campaigns automatically, acting as your 24/7 digital growth team.
-                    </p>
-                </div>
-            </div>
-         </div>
       </section>
 
       {/* --- AI Manager / Core Features --- */}
@@ -342,8 +349,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </div>
 
                 {/* Card 2: Ad Automation */}
-                <div className={`scroll-animate animate-delay-200 rounded-3xl p-8 transition-all group overflow-hidden relative border ${isDarkMode ? 'bg-[#131b2c] border-white/5 hover:border-blue-500/30' : 'bg-white border-slate-200 shadow-sm hover:border-blue-500/50 hover:shadow-md'}`}>
-                     <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[80px] rounded-full"></div>
+                <div className={`scroll-animate animate-delay-200 rounded-3xl p-8 transition-all group overflow-hidden relative border ${isDarkMode ? 'bg-[#131b2c] border-white/5 hover:border-viral-cyan/30' : 'bg-white border-slate-200 shadow-sm hover:border-viral-cyan/50 hover:shadow-md'}`}>
+                     <div className="absolute top-0 right-0 w-64 h-64 bg-viral-cyan/10 blur-[80px] rounded-full group-hover:bg-viral-cyan/20 transition-all"></div>
                      <div className="relative z-10 flex flex-col h-full">
                          {/* Custom Brand Icon: Gear with Play + Arrows */}
                          <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
@@ -367,8 +374,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
                                 <defs>
                                     <linearGradient id="icon_gradient_ads" x1="20" y1="95" x2="75" y2="5" gradientUnits="userSpaceOnUse">
-                                        <stop stopColor="#3b82f6" />
-                                        <stop offset="1" stopColor="#23bddf" />
+                                        <stop stopColor="#23bddf" />
+                                        <stop offset="1" stopColor="#cf29f5" />
                                     </linearGradient>
                                 </defs>
                             </svg>
@@ -378,15 +385,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                             Launch campaigns that optimize themselves. We test hundreds of creative variations and automatically shift budget to the winners.
                         </p>
                         
-                        <a href="#ad-creator" className="inline-flex items-center gap-2 text-blue-500 font-bold hover:gap-3 transition-all">
+                        <a href="#ad-creator" className="inline-flex items-center gap-2 text-viral-cyan font-bold hover:gap-3 transition-all">
                             Learn more <ArrowRight size={16} />
                         </a>
                      </div>
                 </div>
 
                 {/* Card 3: AI Tutor */}
-                <div className={`scroll-animate animate-delay-300 rounded-3xl p-8 transition-all group overflow-hidden relative border ${isDarkMode ? 'bg-[#131b2c] border-white/5 hover:border-yellow-500/30' : 'bg-white border-slate-200 shadow-sm hover:border-yellow-500/50 hover:shadow-md'}`}>
-                     <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-500/10 blur-[80px] rounded-full"></div>
+                <div className={`scroll-animate animate-delay-300 rounded-3xl p-8 transition-all group overflow-hidden relative border ${isDarkMode ? 'bg-[#131b2c] border-white/5 hover:border-viral-purple/30' : 'bg-white border-slate-200 shadow-sm hover:border-viral-purple/50 hover:shadow-md'}`}>
+                     <div className="absolute top-0 right-0 w-64 h-64 bg-viral-purple/10 blur-[80px] rounded-full group-hover:bg-viral-purple/20 transition-all"></div>
                      <div className="relative z-10 flex flex-col h-full">
                          {/* Custom Brand Icon: Tutor/Book */}
                          <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
@@ -395,8 +402,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                                 <path d="M50 85 L50 45 M50 45 L80 30 M50 45 L20 30" stroke="url(#icon_gradient_tutor)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
                                 <defs>
                                     <linearGradient id="icon_gradient_tutor" x1="20" y1="80" x2="80" y2="20" gradientUnits="userSpaceOnUse">
-                                        <stop stopColor="#f59e0b" />
-                                        <stop offset="1" stopColor="#fbbf24" />
+                                        <stop stopColor="#cf29f5" />
+                                        <stop offset="1" stopColor="#23bddf" />
                                     </linearGradient>
                                 </defs>
                             </svg>
@@ -406,7 +413,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                              Your personal algorithm coach. Learn exactly why a post failed and get step-by-step instructions to improve your next one.
                         </p>
                         
-                        <a href="#ai-tutor" className="inline-flex items-center gap-2 text-yellow-500 font-bold hover:gap-3 transition-all">
+                        <a href="#ai-tutor" className="inline-flex items-center gap-2 text-viral-purple font-bold hover:gap-3 transition-all">
                             Learn more <ArrowRight size={16} />
                         </a>
                      </div>
@@ -427,26 +434,40 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     Connect with <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Top Influencers</span>
                 </h2>
                 <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Access thousands of verified influencers across all tiers and niches.
+                    Join to work with brands, help them achieve their goals, while you monetize your influence.
+                </p>
+                <p className={`text-lg max-w-2xl mx-auto transition-colors mt-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                    Brands and companies looking for the best creators and influencers can rely on Viralitics as the platform to explore because no matter the country, language, or region we have you covered.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
                 
                 {/* Nano Tier */}
-                <div className={`relative p-8 rounded-3xl border group transition-all duration-300 ${isDarkMode ? 'bg-[#0B0F19] border-white/10 hover:border-viral-purple/50' : 'bg-white border-slate-200 hover:border-viral-purple/50 shadow-sm hover:shadow-lg'}`}>
+                <div 
+                  onMouseEnter={() => setHoveredTier('nano')}
+                  onMouseLeave={() => setHoveredTier(null)}
+                  className={`relative p-8 rounded-3xl border group transition-all duration-300 cursor-pointer ${hoveredTier === 'nano' ? 'lg:scale-110 lg:z-10' : ''} ${isDarkMode ? 'bg-[#0B0F19] border-white/10 hover:border-viral-purple/50' : 'bg-white border-slate-200 hover:border-viral-purple/50 shadow-sm hover:shadow-lg'}`}>
                     <div className="text-center">
                         <h3 className="text-xl font-bold text-viral-purple mb-2">Nano</h3>
                         <p className={`text-sm font-medium mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>1K - 10K Followers</p>
                         <div className="inline-block px-3 py-1 rounded-lg bg-viral-purple/10 text-viral-purple text-xs font-bold mb-4 border border-viral-purple/20">
                             High Engagement
                         </div>
-                        <div className="w-12 h-1 bg-gradient-to-r from-viral-cyan to-viral-purple rounded-full mx-auto opacity-50"></div>
+                        <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-white/10' : 'border-slate-200'}`}>
+                            <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                                Perfect for niche communities and authentic engagement. Nano influencers connect deeply with loyal followers, ideal for authentic product recommendations and grassroots campaigns. Get direct access to engaged communities with genuine interest in your brand.
+                            </p>
+                        </div>
+                        <div className="w-12 h-1 bg-gradient-to-r from-viral-cyan to-viral-purple rounded-full mx-auto opacity-50 mt-6"></div>
                     </div>
                 </div>
 
                 {/* Micro Tier */}
-                <div className={`relative p-8 rounded-3xl border group transition-all duration-300 ${isDarkMode ? 'bg-[#131b2c] border-viral-cyan/30' : 'bg-slate-50 border-viral-cyan/30 shadow-md transform -translate-y-2'}`}>
+                <div 
+                  onMouseEnter={() => setHoveredTier('micro')}
+                  onMouseLeave={() => setHoveredTier(null)}
+                  className={`relative p-8 rounded-3xl border group transition-all duration-300 cursor-pointer ${hoveredTier === 'micro' ? 'lg:scale-110 lg:z-10' : ''} ${isDarkMode ? 'bg-[#131b2c] border-viral-cyan/30' : 'bg-slate-50 border-viral-cyan/30 shadow-md'} ${hoveredTier !== 'micro' && hoveredTier ? 'lg:scale-95 lg:opacity-50' : ''}`}>
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-viral-cyan text-slate-900 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                         Most Active
                     </div>
@@ -456,31 +477,52 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                         <div className="inline-block px-3 py-1 rounded-lg bg-viral-cyan/10 text-viral-cyan text-xs font-bold mb-4 border border-viral-cyan/20">
                             Very High Engagement
                         </div>
-                        <div className="w-12 h-1 bg-gradient-to-r from-viral-cyan to-viral-purple rounded-full mx-auto opacity-50"></div>
+                        <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-white/10' : 'border-slate-200'}`}>
+                            <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                                The sweet spot for ROI. Micro influencers maintain exceptional engagement rates while reaching meaningful audiences. Ideal for building brand awareness and driving conversions with authentic voices and dedicated followers who trust their recommendations.
+                            </p>
+                        </div>
+                        <div className="w-12 h-1 bg-gradient-to-r from-viral-cyan to-viral-purple rounded-full mx-auto opacity-50 mt-6"></div>
                     </div>
                 </div>
 
                 {/* Macro Tier */}
-                <div className={`relative p-8 rounded-3xl border group transition-all duration-300 ${isDarkMode ? 'bg-[#0B0F19] border-white/10 hover:border-blue-500/50' : 'bg-white border-slate-200 hover:border-blue-500/50 shadow-sm hover:shadow-lg'}`}>
+                <div 
+                  onMouseEnter={() => setHoveredTier('macro')}
+                  onMouseLeave={() => setHoveredTier(null)}
+                  className={`relative p-8 rounded-3xl border group transition-all duration-300 cursor-pointer ${hoveredTier === 'macro' ? 'lg:scale-110 lg:z-10' : ''} ${isDarkMode ? 'bg-[#0B0F19] border-white/10 hover:border-blue-500/50' : 'bg-white border-slate-200 hover:border-blue-500/50 shadow-sm hover:shadow-lg'} ${hoveredTier !== 'macro' && hoveredTier ? 'lg:scale-95 lg:opacity-50' : ''}`}>
                     <div className="text-center">
                         <h3 className="text-xl font-bold text-blue-500 mb-2">Macro</h3>
                         <p className={`text-sm font-medium mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>500K - 1M Followers</p>
                         <div className="inline-block px-3 py-1 rounded-lg bg-blue-500/10 text-blue-500 text-xs font-bold mb-4 border border-blue-500/20">
                             Medium Engagement
                         </div>
-                        <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto opacity-50"></div>
+                        <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-white/10' : 'border-slate-200'}`}>
+                            <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                                Reach a substantial audience with established credibility. Macro influencers excel at brand awareness campaigns and reaching larger demographics. Perfect for campaigns requiring significant reach while maintaining professional influence and brand partnerships.
+                            </p>
+                        </div>
+                        <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto opacity-50 mt-6"></div>
                     </div>
                 </div>
 
                 {/* Mega Tier */}
-                <div className={`relative p-8 rounded-3xl border group transition-all duration-300 ${isDarkMode ? 'bg-[#0B0F19] border-white/10 hover:border-pink-500/50' : 'bg-white border-slate-200 hover:border-pink-500/50 shadow-sm hover:shadow-lg'}`}>
+                <div 
+                  onMouseEnter={() => setHoveredTier('mega')}
+                  onMouseLeave={() => setHoveredTier(null)}
+                  className={`relative p-8 rounded-3xl border group transition-all duration-300 cursor-pointer ${hoveredTier === 'mega' ? 'lg:scale-110 lg:z-10' : ''} ${isDarkMode ? 'bg-[#0B0F19] border-white/10 hover:border-pink-500/50' : 'bg-white border-slate-200 hover:border-pink-500/50 shadow-sm hover:shadow-lg'} ${hoveredTier !== 'mega' && hoveredTier ? 'lg:scale-95 lg:opacity-50' : ''}`}>
                     <div className="text-center">
                         <h3 className="text-xl font-bold text-pink-500 mb-2">Mega</h3>
                         <p className={`text-sm font-medium mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>1M+ Followers</p>
                         <div className="inline-block px-3 py-1 rounded-lg bg-pink-500/10 text-pink-500 text-xs font-bold mb-4 border border-pink-500/20">
                             Medium Engagement
                         </div>
-                        <div className="w-12 h-1 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full mx-auto opacity-50"></div>
+                        <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-white/10' : 'border-slate-200'}`}>
+                            <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                                Maximum reach and brand visibility. Mega influencers command massive audiences and are ideal for major campaign launches and global brand awareness. Perfect for established brands looking to make a big impact across multiple markets and demographics.
+                            </p>
+                        </div>
+                        <div className="w-12 h-1 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full mx-auto opacity-50 mt-6"></div>
                     </div>
                 </div>
 
@@ -496,24 +538,24 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
       {/* --- AI Tutor Section --- */}
       <section id="ai-tutor" className={`py-24 px-6 scroll-mt-20 ${isDarkMode ? 'bg-slate-900/50' : 'bg-slate-50'}`}>
-         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-             <div className="order-1">
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 text-yellow-500 ${isDarkMode ? 'bg-yellow-500/10' : 'bg-yellow-100'}`}>
+         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 items-center">
+             <div className="order-1 lg:pl-0">
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-gradient-to-r from-viral-cyan to-viral-purple text-white ${isDarkMode ? '' : ''}`}>
                     <GraduationCap size={24} />
                 </div>
                 <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                    Your Personal <span className="text-yellow-500">Algorithm Coach</span>
+                    Your Personal <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Social Media Coach</span>
                 </h2>
                 <p className={`text-lg mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     Don't just post - learn. The AI Tutor analyzes your past performance and teaches you exactly *why* certain posts went viral while others flopped.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                     <div className={`p-4 rounded-xl border ${isDarkMode ? 'bg-slate-800 border-white/5' : 'bg-white border-slate-200'}`}>
-                        <h4 className={`font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Trend Alerts</h4>
+                        <h4 className={`font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple ${isDarkMode ? '' : ''}`}>Trend Alerts</h4>
                         <p className="text-sm text-slate-500">Get notified of rising audio and formats before they peak.</p>
                     </div>
                     <div className={`p-4 rounded-xl border ${isDarkMode ? 'bg-slate-800 border-white/5' : 'bg-white border-slate-200'}`}>
-                        <h4 className={`font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Step-by-Step</h4>
+                        <h4 className={`font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-viral-purple to-viral-cyan ${isDarkMode ? '' : ''}`}>Step-by-Step</h4>
                         <p className="text-sm text-slate-500">Actionable checklists to improve your content quality.</p>
                     </div>
                 </div>
@@ -554,22 +596,52 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <div className={`relative rounded-3xl p-1 border ${isDarkMode ? 'bg-slate-800 border-white/10' : 'bg-white border-slate-200 shadow-xl'}`}>
                      {/* Abstract Ad Builder UI */}
                      <div className={`h-64 rounded-2xl flex items-center justify-center ${isDarkMode ? 'bg-[#0B0F19]' : 'bg-slate-50'}`}>
-                        <div className="text-center">
-                            <Target size={48} className="mx-auto text-blue-500 mb-4 opacity-50"/>
-                            <p className="text-slate-500 font-mono text-sm">Targeting: Optimized</p>
-                            <p className="text-slate-500 font-mono text-sm">Creative: A/B Testing (3 Variants)</p>
+                        <div className="text-center p-6">
+                            <Target size={48} className={`mx-auto mb-4 ${selectedVariant === 'A' ? 'text-viral-cyan' : selectedVariant === 'B' ? 'text-viral-purple' : 'text-blue-500'}`}/>
+                            <p className={`font-mono text-sm mb-2 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Platform: Cross-Network</p>
+                            <p className={`font-mono text-sm mb-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Campaign: Variant {selectedVariant}</p>
+                            {selectedVariant === 'A' && (
+                              <div className="mt-4">
+                                <p className={`text-sm font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Content Strategy: Viral Focus</p>
+                                <p className={`text-xs mb-2 ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>TikTok + Instagram Reels</p>
+                                <p className={`text-xs ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>Scheduled: 3 posts/day • Best times</p>
+                              </div>
+                            )}
+                            {selectedVariant === 'B' && (
+                              <div className="mt-4">
+                                <p className={`text-sm font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Content Strategy: Professional</p>
+                                <p className={`text-xs mb-2 ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>LinkedIn + X</p>
+                                <p className={`text-xs ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>Scheduled: 2 posts/day • Peak hours</p>
+                              </div>
+                            )}
+                            {selectedVariant === 'C' && (
+                              <div className="mt-4">
+                                <p className={`text-sm font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Content Strategy: Balanced Mix</p>
+                                <p className={`text-xs mb-2 ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>YouTube + Facebook + Instagram</p>
+                                <p className={`text-xs ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>Scheduled: 5 posts/day • All platforms</p>
+                              </div>
+                            )}
                         </div>
                      </div>
                      <div className="grid grid-cols-3 gap-1 mt-1">
-                        <div className="h-20 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-                            <span className="font-bold text-blue-500">A</span>
-                        </div>
-                        <div className="h-20 rounded-xl bg-slate-800/50 flex items-center justify-center border border-slate-700/50 opacity-50">
-                            <span className="font-bold text-slate-500">B</span>
-                        </div>
-                        <div className="h-20 rounded-xl bg-slate-800/50 flex items-center justify-center border border-slate-700/50 opacity-50">
-                            <span className="font-bold text-slate-500">C</span>
-                        </div>
+                        <button 
+                          onClick={() => setSelectedVariant('A')}
+                          className={`h-20 rounded-xl flex items-center justify-center transition-all ${selectedVariant === 'A' ? 'bg-viral-cyan/20 border border-viral-cyan/50' : 'bg-slate-800/50 border border-slate-700/50 opacity-50 hover:opacity-75'}`}
+                        >
+                            <span className={`font-bold ${selectedVariant === 'A' ? 'text-viral-cyan' : 'text-slate-500'}`}>A</span>
+                        </button>
+                        <button 
+                          onClick={() => setSelectedVariant('B')}
+                          className={`h-20 rounded-xl flex items-center justify-center transition-all ${selectedVariant === 'B' ? 'bg-viral-purple/20 border border-viral-purple/50' : 'bg-slate-800/50 border border-slate-700/50 opacity-50 hover:opacity-75'}`}
+                        >
+                            <span className={`font-bold ${selectedVariant === 'B' ? 'text-viral-purple' : 'text-slate-500'}`}>B</span>
+                        </button>
+                        <button 
+                          onClick={() => setSelectedVariant('C')}
+                          className={`h-20 rounded-xl flex items-center justify-center transition-all ${selectedVariant === 'C' ? 'bg-blue-500/20 border border-blue-500/50' : 'bg-slate-800/50 border border-slate-700/50 opacity-50 hover:opacity-75'}`}
+                        >
+                            <span className={`font-bold ${selectedVariant === 'C' ? 'text-blue-500' : 'text-slate-500'}`}>C</span>
+                        </button>
                      </div>
                 </div>
              </div>
@@ -607,14 +679,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
               Create <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Every Type of Content</span>
             </h2>
             <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-              From video scripts to trending hashtags — generate everything you need in seconds
+              From video scripts to trending hashtags - generate everything you need in seconds
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Video Content */}
             <div className={`scroll-animate animate-delay-100 group relative rounded-3xl p-8 border overflow-hidden transition-all duration-300 hover:scale-105 ${isDarkMode ? 'bg-[#131b2c] border-white/10 hover:border-viral-cyan/50' : 'bg-white border-slate-200 hover:border-viral-cyan/50 shadow-sm hover:shadow-xl'}`}>
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=400&fit=crop')] bg-cover bg-center opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=400&fit=crop')] bg-cover bg-center opacity-10 blur-sm transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-viral-cyan/10 via-viral-purple/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative z-10">
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all group-hover:scale-110 ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
@@ -638,7 +710,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
             {/* Images & Graphics */}
             <div className={`scroll-animate animate-delay-200 group relative rounded-3xl p-8 border overflow-hidden transition-all duration-300 hover:scale-105 ${isDarkMode ? 'bg-[#131b2c] border-white/10 hover:border-viral-purple/50' : 'bg-white border-slate-200 hover:border-viral-purple/50 shadow-sm hover:shadow-xl'}`}>
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop')] bg-cover bg-center opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=400&fit=crop')] bg-cover bg-center opacity-10 blur-sm transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-viral-purple/10 via-pink-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative z-10">
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all group-hover:scale-110 ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
@@ -663,7 +735,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
             {/* Captions & Scripts */}
             <div className={`scroll-animate animate-delay-300 group relative rounded-3xl p-8 border overflow-hidden transition-all duration-300 hover:scale-105 ${isDarkMode ? 'bg-[#131b2c] border-white/10 hover:border-blue-500/50' : 'bg-white border-slate-200 hover:border-blue-500/50 shadow-sm hover:shadow-xl'}`}>
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=400&fit=crop')] bg-cover bg-center opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=400&fit=crop')] bg-cover bg-center opacity-10 blur-sm transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-viral-cyan/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative z-10">
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all group-hover:scale-110 ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
@@ -687,7 +759,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
             {/* Audio Content */}
             <div className={`scroll-animate animate-delay-100 group relative rounded-3xl p-8 border overflow-hidden transition-all duration-300 hover:scale-105 ${isDarkMode ? 'bg-[#131b2c] border-white/10 hover:border-pink-500/50' : 'bg-white border-slate-200 hover:border-pink-500/50 shadow-sm hover:shadow-xl'}`}>
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop')] bg-cover bg-center opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop')] bg-cover bg-center opacity-10 blur-sm transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-viral-purple/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative z-10">
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all group-hover:scale-110 ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
@@ -712,7 +784,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
             {/* Hashtag Research */}
             <div className={`scroll-animate animate-delay-200 group relative rounded-3xl p-8 border overflow-hidden transition-all duration-300 hover:scale-105 ${isDarkMode ? 'bg-[#131b2c] border-white/10 hover:border-green-500/50' : 'bg-white border-slate-200 hover:border-green-500/50 shadow-sm hover:shadow-xl'}`}>
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=400&fit=crop')] bg-cover bg-center opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=400&h=400&fit=crop')] bg-cover bg-center opacity-10 blur-sm transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-emerald-400/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative z-10">
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all group-hover:scale-110 ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
@@ -735,7 +807,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
             {/* Reels & Stories */}
             <div className={`scroll-animate animate-delay-300 group relative rounded-3xl p-8 border overflow-hidden transition-all duration-300 hover:scale-105 ${isDarkMode ? 'bg-[#131b2c] border-white/10 hover:border-yellow-500/50' : 'bg-white border-slate-200 hover:border-yellow-500/50 shadow-sm hover:shadow-xl'}`}>
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=400&fit=crop')] bg-cover bg-center opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=400&fit=crop')] bg-cover bg-center opacity-10 blur-sm transition-opacity duration-500"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-orange-400/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <div className="relative z-10">
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all group-hover:scale-110 ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
@@ -781,177 +853,323 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
               PLATFORM INTEGRATION
             </div>
             <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-              One Dashboard for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">All Platforms</span>
+              One Dashboard for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">All Major Platforms</span>
             </h2>
-            <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-              Connect and manage content across 8+ major social media platforms seamlessly
+            <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`}>
+              Connect and manage content across 15+ major social media platforms seamlessly
             </p>
           </div>
 
-          {/* Platform Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {/* TikTok */}
-            <div className={`scroll-animate animate-delay-100 group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-600' : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'}`}>
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#00f2ea] to-[#ff0050] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                </svg>
+          {/* Video Platforms */}
+          <div className="mb-12">
+            <h3 className={`text-lg font-semibold mb-6 transition-colors ${isDarkMode ? 'text-slate-100' : 'text-slate-800'}`}>Video Platforms</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+              {/* TikTok */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-black/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-black flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-slate-900/50">
+                  <i className="fab fa-tiktok text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>TikTok</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>1.7B+ users</p>
               </div>
-              <h3 className={`font-bold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>TikTok</h3>
-              <p className={`text-xs text-center transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>1.7B+ users</p>
-            </div>
 
-            {/* Instagram */}
-            <div className={`group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-600' : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'}`}>
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-                </svg>
+              {/* YouTube */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-red-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#FF0000] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-red-500/50">
+                  <i className="fab fa-youtube text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>YouTube</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>2.7B+ users</p>
               </div>
-              <h3 className={`font-bold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Instagram</h3>
-              <p className={`text-xs text-center transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>2.4B+ users</p>
-            </div>
 
-            {/* YouTube */}
-            <div className={`group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-600' : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'}`}>
-              <div className="w-16 h-16 rounded-xl bg-[#FF0000] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
+              {/* Twitch */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#9146FF] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-purple-500/50">
+                  <i className="fab fa-twitch text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Twitch</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>240M+ users</p>
               </div>
-              <h3 className={`font-bold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>YouTube</h3>
-              <p className={`text-xs text-center transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>2.7B+ users</p>
             </div>
+          </div>
 
-            {/* Facebook */}
-            <div className={`group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-600' : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'}`}>
-              <div className="w-16 h-16 rounded-xl bg-[#1877F2] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
+          {/* Messaging Platforms */}
+          <div className="mb-12">
+            <h3 className={`text-lg font-semibold mb-6 transition-colors ${isDarkMode ? 'text-slate-100' : 'text-slate-800'}`}>Messaging Platforms</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {/* WhatsApp */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#25D366] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-green-500/50">
+                  <i className="fab fa-whatsapp text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>WhatsApp</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>2B+ users</p>
               </div>
-              <h3 className={`font-bold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Facebook</h3>
-              <p className={`text-xs text-center transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>3.1B+ users</p>
+
+              {/* Telegram */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#0088cc] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-blue-500/50">
+                  <i className="fab fa-telegram text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Telegram</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>900M+ users</p>
+              </div>
+
+              {/* Discord */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#5865F2] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-indigo-500/50">
+                  <i className="fab fa-discord text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Discord</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>200M+ users</p>
+              </div>
+
+              {/* Snapchat */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#FFFC00] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-yellow-400/50">
+                  <i className="fab fa-snapchat text-black text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Snapchat</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>718M+ users</p>
+              </div>
             </div>
+          </div>
 
-            {/* LinkedIn */}
-            <div className={`group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-600' : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'}`}>
-              <div className="w-16 h-16 rounded-xl bg-[#0A66C2] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
+          {/* Social Networks */}
+          <div>
+            <h3 className={`text-lg font-semibold mb-6 transition-colors ${isDarkMode ? 'text-slate-100' : 'text-slate-800'}`}>Social Networks</h3>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+              {/* Instagram */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-pink-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-pink-500/50">
+                  <i className="fab fa-instagram text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Instagram</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>2.4B+ users</p>
               </div>
-              <h3 className={`font-bold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>LinkedIn</h3>
-              <p className={`text-xs text-center transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>1B+ users</p>
-            </div>
 
-            {/* X (Twitter) */}
-            <div className={`group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-600' : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'}`}>
-              <div className="w-16 h-16 rounded-xl bg-black flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
+              {/* Facebook */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-blue-600/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#1877F2] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-blue-600/50">
+                  <i className="fab fa-facebook text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Facebook</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>3.1B+ users</p>
               </div>
-              <h3 className={`font-bold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>X</h3>
-              <p className={`text-xs text-center transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>600M+ users</p>
-            </div>
 
-            {/* Reddit */}
-            <div className={`group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-600' : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'}`}>
-              <div className="w-16 h-16 rounded-xl bg-[#FF4500] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
-                </svg>
+              {/* LinkedIn */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-blue-700/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#0A66C2] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-blue-700/50">
+                  <i className="fab fa-linkedin text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>LinkedIn</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>1B+ users</p>
               </div>
-              <h3 className={`font-bold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Reddit</h3>
-              <p className={`text-xs text-center transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>900M+ users</p>
-            </div>
 
-            {/* Twitch */}
-            <div className={`group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-600' : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'}`}>
-              <div className="w-16 h-16 rounded-xl bg-[#9146FF] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
-                </svg>
+              {/* X (Twitter) */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-slate-600/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-black flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-slate-800/50">
+                  <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>X</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>600M+ users</p>
               </div>
-              <h3 className={`font-bold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Twitch</h3>
-              <p className={`text-xs text-center transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>240M+ users</p>
+
+              {/* Reddit */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-orange-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#FF4500] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-orange-500/50">
+                  <i className="fab fa-reddit text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Reddit</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>900M+ users</p>
+              </div>
+
+              {/* Pinterest */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-red-600/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#E60B3B] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-red-600/50">
+                  <i className="fab fa-pinterest text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Pinterest</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>502M+ users</p>
+              </div>
+
+              {/* Bluesky */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#1185FE] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-cyan-500/50">
+                  <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9.5 3.5C9.5 2.119 10.619 1 12 1s2.5 1.119 2.5 2.5c0 .99-.725 1.807-1.675 1.964C12.896 6.297 12 7.461 12 8.5c0 .78.38 1.47 1 1.895V20h2v-9.605c.62-.425 1-1.115 1-1.895 0-1.039-.896-2.203-1.825-2.036.95-.157 1.675-.974 1.675-1.964zm-6 0C3.5 2.119 4.619 1 6 1s2.5 1.119 2.5 2.5c0 .99-.725 1.807-1.675 1.964.929.833 1.675 1.997 1.675 3.036 0 .78.38 1.47 1 1.895V20h2v-9.605c.62-.425 1-1.115 1-1.895 0-1.039-.896-2.203-1.825-2.036.95-.157 1.675-.974 1.675-1.964 0-1.381-1.119-2.5-2.5-2.5s-2.5 1.119-2.5 2.5c0 .99.725 1.807 1.675 1.964-.929.833-1.675 1.997-1.675 3.036 0 .78-.38 1.47-1 1.895V20h-2v-9.605c-.62-.425-1-1.115-1-1.895 0-1.039.896-2.203 1.825-2.036-.95-.157-1.675-.974-1.675-1.964z"/>
+                  </svg>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Bluesky</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>15M+ users</p>
+              </div>
+
+              {/* Mastodon */}
+              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-purple-600/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
+                <div className="w-16 h-16 rounded-xl bg-[#6364FF] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-purple-600/50">
+                  <i className="fab fa-mastodon text-white text-2xl"></i>
+                </div>
+                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Mastodon</h3>
+                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>1M+ users</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* --- Pricing Section --- */}
-      <section id="pricing" className={`py-32 px-6 scroll-mt-20 ${isDarkMode ? 'bg-slate-900/50' : 'bg-slate-50'}`}>
-        <div className="max-w-7xl mx-auto">
+      <section id="pricing" className={`py-32 px-6 scroll-mt-20 relative ${isDarkMode ? 'bg-[#0B0F19]' : 'bg-slate-50'}`}>
+        {/* Top Wave Gradient */}
+        <div className="absolute top-0 left-0 right-0 h-96 pointer-events-none overflow-hidden">
+          <svg className="w-full h-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="landingWaveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style={{ stopColor: '#23bddf', stopOpacity: 0.3 }} />
+                <stop offset="50%" style={{ stopColor: '#cf29f5', stopOpacity: 0.2 }} />
+                <stop offset="100%" style={{ stopColor: '#23bddf', stopOpacity: 0.3 }} />
+              </linearGradient>
+            </defs>
+            <path fill="url(#landingWaveGradient)" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,138.7C1248,139,1344,149,1392,154.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+            <path fill="url(#landingWaveGradient)" fillOpacity="0.5" d="M0,128L48,133.3C96,139,192,149,288,144C384,139,480,117,576,112C672,107,768,117,864,128C960,139,1056,149,1152,149.3C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+        </div>
+
+        <div className="max-w-4xl mx-auto relative z-10">
             <div className="text-center mb-16 scroll-animate">
-                <h2 className={`text-3xl md:text-5xl font-bold mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                    Simple, transparent <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">pricing.</span>
+                <h2 className={`text-3xl md:text-5xl font-bold mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                    Give Your Team the Right Tools to Succeed
                 </h2>
-                <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Start for free, scale as you grow. No hidden fees.
+                <p className={`text-base max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                    Our goal is to make identity by Figr available to every team, no matter the size.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* Free Plan */}
-                <div className={`scroll-animate animate-delay-100 rounded-3xl p-8 border transition-all ${isDarkMode ? 'bg-[#0B0F19] border-white/10' : 'bg-white border-slate-200'}`}>
-                    <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Starter</h3>
-                    <div className="text-4xl font-bold mb-6 flex items-end gap-1">
-                        <span className={isDarkMode ? 'text-white' : 'text-slate-900'}>$0</span>
-                        <span className="text-sm text-slate-500 mb-1">/mo</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 items-stretch justify-center">
+                {/* Creator Pro Plan */}
+                <div className={`scroll-animate rounded-2xl p-8 transition-all relative border hover:scale-110 hover:shadow-2xl hover:shadow-teal-400/20 cursor-pointer ${
+                  'md:col-span-1 bg-teal-900/30 border-2 border-teal-400 md:scale-105'
+                }`}>
+                    {/* Plan Label */}
+                    <div className="text-xs font-bold uppercase tracking-wider mb-2 text-teal-400">
+                        GROWTH PLAN
                     </div>
-                    <p className="text-sm text-slate-500 mb-8">Perfect for new creators just starting out.</p>
-                    <ul className={`space-y-4 mb-8 text-sm ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-cyan"/> 3 Social Profiles</li>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-cyan"/> 10 AI Posts / mo</li>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-cyan"/> Basic Analytics</li>
-                    </ul>
-                    <button className={`w-full py-3 rounded-xl font-bold border transition-colors ${isDarkMode ? 'border-slate-700 hover:bg-slate-800 text-white' : 'border-slate-200 hover:bg-slate-50 text-slate-900'}`}>
-                        Get Started
-                    </button>
-                </div>
 
-                {/* Pro Plan */}
-                <div className={`scroll-animate animate-delay-200 rounded-3xl p-8 border-2 relative transition-all transform md:-translate-y-4 ${isDarkMode ? 'bg-[#131b2c] border-viral-purple' : 'bg-white border-viral-purple shadow-xl'}`}>
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-viral-purple text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Most Popular</div>
-                    <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Creator Pro</h3>
-                    <div className="text-4xl font-bold mb-6 flex items-end gap-1">
-                        <span className={isDarkMode ? 'text-white' : 'text-slate-900'}>$29</span>
-                        <span className="text-sm text-slate-500 mb-1">/mo</span>
+                    {/* Description */}
+                    <p className="text-sm text-slate-300 mb-6">
+                        For serious creators scaling their brand.
+                    </p>
+
+                    {/* Price */}
+                    <div className="mb-6 pb-6 border-b border-slate-600/30">
+                        <div className="flex items-baseline gap-1">
+                            <span className="text-4xl font-bold text-white">$29</span>
+                            <span className="text-slate-400 text-sm">/month</span>
+                        </div>
                     </div>
-                    <p className="text-sm text-slate-500 mb-8">For serious creators scaling their brand.</p>
-                    <ul className={`space-y-4 mb-8 text-sm ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-purple"/> Unlimited Profiles</li>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-purple"/> Unlimited AI Content</li>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-purple"/> AI Tutor Access</li>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-purple"/> Marketplace Access</li>
-                    </ul>
-                    <button onClick={onLaunch} className="w-full py-3 rounded-xl font-bold bg-gradient-to-r from-viral-cyan to-viral-purple text-white hover:opacity-90 shadow-lg transition-all">
+
+                    {/* CTA Button */}
+                    <button
+                        onClick={onLaunch}
+                        className="w-full py-3 px-6 rounded-2xl font-bold transition-all mb-6 bg-white text-teal-900 hover:bg-teal-50"
+                    >
                         Start Free Trial
                     </button>
+
+                    {/* Features */}
+                    <ul className="space-y-4">
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-400" />
+                            <span className="text-sm text-slate-300">Unlimited Social Profiles</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-400" />
+                            <span className="text-sm text-slate-300">Unlimited AI Content</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-400" />
+                            <span className="text-sm text-slate-300">Advanced Analytics</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-400" />
+                            <span className="text-sm text-slate-300">AI Tutor Access</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-400" />
+                            <span className="text-sm text-slate-300">Marketplace Access</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-400" />
+                            <span className="text-sm text-slate-300">Priority Support</span>
+                        </li>
+                    </ul>
                 </div>
 
-                {/* Agency Plan */}
-                <div className={`scroll-animate animate-delay-300 rounded-3xl p-8 border transition-all ${isDarkMode ? 'bg-[#0B0F19] border-white/10' : 'bg-white border-slate-200'}`}>
-                    <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Business</h3>
-                    <div className="text-4xl font-bold mb-6 flex items-end gap-1">
-                        <span className={isDarkMode ? 'text-white' : 'text-slate-900'}>$99</span>
-                        <span className="text-sm text-slate-500 mb-1">/mo</span>
+                {/* Business Plan */}
+                <div className={`scroll-animate rounded-2xl p-8 transition-all relative border hover:scale-110 hover:shadow-2xl hover:shadow-slate-400/20 cursor-pointer ${
+                  'border-slate-500/30 bg-slate-900/40'
+                }`}>
+                    {/* Plan Label */}
+                    <div className="text-xs font-bold uppercase tracking-wider mb-2 text-slate-400">
+                        ENTERPRISE PLAN
                     </div>
-                    <p className="text-sm text-slate-500 mb-8">For agencies and large teams.</p>
-                    <ul className={`space-y-4 mb-8 text-sm ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-cyan"/> 5 Team Members</li>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-cyan"/> Priority Support</li>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-cyan"/> API Access</li>
-                        <li className="flex items-center gap-3"><Check size={16} className="text-viral-cyan"/> White-label Reports</li>
-                    </ul>
-                    <button className={`w-full py-3 rounded-xl font-bold border transition-colors ${isDarkMode ? 'border-slate-700 hover:bg-slate-800 text-white' : 'border-slate-200 hover:bg-slate-50 text-slate-900'}`}>
+
+                    {/* Description */}
+                    <p className="text-sm text-slate-300 mb-6">
+                        For agencies and large teams with advanced needs.
+                    </p>
+
+                    {/* Price */}
+                    <div className="mb-6 pb-6 border-b border-slate-600/30">
+                        <div className="flex items-baseline gap-1">
+                            <span className="text-4xl font-bold text-slate-200">$99</span>
+                            <span className="text-slate-400 text-sm">/month</span>
+                        </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <button
+                        className="w-full py-3 px-6 rounded-2xl font-bold transition-all mb-6 border-2 border-teal-400 text-teal-400 hover:bg-teal-400/10"
+                    >
                         Contact Sales
                     </button>
+
+                    {/* Features */}
+                    <ul className="space-y-4">
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-500" />
+                            <span className="text-sm text-slate-300">Everything in Creator Pro</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-500" />
+                            <span className="text-sm text-slate-300">5+ Team Members</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-500" />
+                            <span className="text-sm text-slate-300">White-label Reports</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-500" />
+                            <span className="text-sm text-slate-300">API Access</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-500" />
+                            <span className="text-sm text-slate-300">Ad Automation</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-500" />
+                            <span className="text-sm text-slate-300">Dedicated Account Manager</span>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+
+            {/* Trusted By Section */}
+            <div className="text-center">
+                <p className={`${isDarkMode ? 'text-slate-400' : 'text-slate-600'} text-sm mb-8`}>
+                    Trusted by 15+ major social media platforms
+                </p>
             </div>
         </div>
       </section>
@@ -963,7 +1181,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       <footer className={`border-t pt-16 pb-12 text-sm transition-colors duration-300 ${isDarkMode ? 'bg-[#06080e] border-white/10' : 'bg-slate-100 border-slate-200'}`}>
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-10">
             <div className="col-span-2 lg:col-span-2">
-                 <a href="#" className="inline-flex items-center gap-3 h-12 mb-6">
+                 <a href="#" className="inline-flex items-center gap-3 h-[100px] mb-6">
                               <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-full w-auto object-contain" />
                               <span className="sr-only">Viralitics</span>
                  </a>
@@ -971,46 +1189,109 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     The AI-first operating system for the modern social media era. Automated, intelligent, and scalable.
                 </p>
                 <div className="flex gap-4">
-                    <Globe size={20} className={`cursor-pointer transition-colors ${isDarkMode ? 'text-slate-600 hover:text-white' : 'text-slate-400 hover:text-slate-900'}`} />
-                    <Sliders size={20} className={`cursor-pointer transition-colors ${isDarkMode ? 'text-slate-600 hover:text-white' : 'text-slate-400 hover:text-slate-900'}`} />
+                    <a href="https://x.com/viralitics" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X" className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'}`}>
+                      <X size={18} />
+                    </a>
+                    <a href="https://linkedin.com/company/viralitics" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn" className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'}`}>
+                      <Linkedin size={18} />
+                    </a>
+                    <a href="https://youtube.com/@viralitics" target="_blank" rel="noopener noreferrer" aria-label="Follow us on YouTube" className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'}`}>
+                      <Youtube size={18} />
+                    </a>
                 </div>
             </div>
             
             <div>
-                <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Product</h4>
-                <ul className="space-y-3 text-slate-500">
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">Content Engine</li>
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">Marketplace</li>
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">Analytics</li>
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">Ads AI</li>
+                <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>PRODUCT</h4>
+                <ul className={`space-y-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                    <li><a href="#content-engine" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Content Engine</a></li>
+                    <li><a href="#marketplace" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Marketplace</a></li>
+                    <li><a href="#analytics" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Analytics</a></li>
+                    <li><a href="#ad-automation" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Ad Automation</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Resources</h4>
-                <ul className="space-y-3 text-slate-500">
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">Blog</li>
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">Community</li>
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">Help Center</li>
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">API Docs</li>
+                <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>RESOURCES</h4>
+                <ul className={`space-y-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                    <li><a href="#blog" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Blog</a></li>
+                    <li><a href="#community" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Community</a></li>
+                    <li><a href="#help-center" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Help Center</a></li>
+                    <li><a href="#api-docs" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>API Docs</a></li>
                 </ul>
             </div>
 
              <div>
-                <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Company</h4>
-                <ul className="space-y-3 text-slate-500">
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">About</li>
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">Careers</li>
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">Legal</li>
-                    <li className="hover:text-viral-cyan cursor-pointer transition-colors">Contact</li>
+                <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>COMPANY</h4>
+                <ul className={`space-y-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                    <li><a href="#about" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>About</a></li>
+                    <li><a href="#careers" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Careers</a></li>
+                    <li><a href="#press" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Press</a></li>
+                    <li><a href="#contact" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Contact</a></li>
                 </ul>
             </div>
         </div>
-        <div className={`max-w-7xl mx-auto px-6 mt-16 pt-8 border-t flex flex-col md:flex-row justify-between items-center text-slate-600 ${isDarkMode ? 'border-white/5' : 'border-slate-200'}`}>
-            <p>&copy; 2024 Viralitics Inc. All rights reserved.</p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-                <span className={`cursor-pointer ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Privacy Policy</span>
-                <span className={`cursor-pointer ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Terms of Service</span>
+        <div className={`max-w-7xl mx-auto px-6 mt-16 pt-8 border-t flex flex-col md:flex-row justify-between items-center ${isDarkMode ? 'border-white/5' : 'border-slate-200'}`}>
+            <div className="flex items-center gap-4">
+              <p className={`text-sm ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
+                &copy; 2024 Viralitics Inc. All rights reserved.
+              </p>
+              
+              {/* Language Selector */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowLanguages(!showLanguages)}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-all ${
+                    isDarkMode
+                      ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
+                      : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'
+                  }`}
+                  aria-label="Select language"
+                >
+                  <Globe size={16} />
+                  <span>{selectedLanguage}</span>
+                </button>
+                
+                {/* Language Dropdown */}
+                {showLanguages && (
+                  <div className={`absolute bottom-full mb-2 left-0 rounded-xl shadow-2xl border overflow-hidden min-w-[160px] z-50 ${
+                    isDarkMode
+                      ? 'bg-slate-900 border-slate-700'
+                      : 'bg-white border-slate-200'
+                  }`}>
+                    <div className="max-h-64 overflow-y-auto">
+                      {languages.map((lang) => (
+                        <button
+                          key={lang}
+                          onClick={() => {
+                            setSelectedLanguage(lang);
+                            setShowLanguages(false);
+                          }}
+                          className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
+                            selectedLanguage === lang
+                              ? isDarkMode
+                                ? 'bg-viral-cyan/20 text-viral-cyan'
+                                : 'bg-viral-cyan/10 text-viral-cyan'
+                              : isDarkMode
+                              ? 'text-slate-300 hover:bg-slate-800'
+                              : 'text-slate-700 hover:bg-slate-100'
+                          }`}
+                        >
+                          {lang}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            <div className={`flex gap-6 text-sm mt-4 md:mt-0 ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
+                <span className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Privacy Policy</span>
+                <span className={isDarkMode ? 'text-slate-700' : 'text-slate-300'}>•</span>
+                <span className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Terms of Service</span>
+                <span className={isDarkMode ? 'text-slate-700' : 'text-slate-300'}>•</span>
+                <span className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Cookie Preferences</span>
             </div>
         </div>
       </footer>
