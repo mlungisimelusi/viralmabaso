@@ -296,27 +296,49 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
           })}
         </div>
 
-        {/* Trusted By Section */}
-        <div className="text-center mb-16">
-          <p className={`${isDarkMode ? 'text-slate-400' : 'text-slate-600'} text-sm mb-8`}>
-            Trusted by 15+ major social media platforms
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-8">
-            <SocialIcon platform="TikTok" />
-            <SocialIcon platform="Instagram" />
-            <SocialIcon platform="YouTube" />
-            <SocialIcon platform="Facebook" />
-            <SocialIcon platform="LinkedIn" />
-            <SocialIcon platform="X (Twitter)" />
-            <SocialIcon platform="Reddit" />
-            <SocialIcon platform="Twitch" />
-            <SocialIcon platform="Pinterest" />
-            <SocialIcon platform="Snapchat" />
-            <SocialIcon platform="Discord" />
-            <SocialIcon platform="WhatsApp" />
-            <SocialIcon platform="Telegram" />
-            <SocialIcon platform="Bluesky" />
-            <SocialIcon platform="Mastodon" />
+        {/* Trusted By Section - Creative Grid */}
+        <div className="text-center mb-20">
+          {/* Animated Grid Layout */}
+          <div className="relative max-w-4xl mx-auto">
+            {/* Decorative top gradient line */}
+            <div className={`h-px mb-12 ${isDarkMode ? 'bg-gradient-to-r from-transparent via-viral-cyan/50 to-transparent' : 'bg-gradient-to-r from-transparent via-viral-cyan/30 to-transparent'}`}></div>
+            
+            {/* Platform Icons - Flex Layout */}
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 px-4">
+              {[
+                { platform: 'TikTok', delay: 0 },
+                { platform: 'Instagram', delay: 1 },
+                { platform: 'YouTube', delay: 2 },
+                { platform: 'Facebook', delay: 3 },
+                { platform: 'LinkedIn', delay: 4 },
+                { platform: 'X (Twitter)', delay: 5 },
+                { platform: 'Reddit', delay: 6 },
+                { platform: 'Twitch', delay: 7 },
+                { platform: 'Pinterest', delay: 8 },
+                { platform: 'Snapchat', delay: 9 },
+                { platform: 'Discord', delay: 10 },
+                { platform: 'WhatsApp', delay: 11 },
+                { platform: 'Telegram', delay: 12 },
+                { platform: 'Bluesky', delay: 13 },
+                { platform: 'Mastodon', delay: 14 },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  style={{
+                    animation: `slideInUp 0.6s ease-out ${item.delay * 0.08}s forwards`,
+                    opacity: 0,
+                  }}
+                  className="group cursor-pointer transition-transform hover:scale-110"
+                >
+                  <div className="relative z-10 flex justify-center">
+                    <SocialIcon platform={item.platform} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Decorative bottom gradient line */}
+            <div className={`h-px mt-12 ${isDarkMode ? 'bg-gradient-to-r from-transparent via-viral-purple/50 to-transparent' : 'bg-gradient-to-r from-transparent via-viral-purple/30 to-transparent'}`}></div>
           </div>
         </div>
         <div className="max-w-3xl mx-auto">

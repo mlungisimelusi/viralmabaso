@@ -5,7 +5,10 @@ export enum View {
   ADS_MANAGER = 'ADS_MANAGER',
   ANALYTICS = 'ANALYTICS',
   TUTOR = 'TUTOR',
-  SETTINGS = 'SETTINGS'
+  SETTINGS = 'SETTINGS',
+  CALENDAR = 'CALENDAR',
+  TEAM = 'TEAM',
+  API_DOCS = 'API_DOCS'
 }
 
 export interface Metric {

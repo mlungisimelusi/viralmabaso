@@ -4,12 +4,15 @@ import Dashboard from './components/Dashboard';
 import ContentEngine from './components/ContentEngine';
 import Marketplace from './components/Marketplace';
 import Settings from './components/Settings';
+import ContentCalendar from './components/ContentCalendar';
+import TeamCollaboration from './components/TeamCollaboration';
+import APIDocs from './components/APIDocs';
 import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import PricingPage from './components/PricingPage';
 import { View } from './types';
-import { Bell, Search, UserCircle } from 'lucide-react';
+import { Bell, Search, UserCircle, Sun, Moon } from 'lucide-react';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'signup' | 'pricing' | 'app'>('landing');
@@ -45,6 +48,12 @@ const App: React.FC = () => {
         return <Marketplace />;
       case View.SETTINGS:
         return <Settings />;
+      case View.CALENDAR:
+        return <ContentCalendar />;
+      case View.TEAM:
+        return <TeamCollaboration />;
+      case View.API_DOCS:
+        return <APIDocs />;
       case View.ADS_MANAGER:
       case View.ANALYTICS:
       case View.TUTOR:
@@ -65,9 +74,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-50 font-sans flex animate-in fade-in duration-700">
+    <div className={`min-h-screen font-sans flex animate-in fade-in duration-700 transition-colors duration-300 ${isDarkMode ? 'bg-slate-900 text-slate-50' : 'bg-slate-50 text-slate-900'}`}>
       {/* Sidebar */}
-      <Sidebar currentView={currentView} onNavigate={setCurrentView} />
+      <Sidebar currentView={currentView} onNavigate={setCurrentView} isDarkMode={isDarkMode} />
 
       {/* Main Content Area */}
       <main className="flex-1 ml-64 min-h-screen flex flex-col relative">
@@ -78,32 +87,45 @@ const App: React.FC = () => {
         </div>
 
         {/* Header */}
-        <header className="h-20 border-b border-slate-800 flex items-center justify-between px-8 bg-slate-900/50 backdrop-blur-md sticky top-0 z-10">
+        <header className={`h-20 border-b flex items-center justify-between px-8 backdrop-blur-md sticky top-0 z-10 transition-colors ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-white/50'}`}>
           <div className="flex items-center gap-4 w-96">
             <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
+                <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`} size={18} />
                 <input 
                     type="text" 
                     placeholder="Search campaigns, influencers, or assets..." 
-                    className="w-full bg-slate-800/50 border border-slate-700/50 rounded-full pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-viral-cyan transition-colors"
+                    className={`w-full rounded-full pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-viral-cyan transition-colors ${isDarkMode ? 'bg-slate-800/50 border border-slate-700/50 text-white' : 'bg-slate-100 border border-slate-200 text-slate-900'}`}
                 />
             </div>
           </div>
 
           <div className="flex items-center gap-6">
-            <button className="relative text-slate-400 hover:text-white transition-colors">
-                <Bell size={20} />
-                <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-viral-cyan rounded-full border-2 border-slate-900"></span>
+            <button 
+              onClick={() => setIsDarkMode(!isDarkMode)} 
+              className={`p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'}`}
+              title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-            <div className="flex items-center gap-3 pl-6 border-l border-slate-800">
+            <button className={`relative transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'}`}>
+                <Bell size={20} />
+                <span className={`absolute -top-1 -right-1 w-2.5 h-2.5 bg-viral-cyan rounded-full border-2 ${isDarkMode ? 'border-slate-900' : 'border-white'}`}></span>
+            </button>
+            <div className={`flex items-center gap-3 pl-6 border-l ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}>
                 <div className="text-right hidden md:block">
-                    <p className="text-sm font-bold text-white">Alex Designer</p>
+                    <p className={`text-sm font-bold ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Alex Designer</p>
                     <p className="text-xs text-slate-500">Pro Plan</p>
                 </div>
                 <button className="hover:opacity-80 transition-opacity">
                     <UserCircle size={36} className="text-slate-300" />
                 </button>
             </div>
+            <button 
+              onClick={() => setCurrentPage('login')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors border ${isDarkMode ? 'bg-slate-800 hover:bg-slate-700 text-white border-slate-700' : 'bg-slate-100 hover:bg-slate-200 text-slate-900 border-slate-200'}`}
+            >
+              Log Out
+            </button>
           </div>
         </header>
 

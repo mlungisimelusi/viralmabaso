@@ -47,6 +47,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
   const [selectedVariant, setSelectedVariant] = useState<'A' | 'B' | 'C'>('A');
   const [showLanguages, setShowLanguages] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('English');
+  const [spinChat, setSpinChat] = useState(false);
   
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -67,13 +68,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // Intersection Observer for scroll animations
+  // Intersection Observer for scroll animations and chat spin
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-on-scroll');
+            // Trigger chat spin when AI Tutor section comes into view
+            if (entry.target.id === 'ai-tutor') {
+              setSpinChat(true);
+              // Reset after animation completes (3 seconds)
+              setTimeout(() => setSpinChat(false), 3000);
+            }
           }
         });
       },
@@ -82,6 +89,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
     
     const elements = document.querySelectorAll('.scroll-animate');
     elements.forEach((el) => observerRef.current?.observe(el));
+    
+    // Also observe the AI Tutor section
+    const aiTutorSection = document.getElementById('ai-tutor');
+    if (aiTutorSection && observerRef.current) {
+      observerRef.current.observe(aiTutorSection);
+    }
     
     return () => {
       if (observerRef.current) {
@@ -254,6 +267,43 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
            {/* Image Column (Right) */}
           <div className="relative z-10 lg:order-2 scroll-animate animate-delay-200 flex justify-center items-center">
+             {/* Animated Emoji Background */}
+             <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+               {[
+                 { emoji: '❤️', delay: 0, duration: 6 },
+                 { emoji: '💯', delay: 0.5, duration: 7 },
+                 { emoji: '🔥', delay: 1, duration: 8 },
+                 { emoji: '😂', delay: 1.5, duration: 6.5 },
+                 { emoji: '🎉', delay: 2, duration: 7.5 },
+                 { emoji: '✨', delay: 2.5, duration: 6 },
+                 { emoji: '👍', delay: 3, duration: 8 },
+                 { emoji: '💬', delay: 3.5, duration: 7 },
+                 { emoji: '📱', delay: 4, duration: 6.5 },
+                 { emoji: '⭐', delay: 4.5, duration: 7.5 },
+                 { emoji: '💜', delay: 5, duration: 6 },
+                 { emoji: '🚀', delay: 5.5, duration: 8 },
+                 { emoji: '😍', delay: 6, duration: 7 },
+                 { emoji: '🎵', delay: 6.5, duration: 6.5 },
+                 { emoji: '💎', delay: 7, duration: 7.5 },
+               ].map((item, i) => (
+                 <div
+                   key={i}
+                   className="absolute text-4xl md:text-5xl opacity-[0.1] animate-float"
+                   style={{
+                     left: `${Math.random() * 100}%`,
+                     top: `${Math.random() * 100}%`,
+                     animationDelay: `${item.delay}s`,
+                     animationDuration: `${item.duration}s`,
+                     willChange: 'transform',
+                     contain: 'layout style paint',
+                     backfaceVisibility: 'hidden',
+                   }}
+                 >
+                   {item.emoji}
+                 </div>
+               ))}
+             </div>
+             
              {/* Multi-layer Radial Gradient Glow Behind Model */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] -z-20">
                {/* Outer Purple Glow */}
@@ -293,22 +343,22 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </div>
                 
                 <h2 className={`text-3xl md:text-5xl font-bold mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                    Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Dominate.</span>
+                    Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">take over your entire workflow.</span>
                 </h2>
                 <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     A complete suite of AI tools designed to replace fragmented workflows. One login, infinite reach.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 
                 {/* Card 1: AI Social Media Manager */}
-                <div className={`scroll-animate animate-delay-100 rounded-3xl p-8 transition-all group overflow-hidden relative border ${isDarkMode ? 'bg-[#131b2c] border-white/5 hover:border-viral-cyan/30' : 'bg-white border-slate-200 shadow-sm hover:border-viral-cyan/50 hover:shadow-md'}`}>
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-viral-cyan/10 blur-[80px] rounded-full group-hover:bg-viral-cyan/20 transition-all"></div>
+                <div className={`scroll-animate animate-delay-100 rounded-2xl p-8 md:p-10 min-h-[280px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-viral-cyan/5 blur-[60px] rounded-full group-hover:bg-viral-cyan/10 transition-all opacity-0 group-hover:opacity-100"></div>
                     <div className="relative z-10 flex flex-col h-full">
                         {/* Custom Brand Icon: Hand with interactions */}
-                        <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
-                             <svg viewBox="0 0 100 100" fill="none" className="w-12 h-12">
+                        <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
+                             <svg viewBox="0 0 100 100" fill="none" className="w-9 h-9">
                                 {/* Hand Base */}
                                 <path d="M25 75 Q50 90 75 75" stroke="url(#icon_gradient_manager)" strokeWidth="6" strokeLinecap="round" />
                                 {/* Stems */}
@@ -337,24 +387,24 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                                 </defs>
                             </svg>
                         </div>
-                        <h3 className={`text-2xl font-bold mb-3 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
-                        <p className={`mb-6 flex-grow transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <h3 className={`text-2xl md:text-3xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
+                        <p className={`mb-4 flex-grow text-sm md:text-base transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                             Stop guessing. Generate high-retention scripts, hooks, and engagement strategies tailored to your niche. Our AI manages your posting schedule to maximize reach.
                         </p>
                         
-                        <a href="#ai-manager" className="inline-flex items-center gap-2 text-viral-cyan font-bold hover:gap-3 transition-all">
-                            Learn more <ArrowRight size={16} />
+                        <a href="#ai-manager" className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
+                            Learn more <ArrowRight size={12} />
                         </a>
                     </div>
                 </div>
 
                 {/* Card 2: Ad Automation */}
-                <div className={`scroll-animate animate-delay-200 rounded-3xl p-8 transition-all group overflow-hidden relative border ${isDarkMode ? 'bg-[#131b2c] border-white/5 hover:border-viral-cyan/30' : 'bg-white border-slate-200 shadow-sm hover:border-viral-cyan/50 hover:shadow-md'}`}>
-                     <div className="absolute top-0 right-0 w-64 h-64 bg-viral-cyan/10 blur-[80px] rounded-full group-hover:bg-viral-cyan/20 transition-all"></div>
+                <div className={`scroll-animate animate-delay-200 rounded-2xl p-8 md:p-10 min-h-[280px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
+                     <div className="absolute top-0 right-0 w-40 h-40 bg-viral-cyan/5 blur-[60px] rounded-full group-hover:bg-viral-cyan/10 transition-all opacity-0 group-hover:opacity-100"></div>
                      <div className="relative z-10 flex flex-col h-full">
                          {/* Custom Brand Icon: Gear with Play + Arrows */}
-                         <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
-                            <svg viewBox="0 0 100 100" fill="none" className="w-12 h-12">
+                         <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
+                            <svg viewBox="0 0 100 100" fill="none" className="w-9 h-9">
                                 {/* Rotating Arrow Top */}
                                 <path d="M20 50 A30 30 0 0 1 50 20" stroke="url(#icon_gradient_ads)" strokeWidth="5" strokeLinecap="round" />
                                 <path d="M50 20 L44 26 M50 20 L56 26" stroke="url(#icon_gradient_ads)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
@@ -380,41 +430,32 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                                 </defs>
                             </svg>
                         </div>
-                        <h3 className={`text-2xl font-bold mb-3 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Ad Automation</h3>
-                        <p className={`mb-6 flex-grow transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <h3 className={`text-2xl md:text-3xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Ad Automation</h3>
+                        <p className={`mb-4 flex-grow text-sm md:text-base transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                             Launch campaigns that optimize themselves. We test hundreds of creative variations and automatically shift budget to the winners.
                         </p>
                         
-                        <a href="#ad-creator" className="inline-flex items-center gap-2 text-viral-cyan font-bold hover:gap-3 transition-all">
-                            Learn more <ArrowRight size={16} />
+                        <a href="#ad-creator" className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
+                            Learn more <ArrowRight size={12} />
                         </a>
                      </div>
                 </div>
 
                 {/* Card 3: AI Tutor */}
-                <div className={`scroll-animate animate-delay-300 rounded-3xl p-8 transition-all group overflow-hidden relative border ${isDarkMode ? 'bg-[#131b2c] border-white/5 hover:border-viral-purple/30' : 'bg-white border-slate-200 shadow-sm hover:border-viral-purple/50 hover:shadow-md'}`}>
-                     <div className="absolute top-0 right-0 w-64 h-64 bg-viral-purple/10 blur-[80px] rounded-full group-hover:bg-viral-purple/20 transition-all"></div>
+                <div className={`scroll-animate animate-delay-300 rounded-2xl p-8 md:p-10 min-h-[280px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-purple/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-purple/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
+                     <div className="absolute top-0 right-0 w-40 h-40 bg-viral-purple/5 blur-[60px] rounded-full group-hover:bg-viral-purple/10 transition-all opacity-0 group-hover:opacity-100"></div>
                      <div className="relative z-10 flex flex-col h-full">
                          {/* Custom Brand Icon: Tutor/Book */}
-                         <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
-                             <svg viewBox="0 0 100 100" fill="none" className="w-12 h-12">
-                                <path d="M20 30 L50 15 L80 30 L80 70 L50 85 L20 70 Z" stroke="url(#icon_gradient_tutor)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M50 85 L50 45 M50 45 L80 30 M50 45 L20 30" stroke="url(#icon_gradient_tutor)" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
-                                <defs>
-                                    <linearGradient id="icon_gradient_tutor" x1="20" y1="80" x2="80" y2="20" gradientUnits="userSpaceOnUse">
-                                        <stop stopColor="#cf29f5" />
-                                        <stop offset="1" stopColor="#23bddf" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
+                         <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
+                             <i className="fas fa-book text-transparent bg-clip-text bg-gradient-to-r from-viral-purple to-viral-cyan text-2xl"></i>
                         </div>
-                        <h3 className={`text-2xl font-bold mb-3 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Tutor</h3>
-                        <p className={`mb-6 flex-grow transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <h3 className={`text-2xl md:text-3xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Tutor</h3>
+                        <p className={`mb-4 flex-grow text-sm md:text-base transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                              Your personal algorithm coach. Learn exactly why a post failed and get step-by-step instructions to improve your next one.
                         </p>
                         
-                        <a href="#ai-tutor" className="inline-flex items-center gap-2 text-viral-purple font-bold hover:gap-3 transition-all">
-                            Learn more <ArrowRight size={16} />
+                        <a href="#ai-tutor" className="inline-flex items-center gap-1 text-viral-purple font-bold text-sm hover:gap-2 transition-all mt-auto">
+                            Learn more <ArrowRight size={12} />
                         </a>
                      </div>
                 </div>
@@ -563,7 +604,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
              
              <div className="order-2 relative">
                  {/* Chat UI Mockup */}
-                 <div className={`max-w-md mx-auto rounded-3xl p-6 border ${isDarkMode ? 'bg-[#131b2c] border-white/5' : 'bg-white border-slate-200 shadow-lg'}`}>
+                 <div className={`max-w-md mx-auto rounded-3xl p-6 border transition-all ${spinChat ? 'animate-spin-once' : ''} ${isDarkMode ? 'bg-[#131b2c] border-white/5' : 'bg-white border-slate-200 shadow-lg'}`}>
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-dashed border-slate-700">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-r from-viral-cyan to-viral-purple flex items-center justify-center text-white font-bold">AI</div>
                         <div>
@@ -860,159 +901,107 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             </p>
           </div>
 
-          {/* Video Platforms */}
-          <div className="mb-12">
-            <h3 className={`text-lg font-semibold mb-6 transition-colors ${isDarkMode ? 'text-slate-100' : 'text-slate-800'}`}>Video Platforms</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              {/* TikTok */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-black/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-black flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-slate-900/50">
-                  <i className="fab fa-tiktok text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>TikTok</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>1.7B+ users</p>
-              </div>
-
-              {/* YouTube */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-red-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#FF0000] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-red-500/50">
-                  <i className="fab fa-youtube text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>YouTube</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>2.7B+ users</p>
-              </div>
-
-              {/* Twitch */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-purple-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#9146FF] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-purple-500/50">
-                  <i className="fab fa-twitch text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Twitch</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>240M+ users</p>
+          {/* All Platform Icons - No Cards */}
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {/* TikTok */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-900/50 transition-all">
+                <i className="fab fa-tiktok text-white text-3xl"></i>
               </div>
             </div>
-          </div>
 
-          {/* Messaging Platforms */}
-          <div className="mb-12">
-            <h3 className={`text-lg font-semibold mb-6 transition-colors ${isDarkMode ? 'text-slate-100' : 'text-slate-800'}`}>Messaging Platforms</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {/* WhatsApp */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#25D366] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-green-500/50">
-                  <i className="fab fa-whatsapp text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>WhatsApp</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>2B+ users</p>
-              </div>
-
-              {/* Telegram */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#0088cc] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-blue-500/50">
-                  <i className="fab fa-telegram text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Telegram</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>900M+ users</p>
-              </div>
-
-              {/* Discord */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#5865F2] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-indigo-500/50">
-                  <i className="fab fa-discord text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Discord</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>200M+ users</p>
-              </div>
-
-              {/* Snapchat */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#FFFC00] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-yellow-400/50">
-                  <i className="fab fa-snapchat text-black text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Snapchat</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>718M+ users</p>
+            {/* YouTube */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#FF0000] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-red-500/50 transition-all">
+                <i className="fab fa-youtube text-white text-3xl"></i>
               </div>
             </div>
-          </div>
 
-          {/* Social Networks */}
-          <div>
-            <h3 className={`text-lg font-semibold mb-6 transition-colors ${isDarkMode ? 'text-slate-100' : 'text-slate-800'}`}>Social Networks</h3>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-              {/* Instagram */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-pink-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-pink-500/50">
-                  <i className="fab fa-instagram text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Instagram</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>2.4B+ users</p>
+            {/* Instagram */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-pink-500/50 transition-all">
+                <i className="fab fa-instagram text-white text-3xl"></i>
               </div>
+            </div>
 
-              {/* Facebook */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-blue-600/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#1877F2] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-blue-600/50">
-                  <i className="fab fa-facebook text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Facebook</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>3.1B+ users</p>
+            {/* Facebook */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#1877F2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-600/50 transition-all">
+                <i className="fab fa-facebook text-white text-3xl"></i>
               </div>
+            </div>
 
-              {/* LinkedIn */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-blue-700/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#0A66C2] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-blue-700/50">
-                  <i className="fab fa-linkedin text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>LinkedIn</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>1B+ users</p>
+            {/* LinkedIn */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#0A66C2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-700/50 transition-all">
+                <i className="fab fa-linkedin text-white text-3xl"></i>
               </div>
+            </div>
 
-              {/* X (Twitter) */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-slate-600/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-black flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-slate-800/50">
-                  <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                  </svg>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>X</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>600M+ users</p>
+            {/* X (Twitter) */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-800/50 transition-all">
+                <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
               </div>
+            </div>
 
-              {/* Reddit */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-orange-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#FF4500] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-orange-500/50">
-                  <i className="fab fa-reddit text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Reddit</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>900M+ users</p>
+            {/* Reddit */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#FF4500] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all">
+                <i className="fab fa-reddit text-white text-3xl"></i>
               </div>
+            </div>
 
-              {/* Pinterest */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-red-600/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#E60B3B] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-red-600/50">
-                  <i className="fab fa-pinterest text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Pinterest</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>502M+ users</p>
+            {/* Twitch */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#9146FF] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-all">
+                <i className="fab fa-twitch text-white text-3xl"></i>
               </div>
+            </div>
 
-              {/* Bluesky */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#1185FE] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-cyan-500/50">
-                  <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M9.5 3.5C9.5 2.119 10.619 1 12 1s2.5 1.119 2.5 2.5c0 .99-.725 1.807-1.675 1.964C12.896 6.297 12 7.461 12 8.5c0 .78.38 1.47 1 1.895V20h2v-9.605c.62-.425 1-1.115 1-1.895 0-1.039-.896-2.203-1.825-2.036.95-.157 1.675-.974 1.675-1.964zm-6 0C3.5 2.119 4.619 1 6 1s2.5 1.119 2.5 2.5c0 .99-.725 1.807-1.675 1.964.929.833 1.675 1.997 1.675 3.036 0 .78.38 1.47 1 1.895V20h2v-9.605c.62-.425 1-1.115 1-1.895 0-1.039-.896-2.203-1.825-2.036.95-.157 1.675-.974 1.675-1.964 0-1.381-1.119-2.5-2.5-2.5s-2.5 1.119-2.5 2.5c0 .99.725 1.807 1.675 1.964-.929.833-1.675 1.997-1.675 3.036 0 .78-.38 1.47-1 1.895V20h-2v-9.605c-.62-.425-1-1.115-1-1.895 0-1.039.896-2.203 1.825-2.036-.95-.157-1.675-.974-1.675-1.964z"/>
-                  </svg>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Bluesky</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>15M+ users</p>
+            {/* Pinterest */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#E60B3B] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-red-600/50 transition-all">
+                <i className="fab fa-pinterest text-white text-3xl"></i>
               </div>
+            </div>
 
-              {/* Mastodon */}
-              <div className={`scroll-animate group relative backdrop-blur-sm rounded-2xl p-8 border transition-all hover:scale-105 hover:shadow-lg hover:shadow-purple-600/20 ${isDarkMode ? 'bg-slate-800/50 border-slate-700 hover:border-slate-500 hover:bg-slate-800/70' : 'bg-white border-slate-200 hover:border-slate-400 shadow-sm hover:shadow-md'}`}>
-                <div className="w-16 h-16 rounded-xl bg-[#6364FF] flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform group-hover:shadow-lg group-hover:shadow-purple-600/50">
-                  <i className="fab fa-mastodon text-white text-2xl"></i>
-                </div>
-                <h3 className={`font-semibold text-center mb-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Mastodon</h3>
-                <p className={`text-sm text-center font-medium transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>1M+ users</p>
+            {/* Snapchat */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#FFFC00] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-yellow-400/50 transition-all">
+                <i className="fab fa-snapchat text-black text-3xl"></i>
+              </div>
+            </div>
+
+            {/* Discord */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#5865F2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-indigo-500/50 transition-all">
+                <i className="fab fa-discord text-white text-3xl"></i>
+              </div>
+            </div>
+
+            {/* WhatsApp */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#25D366] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-green-500/50 transition-all">
+                <i className="fab fa-whatsapp text-white text-3xl"></i>
+              </div>
+            </div>
+
+            {/* Telegram */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#0088cc] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-all">
+                <i className="fab fa-telegram text-white text-3xl"></i>
+              </div>
+            </div>
+
+            {/* Bluesky */}
+            <div className="group cursor-pointer transition-transform hover:scale-110">
+              <div className="w-20 h-20 rounded-xl bg-[#1185FE] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all">
+                <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9.5 3.5C9.5 2.119 10.619 1 12 1s2.5 1.119 2.5 2.5c0 .99-.725 1.807-1.675 1.964C12.896 6.297 12 7.461 12 8.5c0 .78.38 1.47 1 1.895V20h2v-9.605c.62-.425 1-1.115 1-1.895 0-1.039-.896-2.203-1.825-2.036.95-.157 1.675-.974 1.675-1.964zm-6 0C3.5 2.119 4.619 1 6 1s2.5 1.119 2.5 2.5c0 .99.725 1.807 1.675 1.964.929.833 1.675 1.997 1.675 3.036 0 .78.38 1.47 1 1.895V20h2v-9.605c.62-.425 1-1.115 1-1.895 0-1.039-.896-2.203-1.825-2.036.95-.157 1.675-.974 1.675-1.964 0-1.381-1.119-2.5-2.5-2.5s-2.5 1.119-2.5 2.5c0 .99.725 1.807 1.675 1.964-.929.833-1.675 1.997-1.675 3.036 0 .78-.38 1.47-1 1.895V20h-2v-9.605c-.62-.425-1-1.115-1-1.895 0-1.039.896-2.203 1.825-2.036-.95-.157-1.675-.974-1.675-1.964z"/>
+                </svg>
               </div>
             </div>
           </div>
@@ -1020,7 +1009,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       </section>
 
       {/* --- Pricing Section --- */}
-      <section id="pricing" className={`py-32 px-6 scroll-mt-20 relative ${isDarkMode ? 'bg-[#0B0F19]' : 'bg-slate-50'}`}>
+      <section className="relative py-24 px-6 bg-gradient-to-b from-black/0 to-black/50">
         {/* Top Wave Gradient */}
         <div className="absolute top-0 left-0 right-0 h-96 pointer-events-none overflow-hidden">
           <svg className="w-full h-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
