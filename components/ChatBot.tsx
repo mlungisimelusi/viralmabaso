@@ -147,10 +147,10 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
       {/* Launcher Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`pointer-events-auto w-20 h-20 rounded-full border shadow-[0_0_20px_rgba(35,189,223,0.3)] hover:shadow-[0_0_30px_rgba(207,41,245,0.5)] transition-all duration-300 flex items-center justify-center overflow-hidden group hover:scale-105 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}
+        className={`pointer-events-auto w-16 h-16 rounded-full border shadow-[0_0_20px_rgba(35,189,223,0.3)] hover:shadow-[0_0_30px_rgba(207,41,245,0.5)] transition-all duration-300 flex items-center justify-center overflow-hidden group hover:scale-105 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}
       >
         {isOpen ? (
-            <X size={36} className={isDarkMode ? 'text-white' : 'text-slate-900'} />
+            <X size={32} className={isDarkMode ? 'text-white' : 'text-slate-900'} />
         ) : (
             <img src="/assets/bot-icon.png" alt="TiC Bot" className="w-full h-full object-contain p-2" />
         )}
