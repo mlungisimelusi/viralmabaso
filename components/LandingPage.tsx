@@ -231,7 +231,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
           <div className="relative z-10 lg:order-1 scroll-animate text-center lg:text-left lg:pl-8">
              
              <h1 className={`text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">AI</span> That Grows Your Brand
+                Elevate Your Brand. <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Amplify Your Impact</span>
              </h1>
 
              <p className={`text-lg max-w-lg mb-8 leading-relaxed mx-auto lg:mx-0 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
