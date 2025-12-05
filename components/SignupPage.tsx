@@ -180,6 +180,28 @@ const SignupPage: React.FC<SignupPageProps> = ({ onBack, onSignupSuccess, isDark
               </select>
             </div>
 
+            {/* Terms Agreement Checkbox */}
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="agreeTerms"
+                checked={agreeTerms}
+                onChange={(e) => setAgreeTerms(e.target.checked)}
+                className="mt-1 w-4 h-4 rounded border-slate-300 text-viral-cyan focus:ring-viral-cyan focus:ring-2 cursor-pointer"
+                required
+              />
+              <label htmlFor="agreeTerms" className={`text-xs transition-colors cursor-pointer ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                I agree to the{' '}
+                <a href="#" className="text-viral-cyan hover:text-viral-purple transition-colors font-medium">
+                  Terms of Service
+                </a>{' '}
+                and{' '}
+                <a href="#" className="text-viral-cyan hover:text-viral-purple transition-colors font-medium">
+                  Privacy Policy
+                </a>
+              </label>
+            </div>
+
             {/* Create Account Button */}
             <button
               type="submit"
@@ -230,18 +252,6 @@ const SignupPage: React.FC<SignupPageProps> = ({ onBack, onSignupSuccess, isDark
               </svg>
             </button>
           </div>
-
-          {/* Terms Agreement */}
-          <p className={`text-xs text-center mb-4 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            By signing up, you agree to our{' '}
-            <a href="#" className="text-viral-cyan hover:text-viral-purple transition-colors font-medium">
-              Terms of Service
-            </a>{' '}
-            and{' '}
-            <a href="#" className="text-viral-cyan hover:text-viral-purple transition-colors font-medium">
-              Privacy Policy
-            </a>
-          </p>
 
           {/* Login Link */}
           <p className={`text-center text-sm transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
