@@ -231,8 +231,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
           <div className="relative z-10 lg:order-1 scroll-animate text-center lg:text-left lg:pl-8">
              
              <h1 className={`text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                Create. Automate. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Grow Faster.</span>
+                Grow Your Audience. Grow Your Sales. <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Grow Your Influence.</span> <br />
+                All With One AI Platform.
              </h1>
 
              <p className={`text-lg max-w-lg mb-8 leading-relaxed mx-auto lg:mx-0 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
@@ -315,11 +316,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
              </div>
              
              {/* Image Container with Sliding Out Animation */}
-             <div className={`relative w-full max-w-[450px] rounded-3xl overflow-hidden shadow-2xl group hero-image-float hero-image-shimmer hero-image-tilt transition-transform duration-700 hover:translate-x-2 hover:-translate-y-2 ${isDarkMode ? 'border border-white/10' : 'border border-slate-200'}`}>
+             <div className="relative w-full max-w-[450px] group hero-image-float transition-transform duration-700 hover:translate-x-2 hover:-translate-y-2">
                 <img 
                    src="/assets/hero-image.png" 
                    alt="Viralitics Hero"
-                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                   className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                 />
                 {/* Sparkle overlay on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
@@ -904,105 +905,119 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
           {/* All Platform Icons - No Cards */}
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
             {/* TikTok */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-900/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-900/50 transition-all mx-auto">
                 <i className="fab fa-tiktok text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">1.7B+ users</p>
             </div>
 
             {/* YouTube */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#FF0000] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-red-500/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#FF0000] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-red-500/50 transition-all mx-auto">
                 <i className="fab fa-youtube text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">2.9B+ users</p>
             </div>
 
             {/* Instagram */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-pink-500/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-pink-500/50 transition-all mx-auto">
                 <i className="fab fa-instagram text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">2.4B+ users</p>
             </div>
 
             {/* Facebook */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#1877F2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-600/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#1877F2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-600/50 transition-all mx-auto">
                 <i className="fab fa-facebook text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">3.1B+ users</p>
             </div>
 
             {/* LinkedIn */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#0A66C2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-700/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#0A66C2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-700/50 transition-all mx-auto">
                 <i className="fab fa-linkedin text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">1B+ users</p>
             </div>
 
             {/* X (Twitter) */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-800/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-800/50 transition-all mx-auto">
                 <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
               </div>
+              <p className="text-slate-500 text-xs mt-2">600M+ users</p>
             </div>
 
             {/* Reddit */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#FF4500] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#FF4500] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all mx-auto">
                 <i className="fab fa-reddit text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">850M+ users</p>
             </div>
 
             {/* Twitch */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#9146FF] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#9146FF] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-all mx-auto">
                 <i className="fab fa-twitch text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">240M+ users</p>
             </div>
 
             {/* Pinterest */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#E60B3B] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-red-600/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#E60B3B] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-red-600/50 transition-all mx-auto">
                 <i className="fab fa-pinterest text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">520M+ users</p>
             </div>
 
             {/* Snapchat */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#FFFC00] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-yellow-400/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#FFFC00] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-yellow-400/50 transition-all mx-auto">
                 <i className="fab fa-snapchat text-black text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">800M+ users</p>
             </div>
 
             {/* Discord */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#5865F2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-indigo-500/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#5865F2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-indigo-500/50 transition-all mx-auto">
                 <i className="fab fa-discord text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">220M+ users</p>
             </div>
 
             {/* WhatsApp */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#25D366] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-green-500/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#25D366] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-green-500/50 transition-all mx-auto">
                 <i className="fab fa-whatsapp text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">3B+ users</p>
             </div>
 
             {/* Telegram */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#0088cc] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#0088cc] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-all mx-auto">
                 <i className="fab fa-telegram text-white text-3xl"></i>
               </div>
+              <p className="text-slate-500 text-xs mt-2">950M+ users</p>
             </div>
 
             {/* Bluesky */}
-            <div className="group cursor-pointer transition-transform hover:scale-110">
-              <div className="w-20 h-20 rounded-xl bg-[#1185FE] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all">
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-20 h-20 rounded-xl bg-[#1185FE] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all mx-auto">
                 <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M9.5 3.5C9.5 2.119 10.619 1 12 1s2.5 1.119 2.5 2.5c0 .99-.725 1.807-1.675 1.964C12.896 6.297 12 7.461 12 8.5c0 .78.38 1.47 1 1.895V20h2v-9.605c.62-.425 1-1.115 1-1.895 0-1.039-.896-2.203-1.825-2.036.95-.157 1.675-.974 1.675-1.964zm-6 0C3.5 2.119 4.619 1 6 1s2.5 1.119 2.5 2.5c0 .99.725 1.807 1.675 1.964.929.833 1.675 1.997 1.675 3.036 0 .78.38 1.47 1 1.895V20h2v-9.605c.62-.425 1-1.115 1-1.895 0-1.039-.896-2.203-1.825-2.036.95-.157 1.675-.974 1.675-1.964 0-1.381-1.119-2.5-2.5-2.5s-2.5 1.119-2.5 2.5c0 .99.725 1.807 1.675 1.964-.929.833-1.675 1.997-1.675 3.036 0 .78-.38 1.47-1 1.895V20h-2v-9.605c-.62-.425-1-1.115-1-1.895 0-1.039.896-2.203 1.825-2.036-.95-.157-1.675-.974-1.675-1.964z"/>
                 </svg>
               </div>
+              <p className="text-slate-500 text-xs mt-2">23M+ users</p>
             </div>
           </div>
         </div>

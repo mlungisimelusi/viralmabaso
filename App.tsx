@@ -41,7 +41,7 @@ const App: React.FC = () => {
   const renderView = () => {
     switch (currentView) {
       case View.DASHBOARD:
-        return <Dashboard />;
+        return <Dashboard isDarkMode={isDarkMode} />;
       case View.CONTENT_ENGINE:
         return <ContentEngine />;
       case View.MARKETPLACE:
@@ -59,17 +59,17 @@ const App: React.FC = () => {
       case View.TUTOR:
         return (
             <div className="flex flex-col items-center justify-center h-[60vh] text-center animate-in fade-in">
-                <div className="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center mb-6">
+                <div className={`w-24 h-24 rounded-full flex items-center justify-center mb-6 ${isDarkMode ? 'bg-slate-800' : 'bg-slate-200'}`}>
                     <span className="text-4xl">🚧</span>
                 </div>
-                <h2 className="text-3xl font-bold text-white mb-2">Coming Soon</h2>
-                <p className="text-slate-400 max-w-md">
+                <h2 className={`text-3xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Coming Soon</h2>
+                <p className={`max-w-md ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     The <strong>{currentView.replace('_', ' ')}</strong> module is currently under development in the v1.1 roadmap.
                 </p>
             </div>
         );
       default:
-        return <Dashboard />;
+        return <Dashboard isDarkMode={isDarkMode} />;
     }
   };
 

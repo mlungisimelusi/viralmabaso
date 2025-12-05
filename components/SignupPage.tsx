@@ -106,60 +106,59 @@ const SignupPage: React.FC<SignupPageProps> = ({ onBack, onSignupSuccess, isDark
               />
             </div>
 
-            {/* Password + Confirm (two-column) with inset eye icons */}
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className={`block text-sm font-medium mb-2 transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-                  Password
-                </label>
-                <div className={`relative px-4 py-3 rounded-lg border transition-all ${isDarkMode ? 'bg-slate-900/50 border-slate-700 focus-within:border-viral-cyan' : 'bg-slate-50 border-slate-200 focus-within:border-viral-cyan'}`}>
-                  <div className="flex items-center gap-3">
-                    <Lock size={18} className="text-slate-500" />
-                    <input
-                      type={showPassword ? 'text' : 'password'}
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="••••••••"
-                      className={`flex-1 bg-transparent outline-none transition-colors pr-10 ${isDarkMode ? 'text-white placeholder-slate-500' : 'text-slate-900 placeholder-slate-400'}`}
-                      required
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 focus:outline-none"
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+            {/* Password Input */}
+            <div>
+              <label className={`block text-sm font-medium mb-2 transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
+                Password
+              </label>
+              <div className={`relative px-4 py-3 rounded-lg border transition-all ${isDarkMode ? 'bg-slate-900/50 border-slate-700 focus-within:border-viral-cyan' : 'bg-slate-50 border-slate-200 focus-within:border-viral-cyan'}`}>
+                <div className="flex items-center gap-2 pr-8">
+                  <Lock size={18} className="text-slate-500 flex-shrink-0" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className={`flex-1 bg-transparent outline-none transition-colors ${isDarkMode ? 'text-white placeholder-slate-500' : 'text-slate-900 placeholder-slate-400'}`}
+                    required
+                  />
                 </div>
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 focus:outline-none"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
               </div>
+            </div>
 
-              <div>
-                <label className={`block text-sm font-medium mb-2 transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-                  Confirm
-                </label>
-                <div className={`relative px-4 py-3 rounded-lg border transition-all ${isDarkMode ? 'bg-slate-900/50 border-slate-700 focus-within:border-viral-cyan' : 'bg-slate-50 border-slate-200 focus-within:border-viral-cyan'}`}>
-                  <div className="flex items-center gap-3">
-                    <Lock size={18} className="text-slate-500" />
-                    <input
-                      type={showConfirmPassword ? 'text' : 'password'}
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      placeholder="••••••••"
-                      className={`flex-1 bg-transparent outline-none transition-colors pr-10 ${isDarkMode ? 'text-white placeholder-slate-500' : 'text-slate-900 placeholder-slate-400'}`}
-                      required
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 focus:outline-none"
-                    aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
-                  >
-                    {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+            {/* Confirm Password Input */}
+            <div>
+              <label className={`block text-sm font-medium mb-2 transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
+                Confirm Password
+              </label>
+              <div className={`relative px-4 py-3 rounded-lg border transition-all ${isDarkMode ? 'bg-slate-900/50 border-slate-700 focus-within:border-viral-cyan' : 'bg-slate-50 border-slate-200 focus-within:border-viral-cyan'}`}>
+                <div className="flex items-center gap-2 pr-8">
+                  <Lock size={18} className="text-slate-500 flex-shrink-0" />
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className={`flex-1 bg-transparent outline-none transition-colors ${isDarkMode ? 'text-white placeholder-slate-500' : 'text-slate-900 placeholder-slate-400'}`}
+                    required
+                  />
                 </div>
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 focus:outline-none"
+                  aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
               </div>
             </div>
 
