@@ -28,7 +28,7 @@ const App: React.FC = () => {
   }
 
   if (currentPage === 'signup') {
-    return <SignupPage onBack={() => setCurrentPage('landing')} onSignupSuccess={() => setCurrentPage('app')} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
+    return <SignupPage onBack={() => setCurrentPage('landing')} onSignupSuccess={() => setCurrentPage('login')} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
   }
 
   if (currentPage === 'pricing') {
