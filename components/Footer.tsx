@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Mail, X, Linkedin, Youtube, ArrowRight, Globe } from 'lucide-react';
+import { X, Linkedin, Youtube, MapPin, Globe, Sun, Moon } from 'lucide-react';
 
 interface FooterProps {
   isDarkMode?: boolean;
+  setIsDarkMode?: (value: boolean) => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ isDarkMode = true }) => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
+const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => {
   const [showLanguages, setShowLanguages] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('English');
 
@@ -26,275 +25,175 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true }) => {
     'Русский',
   ];
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
-      setTimeout(() => setSubscribed(false), 3000);
-    }
-  };
-
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={`border-t transition-colors duration-300 ${isDarkMode ? 'bg-[#06080e] border-white/10' : 'bg-slate-100 border-slate-200'}`}>
-      {/* Newsletter Section */}
-      <div className={`border-b ${isDarkMode ? 'border-white/5 bg-gradient-to-r from-viral-cyan/5 to-viral-purple/5' : 'border-slate-200 bg-gradient-to-r from-viral-cyan/10 to-viral-purple/10'}`}>
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                Stay ahead of the algorithm
-              </h3>
-              <p className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                Get one bite-sized growth insight in your inbox each week. No spam, unsubscribe anytime.
-              </p>
+    <footer className={`transition-colors duration-300 ${isDarkMode ? 'bg-[#0a0e1a]' : 'bg-slate-50'}`}>
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        {/* Top Section - 4 Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          {/* Brand Column */}
+          <div>
+            <a href="#" className="inline-block mb-6">
+              <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-14 w-auto object-contain" />
+            </a>
+            <p className={`text-sm leading-relaxed mb-8 max-w-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              AI-first operating system for modern social media. Automated, intelligent, and scalable.
+            </p>
+            
+            {/* Location */}
+            <div className={`space-y-4 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              <div className="flex gap-3">
+                <MapPin size={18} className="text-viral-cyan flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className={`font-semibold mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Global Office</p>
+                  <p>Available Worldwide</p>
+                </div>
+              </div>
             </div>
-            <form onSubmit={handleSubscribe} className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className={`flex-1 px-4 py-3 rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-viral-cyan ${
-                  isDarkMode
-                    ? 'bg-slate-900 border border-slate-700 text-white placeholder-slate-500 hover:border-slate-600'
-                    : 'bg-white border border-slate-300 text-slate-900 placeholder-slate-400 hover:border-slate-400'
-                }`}
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-gradient-to-r from-viral-cyan to-viral-purple text-white font-semibold rounded-lg hover:opacity-90 transition-all flex items-center gap-2 whitespace-nowrap"
-              >
-                {subscribed ? '✓ Subscribed' : 'Subscribe'}
-              </button>
-            </form>
+
+            {/* Social Icons */}
+            <div className="flex gap-3 mt-6">
+              <a href="https://x.com/viralitics" target="_blank" rel="noopener noreferrer" className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-slate-800 hover:bg-viral-cyan/20 text-slate-400 hover:text-viral-cyan' : 'bg-slate-200 hover:bg-viral-cyan/20 text-slate-600 hover:text-viral-cyan'}`}>
+                <X size={18} />
+              </a>
+              <a href="https://linkedin.com/company/viralitics" target="_blank" rel="noopener noreferrer" className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-slate-800 hover:bg-viral-cyan/20 text-slate-400 hover:text-viral-cyan' : 'bg-slate-200 hover:bg-viral-cyan/20 text-slate-600 hover:text-viral-cyan'}`}>
+                <Linkedin size={18} />
+              </a>
+              <a href="https://youtube.com/@viralitics" target="_blank" rel="noopener noreferrer" className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-slate-800 hover:bg-viral-cyan/20 text-slate-400 hover:text-viral-cyan' : 'bg-slate-200 hover:bg-viral-cyan/20 text-slate-600 hover:text-viral-cyan'}`}>
+                <Youtube size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* Solutions Column */}
+          <div>
+            <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 text-viral-cyan`}>Solutions</h4>
+            <ul className={`space-y-3 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Content Engine</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>AI Tutor</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Marketplace</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Ad Automation</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Analytics</a></li>
+            </ul>
+          </div>
+
+          {/* Company Column */}
+          <div>
+            <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 text-viral-cyan`}>Company</h4>
+            <ul className={`space-y-3 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>About Us</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Careers</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Press</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Contact</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Blog</a></li>
+            </ul>
+          </div>
+
+          {/* Resources & Stats Column */}
+          <div>
+            <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 text-viral-cyan`}>Resources</h4>
+            <ul className={`space-y-3 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'} mb-8`}>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Help Center</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>API Docs</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Community</a></li>
+            </ul>
+
+            {/* Stats */}
+            <div className={`border rounded-lg p-4 ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-slate-100'}`}>
+              <h5 className={`text-xs font-semibold uppercase tracking-wider mb-4 text-viral-cyan`}>Platform Stats</h5>
+              <div className="space-y-3">
+                <div>
+                  <div className="text-lg font-bold text-viral-cyan">2.5B+</div>
+                  <div className={`text-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Creators Reached</div>
+                </div>
+                <div>
+                  <div className="text-lg font-bold text-viral-purple">150+</div>
+                  <div className={`text-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Active Markets</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Main Footer Content */}
-      <div className="pt-16 pb-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-12 mb-12">
-            {/* Brand Column */}
-            <div className="col-span-2 md:col-span-1">
-              <a href="#" className="inline-flex items-center gap-3 h-[100px] mb-6">
-                <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[100px] w-auto object-contain" />
-                <span className="sr-only">Viralitics</span>
-              </a>
-              <p className={`text-sm leading-relaxed mb-6 max-w-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                The AI-first operating system for the modern social media era. Automated, intelligent, and scalable.
-              </p>
-              {/* Social Icons */}
-              <div className="flex gap-3">
-                <a
-                  href="https://x.com/viralitics"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Follow on X"
-                  className={`p-2 rounded-lg transition-all ${
-                    isDarkMode
-                      ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
-                      : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'
-                  }`}
-                >
-                  <X size={18} />
-                </a>
-                <a
-                  href="https://linkedin.com/company/viralitics"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Follow on LinkedIn"
-                  className={`p-2 rounded-lg transition-all ${
-                    isDarkMode
-                      ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
-                      : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'
-                  }`}
-                >
-                  <Linkedin size={18} />
-                </a>
-                <a
-                  href="https://youtube.com/@viralitics"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Follow on YouTube"
-                  className={`p-2 rounded-lg transition-all ${
-                    isDarkMode
-                      ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
-                      : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'
-                  }`}
-                >
-                  <Youtube size={18} />
-                </a>
-              </div>
-            </div>
+        {/* Divider */}
+        <div className={`border-t mb-8 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}></div>
 
-            {/* Divider on desktop */}
-            <div className={`hidden md:block w-px ${isDarkMode ? 'bg-slate-800' : 'bg-slate-300'}`}></div>
-
-            {/* Product Column */}
-            <div>
-              <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                Product
-              </h4>
-              <ul className={`space-y-3.5 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    Content Engine
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    Marketplace
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    Analytics
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    Ad Automation
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Resources Column */}
-            <div>
-              <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                Resources
-              </h4>
-              <ul className={`space-y-3.5 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    Community
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    Help Center
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    API Docs
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Company Column */}
-            <div>
-              <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                Company
-              </h4>
-              <ul className={`space-y-3.5 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    Careers
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    Press
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
+        {/* Bottom Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className={`text-sm ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
+            &copy; {currentYear} Viralitics Inc. All rights reserved.
           </div>
 
-          {/* Divider */}
-          <div className={`border-t mb-8 ${isDarkMode ? 'border-white/5' : 'border-slate-200'}`}></div>
+          <div className={`flex gap-6 text-sm ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
+            <a href="#" className="hover:text-viral-cyan transition-colors">Terms of Service</a>
+            <span className={isDarkMode ? 'text-slate-700' : 'text-slate-300'}></span>
+            <a href="#" className="hover:text-viral-cyan transition-colors">Cookie Policy</a>
+            <span className={isDarkMode ? 'text-slate-700' : 'text-slate-300'}></span>
+            <a href="#" className="hover:text-viral-cyan transition-colors">Privacy</a>
+          </div>
 
-          {/* Bottom Section */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-4">
-              <p className={`text-sm ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
-                &copy; {currentYear} Viralitics Inc. All rights reserved.
-              </p>
+          <div className="flex items-center gap-4">
+            {/* Language Selector */}
+            <div className="relative">
+              <button
+                onClick={() => setShowLanguages(!showLanguages)}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-all ${
+                  isDarkMode
+                    ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-viral-cyan'
+                    : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-viral-cyan'
+                }`}
+              >
+                <Globe size={16} />
+                <span>{selectedLanguage}</span>
+              </button>
               
-              {/* Language Selector */}
-              <div className="relative">
-                <button
-                  onClick={() => setShowLanguages(!showLanguages)}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-all ${
-                    isDarkMode
-                      ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
-                      : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'
-                  }`}
-                  aria-label="Select language"
-                >
-                  <Globe size={16} />
-                  <span>{selectedLanguage}</span>
-                </button>
-                
-                {/* Language Dropdown */}
-                {showLanguages && (
-                  <div className={`absolute bottom-full mb-2 left-0 rounded-xl shadow-2xl border overflow-hidden min-w-[160px] z-50 ${
-                    isDarkMode
-                      ? 'bg-slate-900 border-slate-700'
-                      : 'bg-white border-slate-200'
-                  }`}>
-                    <div className="max-h-64 overflow-y-auto">
-                      {languages.map((lang) => (
-                        <button
-                          key={lang}
-                          onClick={() => {
-                            setSelectedLanguage(lang);
-                            setShowLanguages(false);
-                          }}
-                          className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
-                            selectedLanguage === lang
-                              ? isDarkMode
-                                ? 'bg-viral-cyan/20 text-viral-cyan'
-                                : 'bg-viral-cyan/10 text-viral-cyan'
-                              : isDarkMode
-                              ? 'text-slate-300 hover:bg-slate-800'
-                              : 'text-slate-700 hover:bg-slate-100'
-                          }`}
-                        >
-                          {lang}
-                        </button>
-                      ))}
-                    </div>
+              {showLanguages && (
+                <div className={`absolute bottom-full mb-2 right-0 rounded-xl shadow-2xl border overflow-hidden min-w-[160px] z-50 ${
+                  isDarkMode
+                    ? 'bg-slate-900 border-slate-700'
+                    : 'bg-white border-slate-200'
+                }`}>
+                  <div className="max-h-64 overflow-y-auto">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang}
+                        onClick={() => {
+                          setSelectedLanguage(lang);
+                          setShowLanguages(false);
+                        }}
+                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
+                          selectedLanguage === lang
+                            ? isDarkMode
+                              ? 'bg-viral-cyan/20 text-viral-cyan'
+                              : 'bg-viral-cyan/10 text-viral-cyan'
+                            : isDarkMode
+                            ? 'text-slate-300 hover:bg-slate-800'
+                            : 'text-slate-700 hover:bg-slate-100'
+                        }`}
+                      >
+                        {lang}
+                      </button>
+                    ))}
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
-            
-            <div className={`flex gap-6 text-sm ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
-              <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                Privacy Policy
-              </a>
-              <span className={isDarkMode ? 'text-slate-700' : 'text-slate-300'}>•</span>
-              <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                Terms of Service
-              </a>
-              <span className={isDarkMode ? 'text-slate-700' : 'text-slate-300'}>•</span>
-              <a href="#" className={`transition-colors hover:${isDarkMode ? 'text-white' : 'text-slate-900'} focus:outline-none focus:ring-2 focus:ring-viral-cyan rounded px-1`}>
-                Cookie Preferences
-              </a>
-            </div>
+
+            {/* Theme Toggle */}
+            {setIsDarkMode && (
+              <button
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                className={`p-2 rounded-lg transition-colors ${
+                  isDarkMode
+                    ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-viral-cyan'
+                    : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-viral-cyan'
+                }`}
+                title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              >
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+            )}
           </div>
         </div>
       </div>
