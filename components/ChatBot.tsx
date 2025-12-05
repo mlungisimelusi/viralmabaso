@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Send, Loader2, MessageSquare } from 'lucide-react';
+import { X, Send, Loader2, MessageSquare, Paperclip, Mic } from 'lucide-react';
 import { chatWithAssistant } from '../services/geminiService';
 
 interface Message {
@@ -16,6 +16,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -24,6 +25,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
     }
   ]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -32,6 +34,55 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isOpen]);
+
+  const handleFileUpload = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const userMsg: Message = {
+        id: Date.now().toString(),
+        role: 'user',
+        text: `📎 Uploaded file: ${file.name}`
+      };
+      setMessages(prev => [...prev, userMsg]);
+      
+      const aiMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        text: 'I can see you\'ve uploaded a file. File upload processing is coming soon! For now, feel free to ask me any questions about growing your social media presence.'
+      };
+      setMessages(prev => [...prev, aiMsg]);
+    }
+  };
+
+  const handleVoiceMessage = () => {
+    if (isRecording) {
+      setIsRecording(false);
+      const userMsg: Message = {
+        id: Date.now().toString(),
+        role: 'user',
+        text: '🎤 Voice message recorded'
+      };
+      setMessages(prev => [...prev, userMsg]);
+      
+      const aiMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        text: 'Voice message received! Voice processing is coming soon. In the meantime, feel free to type your questions and I\'ll help you out!'
+      };
+      setMessages(prev => [...prev, aiMsg]);
+    } else {
+      setIsRecording(true);
+      setTimeout(() => {
+        if (isRecording) {
+          handleVoiceMessage();
+        }
+      }, 3000);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,22 +176,51 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
           </div>
 
           {/* Input Area */}
-          <form onSubmit={handleSubmit} className={`p-4 border-t flex gap-2 transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+          <div className={`border-t transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
             <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask TiC anything..."
-              className={`flex-1 border rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-viral-cyan transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-200 text-slate-900 placeholder-slate-400'}`}
+              ref={fileInputRef}
+              type="file"
+              className="hidden"
+              onChange={handleFileChange}
+              accept="image/*,video/*,.pdf,.doc,.docx"
             />
-            <button 
-              type="submit"
-              disabled={isLoading || !input.trim()}
-              className="bg-viral-cyan hover:bg-cyan-400 text-slate-900 rounded-xl p-2.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <Send size={18} />
-            </button>
-          </form>
+            <form onSubmit={handleSubmit} className="p-4 flex gap-2">
+              <button 
+                type="button"
+                onClick={handleFileUpload}
+                className={`p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-slate-700' : 'text-slate-400 hover:text-slate-900 hover:bg-slate-100'}`}
+                title="Attach file"
+              >
+                <Paperclip size={20} />
+              </button>
+              <button 
+                type="button"
+                onClick={handleVoiceMessage}
+                className={`p-2 rounded-full transition-colors ${isRecording ? 'text-red-500 animate-pulse' : isDarkMode ? 'text-slate-400 hover:text-white hover:bg-slate-700' : 'text-slate-400 hover:text-slate-900 hover:bg-slate-100'}`}
+                title={isRecording ? 'Recording... Click to stop' : 'Voice message'}
+              >
+                <Mic size={20} />
+              </button>
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Type your question here..."
+                className={`flex-1 border rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-viral-cyan transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-200 text-slate-900 placeholder-slate-400'}`}
+              />
+              <button 
+                type="submit"
+                disabled={isLoading || !input.trim()}
+                className="bg-viral-cyan hover:bg-cyan-400 text-slate-900 rounded-xl p-2.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Send size={18} />
+              </button>
+            </form>
+            <div className={`px-4 pb-3 flex items-center gap-1 text-xs ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>
+              <MessageSquare size={12} />
+              <span>We're here to Help, use Voice Messages or Upload Files.</span>
+            </div>
+          </div>
         </div>
       )}
 

@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CallToAction from './CallToAction';
 import ChatBot from './ChatBot';
+import Footer from './Footer';
 import { 
   Menu,
   X,
@@ -235,33 +236,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Amplify Your Impact</span>
              </h1>
 
-             <p className={`text-base sm:text-lg max-w-lg mb-6 sm:mb-8 leading-relaxed mx-auto lg:mx-0 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                A smart influencer marketplace that drives creator monetization and expands brand reach.
+             <p className={`text-lg sm:text-xl max-w-lg mb-6 sm:mb-8 leading-relaxed mx-auto lg:mx-0 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                An influencer marketplace that helps creators monetize and enables brands to reach more people.
              </p>
 
              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start">
                 <button 
                   onClick={onLaunch}
-                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-full font-bold text-lg shadow-[0_0_25px_-5px_rgba(207,41,245,0.5)] transition-all flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-full font-bold text-xl shadow-[0_0_25px_-5px_rgba(207,41,245,0.5)] transition-all flex items-center justify-center gap-2"
                 >
                   Get Activated
                 </button>
-             </div>
-
-             {/* Mini Feature Bar */}
-             <div className={`mt-8 sm:mt-12 flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs sm:text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-               <div className="flex items-center gap-2">
-                 <i className="fas fa-brain text-viral-cyan text-lg"></i>
-                 <span className="font-medium">AI Content Engine</span>
-               </div>
-               <div className="flex items-center gap-2">
-                 <i className="fas fa-calendar-check text-viral-purple text-lg"></i>
-                 <span className="font-medium">Auto Scheduling</span>
-               </div>
-               <div className="flex items-center gap-2">
-                 <i className="fas fa-chart-line text-viral-cyan text-lg"></i>
-                 <span className="font-medium">Smart Optimization</span>
-               </div>
              </div>
           </div>
 
@@ -295,10 +280,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     CORE FEATURES
                 </div>
                 
-                <h2 className={`text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                <h2 className={`text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                     Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">take over your entire workflow.</span>
                 </h2>
-                <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                <p className={`text-xl max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     A complete suite of AI tools designed to replace fragmented workflows. One login, infinite reach.
                 </p>
             </div>
@@ -340,9 +325,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                                 </defs>
                             </svg>
                         </div>
-                        <h3 className={`text-2xl md:text-3xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
-                        <p className={`mb-4 flex-grow text-sm md:text-base transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                            Stop guessing. Generate high-retention scripts, hooks, and engagement strategies tailored to your niche. Our AI manages your posting schedule to maximize reach.
+                        <h3 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
+                        <p className={`mb-4 flex-grow text-base md:text-lg transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                            Stop guessing. AI plans, creates, engages, and optimizes your entire social media presence.
                         </p>
                         
                         <a href="#ai-manager" className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
@@ -383,8 +368,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                                 </defs>
                             </svg>
                         </div>
-                        <h3 className={`text-2xl md:text-3xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Ad Automation</h3>
-                        <p className={`mb-4 flex-grow text-sm md:text-base transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <h3 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Ad Automation</h3>
+                        <p className={`mb-4 flex-grow text-base md:text-lg transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                             Launch campaigns that optimize themselves. We test hundreds of creative variations and automatically shift budget to the winners.
                         </p>
                         
@@ -402,8 +387,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                          <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
                              <i className="fas fa-book text-transparent bg-clip-text bg-gradient-to-r from-viral-purple to-viral-cyan text-2xl"></i>
                         </div>
-                        <h3 className={`text-2xl md:text-3xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Tutor</h3>
-                        <p className={`mb-4 flex-grow text-sm md:text-base transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <h3 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Tutor</h3>
+                        <p className={`mb-4 flex-grow text-base md:text-lg transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                              Your personal algorithm coach. Learn exactly why a post failed and get step-by-step instructions to improve your next one.
                         </p>
                         
@@ -424,13 +409,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <div className={`inline-block px-3 py-1 rounded-full border text-viral-cyan text-xs font-bold tracking-wider mb-6 transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
                     INFLUENCER MARKETPLACE
                 </div>
-                <h2 className={`text-3xl md:text-5xl font-bold mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                <h2 className={`text-4xl md:text-6xl font-bold mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                     Connect with <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Top Influencers</span>
                 </h2>
-                <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                <p className={`text-xl max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     Join to work with brands, help them achieve their goals, while you monetize your influence.
                 </p>
-                <p className={`text-lg max-w-2xl mx-auto transition-colors mt-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                <p className={`text-xl max-w-2xl mx-auto transition-colors mt-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     Brands and companies looking for the best creators and influencers can rely on Viralitics as the platform to explore because no matter the country, language, or region we have you covered.
                 </p>
             </div>
@@ -446,7 +431,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                         <h3 className="text-xl font-bold text-viral-purple mb-2">Nano</h3>
                         <p className={`text-sm font-medium mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>1K - 10K Followers</p>
                         <div className="inline-block px-3 py-1 rounded-lg bg-viral-purple/10 text-viral-purple text-xs font-bold mb-4 border border-viral-purple/20">
-                            High Engagement
+                            Very High Engagement
                         </div>
                         <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-white/10' : 'border-slate-200'}`}>
                             <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
@@ -469,7 +454,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                         <h3 className="text-xl font-bold text-viral-cyan mb-2">Micro</h3>
                         <p className={`text-sm font-medium mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>10K - 100K Followers</p>
                         <div className="inline-block px-3 py-1 rounded-lg bg-viral-cyan/10 text-viral-cyan text-xs font-bold mb-4 border border-viral-cyan/20">
-                            Very High Engagement
+                            High Engagement
                         </div>
                         <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-white/10' : 'border-slate-200'}`}>
                             <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
@@ -537,11 +522,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-gradient-to-r from-viral-cyan to-viral-purple text-white ${isDarkMode ? '' : ''}`}>
                     <GraduationCap size={24} />
                 </div>
-                <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                     Your Personal <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Social Media Coach</span>
                 </h2>
-                <p className={`text-lg mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Don't just post - learn. The AI Tutor analyzes your past performance and teaches you exactly *why* certain posts went viral while others flopped.
+                <p className={`text-xl mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                    The AI Tutor teaches you how to succeed on social media, helping creators and brands grow their accounts, boost engagement, and increase their chances of going viral.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
                     <div className={`p-4 rounded-xl border ${isDarkMode ? 'bg-slate-800 border-white/5' : 'bg-white border-slate-200'}`}>
@@ -566,14 +551,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                         </div>
                     </div>
                     <div className="space-y-4">
-                        <div className={`p-3 rounded-2xl rounded-tl-none text-sm max-w-[85%] ${isDarkMode ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-700'}`}>
-                            Your retention dropped at 0:03. Try adding a visual hook earlier next time! 📉
-                        </div>
                         <div className="p-3 rounded-2xl rounded-tr-none text-sm max-w-[85%] ml-auto bg-viral-cyan/20 text-viral-cyan border border-viral-cyan/20">
-                            What kind of visual hook works best for tech reviews?
+                            How can I grow my account and increase engagement?
                         </div>
                         <div className={`p-3 rounded-2xl rounded-tl-none text-sm max-w-[85%] ${isDarkMode ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-700'}`}>
-                            Split-screen comparisons or a sudden zoom-in usually perform 20% better in your niche. Here are 3 examples...
+                            Focus on consistency, trending audio, and strong hooks in the first 3 seconds. Post at peak times when your audience is most active, and engage with comments within the first hour to boost the algorithm.
                         </div>
                     </div>
                  </div>
@@ -653,7 +635,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     Automated <span className="text-blue-500">Ad Campaigns</span>
                 </h2>
                 <p className={`text-lg mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Launch high-converting ads on Meta, TikTok, and YouTube in minutes. Our AI handles the budget allocation, audience targeting, and creative testing automatically.
+                    We help you create winning ads and launch high-converting campaigns on Meta, TikTok, and YouTube in minutes. Our AI handles the ad creation, budget allocation, audience targeting, and creative testing automatically.
                 </p>
                 <button className="text-blue-500 font-bold hover:underline flex items-center gap-2">
                     Explore Ad Features <ArrowRight size={16}/>
@@ -998,23 +980,74 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     Give Your Team the Right Tools to Succeed
                 </h2>
                 <p className={`text-base max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Our goal is to make identity by Figr available to every team, no matter the size.
+                   Our goal is to make Identity accessible to every team, no matter the size.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 items-stretch justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 items-stretch justify-center">
+                {/* Launch Plan */}
+                <div className={`scroll-animate rounded-2xl p-8 transition-all relative border hover:scale-105 hover:shadow-2xl hover:shadow-viral-cyan/20 cursor-pointer ${
+                  'border-slate-500/30 bg-slate-900/40'
+                }`}>
+                    {/* Plan Label */}
+                    <div className="text-xs font-bold uppercase tracking-wider mb-2 text-viral-cyan">
+                        STARTER
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-sm text-slate-300 mb-6">
+                        Perfect for individuals getting started.
+                    </p>
+
+                    {/* Price */}
+                    <div className="mb-6 pb-6 border-b border-slate-600/30">
+                        <div className="flex items-baseline gap-1">
+                            <span className="text-4xl font-bold text-white">$9</span>
+                            <span className="text-slate-400 text-sm">/month</span>
+                        </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <button
+                        onClick={onLaunch}
+                        className="w-full py-3 px-6 rounded-2xl font-bold transition-all mb-6 bg-gradient-to-r from-viral-cyan to-viral-purple text-white hover:opacity-90"
+                    >
+                        Get Started
+                    </button>
+
+                    {/* Features */}
+                    <ul className="space-y-4">
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-viral-cyan" />
+                            <span className="text-sm text-slate-300">Up to 3 Social Profiles</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-viral-cyan" />
+                            <span className="text-sm text-slate-300">Basic AI Content</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-viral-cyan" />
+                            <span className="text-sm text-slate-300">Basic Analytics</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-viral-cyan" />
+                            <span className="text-sm text-slate-300">Community Support</span>
+                        </li>
+                    </ul>
+                </div>
+
                 {/* Creator Pro Plan */}
                 <div className={`scroll-animate rounded-2xl p-8 transition-all relative border hover:scale-110 hover:shadow-2xl hover:shadow-teal-400/20 cursor-pointer ${
                   'md:col-span-1 bg-teal-900/30 border-2 border-teal-400 md:scale-105'
                 }`}>
                     {/* Plan Label */}
                     <div className="text-xs font-bold uppercase tracking-wider mb-2 text-teal-400">
-                        GROWTH PLAN
+                        GROWTH
                     </div>
 
                     {/* Description */}
                     <p className="text-sm text-slate-300 mb-6">
-                        For serious creators scaling their brand.
+                        For brands and creators scaling their brand.
                     </p>
 
                     {/* Price */}
@@ -1068,7 +1101,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 }`}>
                     {/* Plan Label */}
                     <div className="text-xs font-bold uppercase tracking-wider mb-2 text-slate-400">
-                        ENTERPRISE PLAN
+                        ENTERPRISE
                     </div>
 
                     {/* Description */}
@@ -1079,8 +1112,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     {/* Price */}
                     <div className="mb-6 pb-6 border-b border-slate-600/30">
                         <div className="flex items-baseline gap-1">
-                            <span className="text-4xl font-bold text-slate-200">$99</span>
-                            <span className="text-slate-400 text-sm">/month</span>
+                            <span className="text-2xl font-bold text-slate-200">Custom Pricing</span>
                         </div>
                     </div>
 
@@ -1088,7 +1120,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     <button
                         className="w-full py-3 px-6 rounded-2xl font-bold transition-all mb-6 border-2 border-teal-400 text-teal-400 hover:bg-teal-400/10"
                     >
-                        Contact Sales
+                        Contact Us
                     </button>
 
                     {/* Features */}
@@ -1134,123 +1166,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       <CallToAction onLaunch={onLaunch} isDarkMode={isDarkMode} />
 
       {/* --- Footer --- */}
-      <footer className={`border-t pt-12 md:pt-16 pb-8 md:pb-12 text-sm transition-colors duration-300 ${isDarkMode ? 'bg-[#06080e] border-white/10' : 'bg-slate-100 border-slate-200'}`}>
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-10">
-            <div className="col-span-2 lg:col-span-2">
-                 <a href="#" className="inline-flex items-center gap-3 h-[100px] mb-6">
-                              <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-full w-auto object-contain" />
-                              <span className="sr-only">Viralitics</span>
-                 </a>
-                <p className="text-slate-500 mb-6 max-w-xs">
-                    The AI-first operating system for the modern social media era. Automated, intelligent, and scalable.
-                </p>
-                <div className="flex gap-4">
-                    <a href="https://x.com/viralitics" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X" className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'}`}>
-                      <X size={18} />
-                    </a>
-                    <a href="https://linkedin.com/company/viralitics" target="_blank" rel="noopener noreferrer" aria-label="Follow us on LinkedIn" className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'}`}>
-                      <Linkedin size={18} />
-                    </a>
-                    <a href="https://youtube.com/@viralitics" target="_blank" rel="noopener noreferrer" aria-label="Follow us on YouTube" className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-slate-800/50 text-slate-400 hover:bg-slate-700 hover:text-white' : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'}`}>
-                      <Youtube size={18} />
-                    </a>
-                </div>
-            </div>
-            
-            <div>
-                <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>PRODUCT</h4>
-                <ul className={`space-y-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                    <li><a href="#content-engine" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Content Engine</a></li>
-                    <li><a href="#marketplace" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Marketplace</a></li>
-                    <li><a href="#analytics" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Analytics</a></li>
-                    <li><a href="#ad-automation" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Ad Automation</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>RESOURCES</h4>
-                <ul className={`space-y-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                    <li><a href="#blog" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Blog</a></li>
-                    <li><a href="#community" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Community</a></li>
-                    <li><a href="#help-center" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Help Center</a></li>
-                    <li><a href="#api-docs" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>API Docs</a></li>
-                </ul>
-            </div>
-
-             <div>
-                <h4 className={`font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>COMPANY</h4>
-                <ul className={`space-y-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                    <li><a href="#about" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>About</a></li>
-                    <li><a href="#careers" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Careers</a></li>
-                    <li><a href="#press" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Press</a></li>
-                    <li><a href="#contact" className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-slate-200' : 'hover:text-slate-900'}`}>Contact</a></li>
-                </ul>
-            </div>
-        </div>
-        <div className={`max-w-7xl mx-auto px-6 mt-16 pt-8 border-t flex flex-col md:flex-row justify-between items-center ${isDarkMode ? 'border-white/5' : 'border-slate-200'}`}>
-            <div className="flex items-center gap-4">
-              <p className={`text-sm ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
-                &copy; 2024 Viralitics Inc. All rights reserved.
-              </p>
-              
-              {/* Language Selector */}
-              <div className="relative">
-                <button
-                  onClick={() => setShowLanguages(!showLanguages)}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-all ${
-                    isDarkMode
-                      ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
-                      : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-slate-900'
-                  }`}
-                  aria-label="Select language"
-                >
-                  <Globe size={16} />
-                  <span>{selectedLanguage}</span>
-                </button>
-                
-                {/* Language Dropdown */}
-                {showLanguages && (
-                  <div className={`absolute bottom-full mb-2 left-0 rounded-xl shadow-2xl border overflow-hidden min-w-[160px] z-50 ${
-                    isDarkMode
-                      ? 'bg-slate-900 border-slate-700'
-                      : 'bg-white border-slate-200'
-                  }`}>
-                    <div className="max-h-64 overflow-y-auto">
-                      {languages.map((lang) => (
-                        <button
-                          key={lang}
-                          onClick={() => {
-                            setSelectedLanguage(lang);
-                            setShowLanguages(false);
-                          }}
-                          className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
-                            selectedLanguage === lang
-                              ? isDarkMode
-                                ? 'bg-viral-cyan/20 text-viral-cyan'
-                                : 'bg-viral-cyan/10 text-viral-cyan'
-                              : isDarkMode
-                              ? 'text-slate-300 hover:bg-slate-800'
-                              : 'text-slate-700 hover:bg-slate-100'
-                          }`}
-                        >
-                          {lang}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-            
-            <div className={`flex gap-6 text-sm mt-4 md:mt-0 ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
-                <span className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Privacy Policy</span>
-                <span className={isDarkMode ? 'text-slate-700' : 'text-slate-300'}>•</span>
-                <span className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Terms of Service</span>
-                <span className={isDarkMode ? 'text-slate-700' : 'text-slate-300'}>•</span>
-                <span className={`cursor-pointer transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Cookie Preferences</span>
-            </div>
-        </div>
-      </footer>
+      <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
 
       {/* --- Floating Chatbot --- */}
       <ChatBot isDarkMode={isDarkMode} />

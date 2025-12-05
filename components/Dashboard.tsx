@@ -29,8 +29,8 @@ const Dashboard: React.FC<DashboardProps> = ({ isDarkMode = true }) => {
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h2 className={`text-2xl sm:text-3xl font-bold mb-2 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Control Centre</h2>
-          <p className={`text-sm sm:text-base transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Real-time overview of your social operating system.</p>
+          <h2 className={`text-3xl sm:text-4xl font-bold mb-2 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Control Centre</h2>
+          <p className={`text-base sm:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Real-time overview of your social operating system.</p>
         </div>
         <div className="flex gap-2">
            <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 border border-green-500/20">
@@ -51,8 +51,8 @@ const Dashboard: React.FC<DashboardProps> = ({ isDarkMode = true }) => {
                 {metric.change}
               </div>
             </div>
-            <p className={`text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>{metric.label}</p>
-            <h3 className={`text-2xl font-bold mt-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{metric.value}</h3>
+            <p className={`text-base font-medium transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>{metric.label}</p>
+            <h3 className={`text-4xl font-bold mt-1 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{metric.value}</h3>
           </div>
         ))}
       </div>
@@ -60,7 +60,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isDarkMode = true }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className={`lg:col-span-2 glass-card p-6 rounded-2xl border transition-colors ${isDarkMode ? 'border-slate-700/50' : 'border-slate-200'}`}>
           <div className="flex justify-between items-center mb-6">
-            <h3 className={`text-lg font-bold transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Engagement Growth</h3>
+            <h3 className={`text-2xl font-bold transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Engagement Growth</h3>
             <select className={`border text-sm rounded-lg px-3 py-1 focus:outline-none focus:border-viral-cyan transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-white border-slate-300 text-slate-700'}`}>
               <option>Last 7 Days</option>
               <option>Last 30 Days</option>
@@ -94,7 +94,7 @@ const Dashboard: React.FC<DashboardProps> = ({ isDarkMode = true }) => {
         </div>
 
         <div className={`glass-card p-6 rounded-2xl border flex flex-col transition-colors ${isDarkMode ? 'border-slate-700/50' : 'border-slate-200'}`}>
-          <h3 className={`text-lg font-bold mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Active Campaigns</h3>
+          <h3 className={`text-2xl font-bold mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Active Campaigns</h3>
           <div className="space-y-4 flex-1 overflow-y-auto">
             {[1, 2, 3].map((i) => (
               <div key={i} className={`p-3 rounded-xl border hover:border-viral-cyan/50 transition-colors ${isDarkMode ? 'bg-slate-800/50 border-slate-700/50' : 'bg-slate-50 border-slate-200'}`}>

@@ -62,10 +62,27 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
 
   const plans = [
     {
+      name: 'Launch',
+      icon: Zap,
+      price: { monthly: 9, yearly: 90 },
+      description: 'Perfect for individuals getting started.',
+      features: [
+        'Up to 3 Social Profiles',
+        'Basic AI Content',
+        'Basic Analytics',
+        'Community Support',
+      ],
+      limitations: [],
+      highlighted: false,
+      cta: 'Get Started',
+      badge: null,
+      label: 'STARTER',
+    },
+    {
       name: 'Creator Pro',
       icon: Rocket,
       price: { monthly: 29, yearly: 290 },
-      description: 'For serious creators scaling their brand',
+      description: 'For brands and creators scaling their brand.',
       features: [
         'Unlimited Social Profiles',
         'Unlimited AI Content',
@@ -73,33 +90,31 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
         'AI Tutor Access',
         'Marketplace Access',
         'Priority Support',
-        'Content Calendar',
-        'Team Collaboration (3 members)',
       ],
       limitations: [],
       highlighted: true,
       cta: 'Start Free Trial',
       badge: 'Most Popular',
+      label: 'GROWTH',
     },
     {
       name: 'Business',
       icon: Crown,
-      price: { monthly: 99, yearly: 990 },
-      description: 'For agencies and large teams',
+      price: { monthly: null, yearly: null },
+      description: 'For agencies and large teams with advanced needs.',
       features: [
         'Everything in Creator Pro',
         '5+ Team Members',
         'White-label Reports',
         'API Access',
         'Ad Automation',
-        'Custom Integrations',
         'Dedicated Account Manager',
-        'Advanced Security',
-        'SLA Support',
       ],
       limitations: [],
       highlighted: false,
-      cta: 'Contact Sales',
+      cta: 'Contact Us',
+      badge: null,
+      label: 'ENTERPRISE',
     },
   ];
 
@@ -221,7 +236,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 max-w-4xl mx-auto items-stretch justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-6xl mx-auto items-stretch justify-center">
           {plans.map((plan) => {
             const Icon = plan.icon;
             const price = billingCycle === 'monthly' ? plan.price.monthly : plan.price.yearly;
@@ -232,15 +247,17 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
                 key={plan.name}
                 className={`rounded-2xl p-8 transition-all relative border hover:scale-110 hover:shadow-2xl cursor-pointer ${
                   plan.highlighted
-                    ? 'md:col-span-1 bg-teal-900/30 border-2 border-teal-400 md:scale-105 hover:shadow-teal-400/20'
+                    ? 'bg-teal-900/30 border-2 border-teal-400 md:scale-105 hover:shadow-teal-400/20'
+                    : plan.name === 'Launch'
+                    ? 'border-slate-500/30 bg-slate-900/40 hover:shadow-viral-cyan/20'
                     : 'border-slate-500/30 bg-slate-900/40 hover:shadow-slate-400/20'
                 }`}
               >
                 {/* Plan Label */}
-                <div className={`text-xs font-bold uppercase tracking-wider mb-2 ${plan.highlighted ? 'text-teal-400' : 'text-slate-400'}`}>
-                  {plan.name === 'Starter' && 'STARTER PLAN'}
-                  {plan.name === 'Creator Pro' && 'GROWTH PLAN'}
-                  {plan.name === 'Business' && 'ENTERPRISE PLAN'}
+                <div className={`text-xs font-bold uppercase tracking-wider mb-2 ${
+                  plan.highlighted ? 'text-teal-400' : plan.name === 'Launch' ? 'text-viral-cyan' : 'text-slate-400'
+                }`}>
+                  {plan.label}
                 </div>
 
                 {/* Description */}
@@ -251,22 +268,32 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
                 {/* Price */}
                 <div className="mb-6 pb-6 border-b border-slate-600/30">
                   <div className="flex items-baseline gap-1">
-                    <span className={`text-4xl font-bold ${plan.highlighted ? 'text-white' : 'text-slate-200'}`}>
-                      ${price}
-                    </span>
-                    <span className="text-slate-400 text-sm">
-                      /{billingCycle === 'monthly' ? 'month' : 'year'}
-                    </span>
+                    {price !== null ? (
+                      <>
+                        <span className={`text-4xl font-bold ${plan.highlighted ? 'text-white' : 'text-slate-200'}`}>
+                          ${price}
+                        </span>
+                        <span className="text-slate-400 text-sm">
+                          /{billingCycle === 'monthly' ? 'month' : 'year'}
+                        </span>
+                      </>
+                    ) : (
+                      <span className={`text-2xl font-bold ${plan.highlighted ? 'text-white' : 'text-slate-200'}`}>
+                        Custom Pricing
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 {/* CTA Button */}
                 <button
                   onClick={() => onSelectPlan?.(plan.name)}
-                  className={`w-full py-3 rounded-lg font-bold transition-all mb-6 ${
+                  className={`w-full py-3 px-6 rounded-2xl font-bold transition-all mb-6 ${
                     plan.highlighted
                       ? 'bg-white text-teal-900 hover:bg-teal-50'
-                      : 'border border-slate-600 text-slate-300 hover:bg-slate-800'
+                      : plan.name === 'Launch'
+                      ? 'bg-gradient-to-r from-viral-cyan to-viral-purple text-white hover:opacity-90'
+                      : 'border-2 border-teal-400 text-teal-400 hover:bg-teal-400/10'
                   }`}
                 >
                   {plan.cta}
@@ -276,17 +303,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
                 <ul className="space-y-4">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <Check size={20} className={`flex-shrink-0 ${plan.highlighted ? 'text-teal-400' : 'text-teal-500'}`} />
+                      <Check size={20} className={`flex-shrink-0 ${
+                        plan.highlighted ? 'text-teal-400' : plan.name === 'Launch' ? 'text-viral-cyan' : 'text-teal-500'
+                      }`} />
                       <span className="text-sm text-slate-300">
                         {feature}
-                      </span>
-                    </li>
-                  ))}
-                  {plan.limitations.map((limitation) => (
-                    <li key={limitation} className="flex items-start gap-3 opacity-40">
-                      <X size={20} className="flex-shrink-0 text-slate-600" />
-                      <span className="text-sm text-slate-500">
-                        {limitation}
                       </span>
                     </li>
                   ))}

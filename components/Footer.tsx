@@ -35,7 +35,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
           {/* Brand Column */}
           <div>
             <a href="#" className="inline-block mb-6">
-              <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-14 w-auto object-contain" />
+              <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[60px] md:h-[100px] w-auto object-contain" />
             </a>
             <p className={`text-sm leading-relaxed mb-8 max-w-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               AI-first operating system for modern social media. Automated, intelligent, and scalable.
@@ -90,29 +90,14 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
             </ul>
           </div>
 
-          {/* Resources & Stats Column */}
+          {/* Resources Column */}
           <div>
             <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 text-viral-cyan`}>Resources</h4>
-            <ul className={`space-y-3 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'} mb-8`}>
+            <ul className={`space-y-3 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Help Center</a></li>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>API Docs</a></li>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Community</a></li>
             </ul>
-
-            {/* Stats */}
-            <div className={`border rounded-lg p-4 ${isDarkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-200 bg-slate-100'}`}>
-              <h5 className={`text-xs font-semibold uppercase tracking-wider mb-4 text-viral-cyan`}>Platform Stats</h5>
-              <div className="space-y-3">
-                <div>
-                  <div className="text-lg font-bold text-viral-cyan">2.5B+</div>
-                  <div className={`text-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Creators Reached</div>
-                </div>
-                <div>
-                  <div className="text-lg font-bold text-viral-purple">150+</div>
-                  <div className={`text-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Active Markets</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -133,7 +118,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
             <a href="#" className="hover:text-viral-cyan transition-colors">Privacy</a>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 mr-8">
             {/* Language Selector */}
             <div className="relative">
               <button
@@ -179,21 +164,6 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
                 </div>
               )}
             </div>
-
-            {/* Theme Toggle */}
-            {setIsDarkMode && (
-              <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
-                className={`p-2 rounded-lg transition-colors ${
-                  isDarkMode
-                    ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-viral-cyan'
-                    : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-viral-cyan'
-                }`}
-                title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              >
-                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
-            )}
           </div>
         </div>
       </div>
