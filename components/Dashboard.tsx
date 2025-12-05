@@ -27,10 +27,10 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = ({ isDarkMode = true }) => {
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h2 className={`text-3xl font-bold mb-2 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Control Centre</h2>
-          <p className={`transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Real-time overview of your social operating system.</p>
+          <h2 className={`text-2xl sm:text-3xl font-bold mb-2 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Control Centre</h2>
+          <p className={`text-sm sm:text-base transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Real-time overview of your social operating system.</p>
         </div>
         <div className="flex gap-2">
            <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-500 border border-green-500/20">

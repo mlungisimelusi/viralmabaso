@@ -112,11 +112,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
       {/* --- Navbar --- */}
       <nav className={`fixed w-full z-50 top-0 border-b backdrop-blur-xl transition-all duration-300 ${scrollY > 50 ? 'shadow-lg' : ''} ${isDarkMode ? 'bg-[#0B0F19]/80 border-white/5' : 'bg-white/80 border-slate-200'}`}>
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
           
           {/* Left Side: Logo */}
           <a href="#" className="inline-flex items-center h-full md:mr-8">
-            <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[100px] w-auto object-contain" />
+            <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[60px] md:h-[100px] w-auto object-contain" />
             <span className="sr-only">Viralitics</span>
           </a>
           
@@ -189,7 +189,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       </nav>
 
       {/* --- Hero Section (2-Column, Text Left, Image Right) --- */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 overflow-hidden flex items-center min-h-[90vh]" style={{ transform: `translateY(${scrollY * 0.1}px)` }}>
+      <section className="relative pt-20 pb-12 md:pt-32 md:pb-20 lg:pt-40 lg:pb-32 px-4 md:px-6 overflow-hidden flex items-center min-h-screen md:min-h-[90vh]" style={{ transform: `translateY(${scrollY * 0.1}px)` }}>
         
         {/* Floating Gradient Particles */}
         <div className="absolute inset-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
@@ -225,21 +225,21 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             <div className={`absolute inset-0 transition-colors duration-500 ${isDarkMode ? 'bg-[#0B0F19]/85' : 'bg-white/85'}`}></div>
         </div>
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center relative z-10">
           
            {/* Text Column (Left) */}
           <div className="relative z-10 lg:order-1 scroll-animate text-center lg:text-left lg:pl-8">
              
-             <h1 className={`text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+             <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                 Elevate Your Brand. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Amplify Your Impact</span>
              </h1>
 
-             <p className={`text-lg max-w-lg mb-8 leading-relaxed mx-auto lg:mx-0 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                Your all-in-one social media management platform for planning, creating, scheduling, and optimizing content across every major platform.
+             <p className={`text-base sm:text-lg max-w-lg mb-6 sm:mb-8 leading-relaxed mx-auto lg:mx-0 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                A smart influencer marketplace that drives creator monetization and expands brand reach.
              </p>
 
-             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start">
                 <button 
                   onClick={onLaunch}
                   className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-full font-bold text-lg shadow-[0_0_25px_-5px_rgba(207,41,245,0.5)] transition-all flex items-center justify-center gap-2"
@@ -249,7 +249,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
              </div>
 
              {/* Mini Feature Bar */}
-             <div className={`mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+             <div className={`mt-8 sm:mt-12 flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs sm:text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                <div className="flex items-center gap-2">
                  <i className="fas fa-brain text-viral-cyan text-lg"></i>
                  <span className="font-medium">AI Content Engine</span>
@@ -265,76 +265,29 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
              </div>
           </div>
 
-           {/* Image Column (Right) */}
+          {/* Video Column (Right) */}
           <div className="relative z-10 lg:order-2 scroll-animate animate-delay-200 flex justify-center items-center">
-             {/* Animated Emoji Background */}
-             <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-               {[
-                 { emoji: '❤️', delay: 0, duration: 6 },
-                 { emoji: '💯', delay: 0.5, duration: 7 },
-                 { emoji: '🔥', delay: 1, duration: 8 },
-                 { emoji: '😂', delay: 1.5, duration: 6.5 },
-                 { emoji: '🎉', delay: 2, duration: 7.5 },
-                 { emoji: '✨', delay: 2.5, duration: 6 },
-                 { emoji: '👍', delay: 3, duration: 8 },
-                 { emoji: '💬', delay: 3.5, duration: 7 },
-                 { emoji: '📱', delay: 4, duration: 6.5 },
-                 { emoji: '⭐', delay: 4.5, duration: 7.5 },
-                 { emoji: '💜', delay: 5, duration: 6 },
-                 { emoji: '🚀', delay: 5.5, duration: 8 },
-                 { emoji: '😍', delay: 6, duration: 7 },
-                 { emoji: '🎵', delay: 6.5, duration: 6.5 },
-                 { emoji: '💎', delay: 7, duration: 7.5 },
-               ].map((item, i) => (
-                 <div
-                   key={i}
-                   className="absolute text-4xl md:text-5xl opacity-[0.1] animate-float"
-                   style={{
-                     left: `${Math.random() * 100}%`,
-                     top: `${Math.random() * 100}%`,
-                     animationDelay: `${item.delay}s`,
-                     animationDuration: `${item.duration}s`,
-                     willChange: 'transform',
-                     contain: 'layout style paint',
-                     backfaceVisibility: 'hidden',
-                   }}
-                 >
-                   {item.emoji}
-                 </div>
-               ))}
-             </div>
-             
-             {/* Multi-layer Radial Gradient Glow Behind Model */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] -z-20">
-               {/* Outer Purple Glow */}
-               <div className="absolute inset-0 bg-gradient-radial from-viral-purple/40 via-viral-purple/20 to-transparent blur-[120px] rounded-full hero-image-pulse"></div>
-               {/* Inner Cyan Glow */}
-               <div className="absolute inset-[10%] bg-gradient-radial from-viral-cyan/50 via-viral-cyan/25 to-transparent blur-[80px] rounded-full hero-image-pulse" style={{ animationDelay: '1s' }}></div>
-               {/* Vignette / Light Feathering */}
-               <div className="absolute inset-[20%] bg-gradient-radial from-white/10 via-transparent to-transparent blur-[60px] rounded-full"></div>
-             </div>
-             
-             {/* Image Container with Sliding Out Animation */}
-             <div className="relative w-full max-w-[450px] group hero-image-float transition-transform duration-700 hover:translate-x-2 hover:-translate-y-2">
-                <img 
-                   src="/assets/hero-image.png" 
-                   alt="Viralitics Hero"
-                   className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
-                />
-                {/* Sparkle overlay on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="absolute top-[15%] right-[20%] w-3 h-3 bg-white rounded-full blur-sm animate-ping"></div>
-                  <div className="absolute top-[45%] left-[15%] w-2 h-2 bg-viral-cyan rounded-full blur-sm animate-ping" style={{ animationDelay: '0.5s' }}></div>
-                  <div className="absolute bottom-[25%] right-[30%] w-2 h-2 bg-viral-purple rounded-full blur-sm animate-ping" style={{ animationDelay: '1s' }}></div>
-                </div>
-             </div>
+            <div className="relative w-full max-w-[600px] h-[300px] sm:h-[450px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/assets/hero-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              {/* Gradient overlay for better blend */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+            </div>
           </div>
 
         </div>
       </section>
 
       {/* --- AI Manager / Core Features --- */}
-      <section id="ai-manager" className="py-24 px-6 scroll-mt-20">
+      <section id="ai-manager" className="py-16 md:py-24 px-4 md:px-6 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16 scroll-animate">
                  {/* Core Features Label */}
@@ -342,7 +295,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     CORE FEATURES
                 </div>
                 
-                <h2 className={`text-3xl md:text-5xl font-bold mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                <h2 className={`text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                     Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">take over your entire workflow.</span>
                 </h2>
                 <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
@@ -720,7 +673,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
               Create <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Every Type of Content</span>
             </h2>
             <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-              From video scripts to trending hashtags - generate everything you need in seconds
+              From video scripts to trending hashtags - generate everything you need in seconds.
             </p>
           </div>
 
@@ -887,7 +840,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       </section>
 
       {/* --- Platform Integration Section --- */}
-      <section className={`py-24 px-6 relative overflow-hidden transition-colors ${isDarkMode ? 'bg-slate-900' : 'bg-slate-100'}`}>
+      <section className={`py-16 md:py-24 px-4 md:px-6 relative overflow-hidden transition-colors ${isDarkMode ? 'bg-slate-900' : 'bg-slate-100'}`}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 scroll-animate">
             <div className="inline-block px-4 py-1.5 rounded-full border border-viral-purple/30 bg-viral-purple/10 text-xs font-bold tracking-widest mb-6 text-viral-purple">
@@ -897,12 +850,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
               One Dashboard for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">All Major Platforms</span>
             </h2>
             <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`}>
-              Connect and manage content across 15+ major social media platforms seamlessly
+              Connect and manage content across 15+ major social media platforms seamlessly.
             </p>
           </div>
 
           {/* All Platform Icons - No Cards */}
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-12">
             {/* TikTok */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
               <div className="w-20 h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-900/50 transition-all mx-auto">
@@ -1023,7 +976,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       </section>
 
       {/* --- Pricing Section --- */}
-      <section className="relative py-24 px-6 bg-gradient-to-b from-black/0 to-black/50">
+      <section className="relative py-16 md:py-24 px-4 md:px-6 bg-gradient-to-b from-black/0 to-black/50">
         {/* Top Wave Gradient */}
         <div className="absolute top-0 left-0 right-0 h-96 pointer-events-none overflow-hidden">
           <svg className="w-full h-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -1181,7 +1134,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       <CallToAction onLaunch={onLaunch} isDarkMode={isDarkMode} />
 
       {/* --- Footer --- */}
-      <footer className={`border-t pt-16 pb-12 text-sm transition-colors duration-300 ${isDarkMode ? 'bg-[#06080e] border-white/10' : 'bg-slate-100 border-slate-200'}`}>
+      <footer className={`border-t pt-12 md:pt-16 pb-8 md:pb-12 text-sm transition-colors duration-300 ${isDarkMode ? 'bg-[#06080e] border-white/10' : 'bg-slate-100 border-slate-200'}`}>
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-10">
             <div className="col-span-2 lg:col-span-2">
                  <a href="#" className="inline-flex items-center gap-3 h-[100px] mb-6">

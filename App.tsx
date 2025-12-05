@@ -79,7 +79,7 @@ const App: React.FC = () => {
       <Sidebar currentView={currentView} onNavigate={setCurrentView} isDarkMode={isDarkMode} />
 
       {/* Main Content Area */}
-      <main className="flex-1 ml-64 min-h-screen flex flex-col relative">
+      <main className="flex-1 ml-56 md:ml-64 min-h-screen flex flex-col relative">
         {/* Background Gradients */}
         <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
              <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-viral-purple/10 rounded-full blur-[120px]"></div>

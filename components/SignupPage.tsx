@@ -50,12 +50,12 @@ const SignupPage: React.FC<SignupPageProps> = ({ onBack, onSignupSuccess, isDark
 
       <div className="w-full max-w-md">
         {/* Logo */}
-        <div className="mb-8 flex justify-center">
-          <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[67px] w-auto object-contain" />
+        <div className="mb-6 md:mb-8 flex justify-center">
+          <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[50px] md:h-[67px] w-auto object-contain" />
         </div>
 
         {/* Form Container */}
-        <div className={`rounded-3xl p-8 border backdrop-blur-xl transition-colors ${isDarkMode ? 'bg-[#0B0F19]/80 border-white/10' : 'bg-white/80 border-slate-200'}`}>
+        <div className={`rounded-3xl p-6 md:p-8 border backdrop-blur-xl transition-colors ${isDarkMode ? 'bg-[#0B0F19]/80 border-white/10' : 'bg-white/80 border-slate-200'}`}>
           {/* Heading centered; back arrow absolute at left edge */}
           <div className="relative mb-2 text-center">
             <button
@@ -67,7 +67,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ onBack, onSignupSuccess, isDark
             >
               <ArrowLeft size={16} />
             </button>
-            <h1 className={`text-3xl font-extrabold mx-auto transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+            <h1 className={`text-2xl md:text-3xl font-extrabold mx-auto transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
               Get Activated
             </h1>
           </div>

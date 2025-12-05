@@ -34,7 +34,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate, isDarkMode }
   ];
 
   return (
-    <aside className={`fixed left-0 top-0 h-full w-64 border-r flex flex-col z-20 transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'}`}>
+    <aside className={`fixed left-0 top-0 h-full w-56 md:w-64 border-r flex flex-col z-20 transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'}`}>
       <div className="p-6 flex items-center gap-3">
         {/* Logo Image */}
         <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-12 w-auto object-contain" />

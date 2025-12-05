@@ -38,7 +38,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onBack, onLoginSuccess, onSignup,
         </div>
 
         {/* Form Container */}
-        <div className={`rounded-3xl p-8 border backdrop-blur-xl transition-colors ${isDarkMode ? 'bg-[#0B0F19]/80 border-white/10' : 'bg-white/80 border-slate-200'}`}>
+        <div className={`rounded-3xl p-6 md:p-8 border backdrop-blur-xl transition-colors ${isDarkMode ? 'bg-[#0B0F19]/80 border-white/10' : 'bg-white/80 border-slate-200'}`}>
           <div className="relative mb-2 text-center">
             <button
               onClick={onBack}
@@ -49,11 +49,11 @@ const LoginPage: React.FC<LoginPageProps> = ({ onBack, onLoginSuccess, onSignup,
             >
               <ArrowLeft size={16} />
             </button>
-            <h1 className={`text-3xl font-bold mx-auto transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+            <h1 className={`text-2xl md:text-3xl font-bold mx-auto transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
               Welcome Back
             </h1>
           </div>
-          <p className={`mb-8 text-center transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`mb-6 md:mb-8 text-sm md:text-base text-center transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
             Sign in to your Viralitics account
           </p>
 
