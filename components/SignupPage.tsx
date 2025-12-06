@@ -51,7 +51,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ onBack, onSignupSuccess, isDark
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="mb-6 md:mb-8 flex justify-center">
-          <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[50px] md:h-[67px] w-auto object-contain" />
+          <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[60px] md:h-[100px] w-auto object-contain" />
         </div>
 
         {/* Form Container */}
@@ -254,11 +254,11 @@ const SignupPage: React.FC<SignupPageProps> = ({ onBack, onSignupSuccess, isDark
           </div>
 
           {/* Login Link */}
-          <p className={`text-center text-sm transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`text-center text-sm transition-colors break-words ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
             Already have an account?{' '}
             <button
               onClick={onBack}
-              className="text-viral-cyan hover:text-viral-purple transition-colors font-medium"
+              className="text-viral-cyan hover:text-viral-purple transition-colors font-medium whitespace-nowrap"
             >
               Login
             </button>

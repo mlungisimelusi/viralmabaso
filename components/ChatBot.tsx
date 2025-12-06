@@ -21,7 +21,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
     {
       id: '1',
       role: 'assistant',
-      text: 'Hi there! I\'m TiC, your Viralitics assistant. How can I help you grow your social presence today?'
+      text: 'Hi there! I\'m TiC, your Viralitics AI assistant. How can we help you?'
     }
   ]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -126,7 +126,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
           {/* Header */}
           <div className={`p-4 border-b flex justify-between items-center transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-200'}`}>
             <div className="flex items-center gap-3">
-              <div className={`w-8 h-8 rounded-full border flex items-center justify-center overflow-hidden transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
+              <div className={`w-12 h-12 rounded-full border flex items-center justify-center overflow-hidden transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
                 <img src="/assets/bot-icon.png" alt="TiC Bot" className="w-full h-full object-contain p-1" />
               </div>
               <div>
@@ -216,9 +216,9 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
                 <Send size={18} />
               </button>
             </form>
-            <div className={`px-4 pb-3 flex items-center gap-1 text-xs ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>
+            <div className={`px-4 pb-3 flex items-center gap-1 text-[10px] ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>
               <MessageSquare size={12} />
-              <span>We're here to Help, use Voice Messages or Upload Files.</span>
+              <span>Use Voice Text or Upload files</span>
             </div>
           </div>
         </div>

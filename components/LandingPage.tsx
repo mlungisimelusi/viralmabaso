@@ -76,6 +76,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-on-scroll');
+            entry.target.classList.add('animate-bounce-in');
             // Trigger chat spin when AI Tutor section comes into view
             if (entry.target.id === 'ai-tutor') {
               setSpinChat(true);
@@ -237,13 +238,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
              </h1>
 
              <p className={`text-lg sm:text-xl max-w-lg mb-6 sm:mb-8 leading-relaxed mx-auto lg:mx-0 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                An influencer marketplace that helps creators monetize and enables brands to reach more people.
+                An all-in-one AI social media management platform and influencer marketplace that helps creators monetize and enables brands to reach more people.
              </p>
 
              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start">
                 <button 
                   onClick={onLaunch}
-                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-full font-bold text-xl shadow-[0_0_25px_-5px_rgba(207,41,245,0.5)] transition-all flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-full font-bold text-lg shadow-[0_0_25px_-5px_rgba(207,41,245,0.5)] transition-all flex items-center justify-center gap-2"
                 >
                   Get Activated
                 </button>
