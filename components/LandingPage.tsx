@@ -49,6 +49,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
   const [showLanguages, setShowLanguages] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('English');
   const [spinChat, setSpinChat] = useState(false);
+  const [showAIMSModal, setShowAIMSModal] = useState(false);
+  const closeAIMSButtonRef = useRef<HTMLButtonElement | null>(null);
+  const [showAdModal, setShowAdModal] = useState(false);
+  const closeAdButtonRef = useRef<HTMLButtonElement | null>(null);
+  const [showTutorModal, setShowTutorModal] = useState(false);
+  const closeTutorButtonRef = useRef<HTMLButtonElement | null>(null);
   
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -104,6 +110,33 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       }
     };
   }, []);
+
+  // Handle modal open/close (Escape key + body scroll lock + focus) for all feature modals
+  useEffect(() => {
+    const showAny = showAIMSModal || showAdModal || showTutorModal;
+    if (!showAny) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowAIMSModal(false);
+        setShowAdModal(false);
+        setShowTutorModal(false);
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    // lock body scroll
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    // focus the appropriate close button when opened
+    setTimeout(() => {
+      if (showAIMSModal) closeAIMSButtonRef.current?.focus();
+      else if (showAdModal) closeAdButtonRef.current?.focus();
+      else if (showTutorModal) closeTutorButtonRef.current?.focus();
+    }, 50);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [showAIMSModal, showAdModal, showTutorModal]);
 
   return (
     <div className={`min-h-screen selection:bg-viral-cyan selection:text-[#0B0F19] overflow-x-hidden font-sans transition-colors duration-300 ${isDarkMode ? 'bg-[#0B0F19] text-white' : 'bg-slate-50 text-slate-900'}`}>
@@ -331,9 +364,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                             Stop guessing. AI plans, creates, engages, and optimizes your entire social media presence.
                         </p>
                         
-                        <a href="#ai-manager" className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
-                            Learn more <ArrowRight size={12} />
-                        </a>
+                        <button onClick={() => setShowAIMSModal(true)} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
+                          Learn more <ArrowRight size={12} />
+                        </button>
                     </div>
                 </div>
 
@@ -374,9 +407,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                             Launch campaigns that optimize themselves. We test hundreds of creative variations and automatically shift budget to the winners.
                         </p>
                         
-                        <a href="#ad-creator" className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
-                            Learn more <ArrowRight size={12} />
-                        </a>
+                        <button onClick={() => setShowAdModal(true)} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
+                          Learn more <ArrowRight size={12} />
+                        </button>
                      </div>
                 </div>
 
@@ -393,9 +426,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                              Your personal algorithm coach. Learn exactly why a post failed and get step-by-step instructions to improve your next one.
                         </p>
                         
-                        <a href="#ai-tutor" className="inline-flex items-center gap-1 text-viral-purple font-bold text-sm hover:gap-2 transition-all mt-auto">
-                            Learn more <ArrowRight size={12} />
-                        </a>
+                        <button onClick={() => setShowTutorModal(true)} className="inline-flex items-center gap-1 text-viral-purple font-bold text-sm hover:gap-2 transition-all mt-auto">
+                          Learn more <ArrowRight size={12} />
+                        </button>
                      </div>
                 </div>
 
@@ -1167,6 +1200,270 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       <CallToAction onLaunch={onLaunch} isDarkMode={isDarkMode} />
 
       {/* --- Footer --- */}
+      {/* --- AI Social Media Manager Modal --- */}
+      {showAIMSModal && (
+        <div
+          className="fixed inset-0 z-60 flex items-center justify-center px-4 sm:px-6"
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowAIMSModal(false); }}
+        >
+          <div className={`absolute inset-0 ${isDarkMode ? 'bg-black/70' : 'bg-black/40'}`} />
+
+          <div className={`relative max-w-3xl w-full mx-auto rounded-2xl shadow-2xl overflow-hidden transform transition-all ${isDarkMode ? 'bg-[#081017] text-white' : 'bg-white text-slate-900'}`}>
+            <div className="flex items-start justify-between p-6 border-b" style={{ borderColor: isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(15,23,42,0.04)' }}>
+              <div>
+                <h3 className="text-2xl font-bold">AI Social Media Manager</h3>
+                <p className={`mt-1 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Stop guessing — let AI plan, create, publish and optimize at scale.</p>
+              </div>
+              <div className="ml-4">
+                <button
+                  ref={closeAIMSButtonRef}
+                  onClick={() => setShowAIMSModal(false)}
+                  className={`p-2 rounded-md transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+                  aria-label="Close details"
+                >
+                  <X />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <p className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                The AI Social Media Manager centralizes your entire content workflow: from strategy and creative generation to publishing, engagement and optimization.
+              </p>
+
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none p-0 m-0">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="text-viral-cyan mt-1" />
+                  <div>
+                    <strong className="block">Content Strategy & Calendar</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>AI builds a weekly content plan optimized for your audience and goals.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Send className="text-viral-purple mt-1" />
+                  <div>
+                    <strong className="block">Auto Generation</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Generate captions, scripts, hashtags, thumbnails and short-form clips in seconds.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <MessageCircle className="text-viral-cyan mt-1" />
+                  <div>
+                    <strong className="block">Engagement Automation</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Auto-respond to comments, prioritize messages and route leads to your team.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <TrendingUp className="text-viral-purple mt-1" />
+                  <div>
+                    <strong className="block">Performance Optimization</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>AI tests creatives, adjusts posting times and reallocates budget to top performers.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <SearchIcon className="text-viral-cyan mt-1" />
+                  <div>
+                    <strong className="block">Influencer Matchmaking</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Find creators by audience, niche, and engagement quality — collaborate directly from the platform.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <BadgeCheck className="text-viral-purple mt-1" />
+                  <div>
+                    <strong className="block">Collaborative Workflow</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Review drafts, leave feedback, and approve content with your team before publishing.</span>
+                  </div>
+                </li>
+              </ul>
+
+              <div className="pt-2 border-t flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end">
+                <button onClick={() => { setShowAIMSModal(false); onLaunch(); }} className="px-4 py-2 rounded-md bg-gradient-to-r from-viral-cyan to-viral-purple text-white font-bold">
+                  Try it now
+                </button>
+                <button onClick={() => { setShowAIMSModal(false); onPricing?.(); }} className={`px-4 py-2 rounded-md font-bold ${isDarkMode ? 'bg-white/5 text-white' : 'bg-slate-100 text-slate-900'}`}>
+                  View Pricing
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showAdModal && (
+        <div
+          className="fixed inset-0 z-60 flex items-center justify-center px-4 sm:px-6"
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowAdModal(false); }}
+        >
+          <div className={`absolute inset-0 ${isDarkMode ? 'bg-black/70' : 'bg-black/40'}`} />
+
+          <div className={`relative max-w-3xl w-full mx-auto rounded-2xl shadow-2xl overflow-hidden transform transition-all ${isDarkMode ? 'bg-[#081017] text-white' : 'bg-white text-slate-900'}`}>
+            <div className="flex items-start justify-between p-6 border-b" style={{ borderColor: isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(15,23,42,0.04)' }}>
+              <div>
+                <h3 className="text-2xl font-bold">Ad Automation</h3>
+                <p className={`mt-1 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Automate campaign creation, testing and optimization.</p>
+              </div>
+              <div className="ml-4">
+                <button
+                  ref={closeAdButtonRef}
+                  onClick={() => setShowAdModal(false)}
+                  className={`p-2 rounded-md transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+                  aria-label="Close details"
+                >
+                  <X />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <p className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                Launch high-performing ad campaigns with minimal setup. Our AI handles creative testing, targeting, and budget optimization.
+              </p>
+
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none p-0 m-0">
+                <li className="flex items-start gap-3">
+                  <Zap className="text-viral-cyan mt-1" />
+                  <div>
+                    <strong className="block">Creative Testing</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Automatically test dozens of variations to find winners.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Target className="text-viral-purple mt-1" />
+                  <div>
+                    <strong className="block">Smart Targeting</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Find audiences most likely to convert using lookalike and intent signals.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Trophy className="text-viral-cyan mt-1" />
+                  <div>
+                    <strong className="block">Budget Optimization</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Automatically shift spend to the best-performing creatives and audiences.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Award className="text-viral-purple mt-1" />
+                  <div>
+                    <strong className="block">Automatic A/B Testing</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Continuous experiments to improve lift over time.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <PlusSquare className="text-viral-cyan mt-1" />
+                  <div>
+                    <strong className="block">Templates & Workflows</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Start from proven campaign templates and customize as needed.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <TrendingUp className="text-viral-purple mt-1" />
+                  <div>
+                    <strong className="block">Real-time Analytics</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>See performance and recommendations in a single dashboard.</span>
+                  </div>
+                </li>
+              </ul>
+
+              <div className="pt-2 border-t flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end">
+                <button onClick={() => { setShowAdModal(false); onLaunch(); }} className="px-4 py-2 rounded-md bg-gradient-to-r from-viral-cyan to-viral-purple text-white font-bold">
+                  Try it now
+                </button>
+                <button onClick={() => { setShowAdModal(false); onPricing?.(); }} className={`px-4 py-2 rounded-md font-bold ${isDarkMode ? 'bg-white/5 text-white' : 'bg-slate-100 text-slate-900'}`}>
+                  View Pricing
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showTutorModal && (
+        <div
+          className="fixed inset-0 z-60 flex items-center justify-center px-4 sm:px-6"
+          role="dialog"
+          aria-modal="true"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowTutorModal(false); }}
+        >
+          <div className={`absolute inset-0 ${isDarkMode ? 'bg-black/70' : 'bg-black/40'}`} />
+
+          <div className={`relative max-w-3xl w-full mx-auto rounded-2xl shadow-2xl overflow-hidden transform transition-all ${isDarkMode ? 'bg-[#081017] text-white' : 'bg-white text-slate-900'}`}>
+            <div className="flex items-start justify-between p-6 border-b" style={{ borderColor: isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(15,23,42,0.04)' }}>
+              <div>
+                <h3 className="text-2xl font-bold">AI Tutor</h3>
+                <p className={`mt-1 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Personalized coaching to improve content performance.</p>
+              </div>
+              <div className="ml-4">
+                <button
+                  ref={closeTutorButtonRef}
+                  onClick={() => setShowTutorModal(false)}
+                  className={`p-2 rounded-md transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+                  aria-label="Close details"
+                >
+                  <X />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <p className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                Learn why posts succeed or fail, get actionable edits and step-by-step prompts to improve reach and engagement.
+              </p>
+
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none p-0 m-0">
+                <li className="flex items-start gap-3">
+                  <GraduationCap className="text-viral-cyan mt-1" />
+                  <div>
+                    <strong className="block">Trend Alerts</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Get notified of rising formats and audio before they peak.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="text-viral-purple mt-1" />
+                  <div>
+                    <strong className="block">Step-by-Step Guides</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Actionable checklists to improve your next post.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <MessageCircle className="text-viral-cyan mt-1" />
+                  <div>
+                    <strong className="block">Feedback & Edits</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Receive suggested rewrites and hook improvements.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Crown className="text-viral-purple mt-1" />
+                  <div>
+                    <strong className="block">Practice Prompts</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Try optimized captions and scripts tailored to your audience.</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <BadgeCheck className="text-viral-cyan mt-1" />
+                  <div>
+                    <strong className="block">Content Grading</strong>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Receive a score and concrete next steps to improve reach.</span>
+                  </div>
+                </li>
+              </ul>
+
+              <div className="pt-2 border-t flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end">
+                <button onClick={() => { setShowTutorModal(false); onLaunch(); }} className="px-4 py-2 rounded-md bg-gradient-to-r from-viral-cyan to-viral-purple text-white font-bold">
+                  Try it now
+                </button>
+                <button onClick={() => { setShowTutorModal(false); onPricing?.(); }} className={`px-4 py-2 rounded-md font-bold ${isDarkMode ? 'bg-white/5 text-white' : 'bg-slate-100 text-slate-900'}`}>
+                  View Pricing
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
 
       {/* --- Floating Chatbot --- */}
