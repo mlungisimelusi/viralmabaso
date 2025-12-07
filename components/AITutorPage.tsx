@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Menu, X, Sun, Moon } from 'lucide-react';
 
 interface AITutorPageProps {
   onBack: () => void;
@@ -15,6 +15,7 @@ const AITutorPage: React.FC<AITutorPageProps> = ({
   setIsDarkMode 
 }) => {
   const [activeTab, setActiveTab] = useState<'features' | 'benefits'>('features');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const features = [
     {
@@ -66,25 +67,81 @@ const AITutorPage: React.FC<AITutorPageProps> = ({
       <div className="fixed top-0 left-0 w-[600px] h-[600px] bg-viral-purple/20 rounded-full blur-[120px] -z-10 pointer-events-none opacity-40 mix-blend-screen"></div>
       <div className="fixed bottom-0 right-0 w-[800px] h-[600px] bg-viral-cyan/10 rounded-full blur-[120px] -z-10 pointer-events-none opacity-30 mix-blend-screen"></div>
 
-      {/* Header */}
-      <div className={`fixed w-full z-50 top-0 border-b backdrop-blur-xl ${isDarkMode ? 'bg-[#0B0F19]/90 border-white/5' : 'bg-white/90 border-slate-200'}`}>
-        <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-          <button 
-            onClick={onBack}
-            className={`flex items-center gap-2 text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}
-          >
-            <ArrowLeft size={20} />
-            Back
+      {/* Navbar */}
+      <nav className={`fixed w-full z-50 top-0 border-b backdrop-blur-xl transition-all duration-300 ${isDarkMode ? 'bg-[#0B0F19]/80 border-white/5' : 'bg-white/80 border-slate-200'}`}>
+        <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+          
+          {/* Left Side: Logo */}
+          <button onClick={onBack} className="inline-flex items-center h-full md:mr-8 cursor-pointer">
+            <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[60px] md:h-[100px] w-auto object-contain" />
           </button>
-          <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-12 w-auto" />
+          
+          {/* Desktop Nav (Center) */}
+          <div className={`hidden md:flex items-center gap-8 text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Home</button>
+            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>AI Manager</button>
+            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Influencers</button>
+            <span className={`text-viral-cyan font-semibold`}>AI Tutor</span>
+            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Ad Creator</button>
+            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Pricing</button>
+          </div>
+
+          {/* Right Side: Theme Toggle, Log in, Get Activated */}
+          <div className="hidden md:flex items-center gap-4">
+             <button 
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className={`p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'}`}
+              title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+
+            <button onClick={onBack} className={`text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}>
+              Log in
+            </button>
+            <button 
+              onClick={onLaunch}
+              className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${isDarkMode ? 'bg-white text-black hover:bg-slate-200' : 'bg-slate-900 text-white hover:bg-slate-800'}`}
+            >
+              Get Activated
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
           <button 
-            onClick={onLaunch}
-            className="px-5 py-2 rounded-full text-sm font-bold bg-gradient-to-r from-viral-cyan to-viral-purple text-white hover:opacity-90 transition-all"
+            className={`md:hidden ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`} 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            Get Started
+            {mobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
-      </div>
+
+        {/* Mobile Nav Dropdown */}
+        {mobileMenuOpen && (
+          <div className={`md:hidden absolute top-20 left-0 w-full border-b p-6 flex flex-col gap-4 ${isDarkMode ? 'bg-[#0B0F19] border-white/10' : 'bg-white border-slate-200'}`}>
+            <button onClick={onBack} className={`text-lg font-medium text-left ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Home</button>
+            <button onClick={onBack} className={`text-lg font-medium text-left ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AI Manager</button>
+            <button onClick={onBack} className={`text-lg font-medium text-left ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Influencers</button>
+            <span className={`text-lg font-medium text-viral-cyan`}>AI Tutor</span>
+            <button onClick={onBack} className={`text-lg font-medium text-left ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Ad Creator</button>
+            <button onClick={onBack} className={`text-lg font-medium text-left ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Pricing</button>
+            
+            <div className="flex items-center justify-between mt-2">
+                <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Theme</span>
+                <button 
+                    onClick={() => setIsDarkMode(!isDarkMode)}
+                    className={`p-2 rounded-full ${isDarkMode ? 'bg-white/10 text-white' : 'bg-slate-100 text-slate-900'}`}
+                >
+                    {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
+            </div>
+
+            <button onClick={onLaunch} className="w-full bg-gradient-to-r from-viral-cyan to-viral-purple py-3 rounded-lg font-bold text-white mt-4">
+              Get Activated
+            </button>
+          </div>
+        )}
+      </nav>
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-4 md:px-6">

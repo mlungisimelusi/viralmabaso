@@ -152,7 +152,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
         const next = prev + 1;
         return next > headlineText.length ? headlineText.length : next;
       });
-    }, 45);
+    }, 30);
 
     return () => clearInterval(interval);
   }, [typedHeadlineLength]);
