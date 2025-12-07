@@ -11,16 +11,19 @@ import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import PricingPage from './components/PricingPage';
+import AISocialMediaManagerPage from './components/AISocialMediaManagerPage';
+import AdAutomationPage from './components/AdAutomationPage';
+import AITutorPage from './components/AITutorPage';
 import { View } from './types';
 import { Bell, Search, UserCircle, Sun, Moon } from 'lucide-react';
 
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'signup' | 'pricing' | 'app'>('landing');
+  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'signup' | 'pricing' | 'app' | 'ai-manager' | 'ad-automation' | 'ai-tutor'>('landing');
   const [currentView, setCurrentView] = useState<View>(View.DASHBOARD);
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   if (currentPage === 'landing') {
-    return <LandingPage onLaunch={() => setCurrentPage('signup')} onLogin={() => setCurrentPage('login')} onPricing={() => setCurrentPage('pricing')} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
+    return <LandingPage onLaunch={() => setCurrentPage('signup')} onLogin={() => setCurrentPage('login')} onPricing={() => setCurrentPage('pricing')} onAIManagerClick={() => setCurrentPage('ai-manager')} onAdAutomationClick={() => setCurrentPage('ad-automation')} onAITutorClick={() => setCurrentPage('ai-tutor')} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
   }
 
   if (currentPage === 'login') {
@@ -36,6 +39,18 @@ const App: React.FC = () => {
       console.log('Selected plan:', plan);
       setCurrentPage('signup');
     }} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
+  }
+
+  if (currentPage === 'ai-manager') {
+    return <AISocialMediaManagerPage onBack={() => setCurrentPage('landing')} onLaunch={() => setCurrentPage('signup')} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
+  }
+
+  if (currentPage === 'ad-automation') {
+    return <AdAutomationPage onBack={() => setCurrentPage('landing')} onLaunch={() => setCurrentPage('signup')} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
+  }
+
+  if (currentPage === 'ai-tutor') {
+    return <AITutorPage onBack={() => setCurrentPage('landing')} onLaunch={() => setCurrentPage('signup')} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
   }
 
   const renderView = () => {

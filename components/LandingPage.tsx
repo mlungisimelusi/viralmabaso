@@ -37,11 +37,14 @@ interface LandingPageProps {
   onLaunch: () => void;
   onLogin?: () => void;
   onPricing?: () => void;
+  onAIManagerClick?: () => void;
+  onAdAutomationClick?: () => void;
+  onAITutorClick?: () => void;
   isDarkMode: boolean;
   setIsDarkMode: (value: boolean) => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing, isDarkMode, setIsDarkMode }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing, onAIManagerClick, onAdAutomationClick, onAITutorClick, isDarkMode, setIsDarkMode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [hoveredTier, setHoveredTier] = useState<string | null>(null);
@@ -55,6 +58,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
   const closeAdButtonRef = useRef<HTMLButtonElement | null>(null);
   const [showTutorModal, setShowTutorModal] = useState(false);
   const closeTutorButtonRef = useRef<HTMLButtonElement | null>(null);
+  const [typedHeadlineLength, setTypedHeadlineLength] = useState(0);
   
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -137,6 +141,21 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       document.body.style.overflow = prevOverflow;
     };
   }, [showAIMSModal, showAdModal, showTutorModal]);
+
+  // Typewriter-style letter reveal for hero headline
+  useEffect(() => {
+    const headlineText = 'The All-In-One AI Platform\nThat Powers Your Entire Social Media Universe';
+    if (typedHeadlineLength >= headlineText.length) return;
+
+    const interval = setInterval(() => {
+      setTypedHeadlineLength((prev) => {
+        const next = prev + 1;
+        return next > headlineText.length ? headlineText.length : next;
+      });
+    }, 45);
+
+    return () => clearInterval(interval);
+  }, [typedHeadlineLength]);
 
   return (
     <div className={`min-h-screen selection:bg-viral-cyan selection:text-[#0B0F19] overflow-x-hidden font-sans transition-colors duration-300 ${isDarkMode ? 'bg-[#0B0F19] text-white' : 'bg-slate-50 text-slate-900'}`}>
@@ -266,8 +285,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
           <div className="relative z-10 lg:order-1 scroll-animate text-center lg:text-left lg:pl-8">
              
              <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                Elevate Your Brand. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Amplify Your Impact</span>
+                {(() => {
+                  const headlineText = 'The All-In-One AI Platform\nThat Powers Your Entire Social Media Universe';
+                  const visibleText = headlineText.slice(0, typedHeadlineLength);
+                  const [firstLine = '', secondLine = ''] = visibleText.split('\n');
+
+                  return (
+                    <>
+                      <span className="block">{firstLine || '\u00A0'}</span>
+                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">{secondLine}</span>
+                    </>
+                  );
+                })()}
              </h1>
 
              <p className={`text-lg sm:text-xl max-w-lg mb-6 sm:mb-8 leading-relaxed mx-auto lg:mx-0 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
@@ -292,7 +321,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               >
                 <source src="/assets/hero-video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -364,7 +393,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                             Stop guessing. AI plans, creates, engages, and optimizes your entire social media presence.
                         </p>
                         
-                        <button onClick={() => setShowAIMSModal(true)} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
+                        <button onClick={onAIManagerClick} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
                           Learn more <ArrowRight size={12} />
                         </button>
                     </div>
@@ -407,7 +436,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                             Launch campaigns that optimize themselves. We test hundreds of creative variations and automatically shift budget to the winners.
                         </p>
                         
-                        <button onClick={() => setShowAdModal(true)} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
+                        <button onClick={onAdAutomationClick} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
                           Learn more <ArrowRight size={12} />
                         </button>
                      </div>
@@ -426,7 +455,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                              Your personal algorithm coach. Learn exactly why a post failed and get step-by-step instructions to improve your next one.
                         </p>
                         
-                        <button onClick={() => setShowTutorModal(true)} className="inline-flex items-center gap-1 text-viral-purple font-bold text-sm hover:gap-2 transition-all mt-auto">
+                        <button onClick={onAITutorClick} className="inline-flex items-center gap-1 text-viral-purple font-bold text-sm hover:gap-2 transition-all mt-auto">
                           Learn more <ArrowRight size={12} />
                         </button>
                      </div>
@@ -481,9 +510,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                   onMouseEnter={() => setHoveredTier('micro')}
                   onMouseLeave={() => setHoveredTier(null)}
                   className={`relative p-8 rounded-3xl border group transition-all duration-300 cursor-pointer ${hoveredTier === 'micro' ? 'lg:scale-110 lg:z-10' : ''} ${isDarkMode ? 'bg-[#131b2c] border-viral-cyan/30' : 'bg-slate-50 border-viral-cyan/30 shadow-md'} ${hoveredTier !== 'micro' && hoveredTier ? 'lg:scale-95 lg:opacity-50' : ''}`}>
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-viral-cyan text-slate-900 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
-                        Most Active
-                    </div>
                     <div className="text-center">
                         <h3 className="text-xl font-bold text-viral-cyan mb-2">Micro</h3>
                         <p className={`text-sm font-medium mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>10K - 100K Followers</p>
