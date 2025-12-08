@@ -118,42 +118,42 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
       {/* Chat Window */}
       {isOpen && (
-        <div className={`pointer-events-auto mb-4 w-[350px] sm:w-[380px] h-[500px] max-h-[80vh] border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-300 transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
+        <div className={`pointer-events-auto mb-4 w-[92vw] sm:w-[380px] max-w-[420px] h-[60vh] sm:h-[500px] max-h-[80vh] border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-300 transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
           
           {/* Header */}
-          <div className={`p-4 border-b flex justify-between items-center transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-200'}`}>
-            <div className="flex items-center gap-3">
-              <div className={`w-12 h-12 rounded-full border flex items-center justify-center overflow-hidden transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
+          <div className={`p-3 sm:p-4 border-b flex justify-between items-center transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-200'}`}>
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border flex items-center justify-center overflow-hidden transition-colors flex-shrink-0 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
                 <img src="/assets/bot-icon.png" alt="TiC Bot" className="w-full h-full object-contain p-1" />
               </div>
-              <div>
-                <h3 className={`font-bold text-sm ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>TiC AI</h3>
-                <span className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    <span className="text-xs text-slate-400">Online</span>
+              <div className="min-w-0">
+                <h3 className={`font-bold text-xs sm:text-sm truncate ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>TiC AI</h3>
+                <span className="flex items-center gap-1.5 text-[10px] sm:text-xs">
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></span>
+                    <span className={`${isDarkMode ? 'text-slate-400' : 'text-slate-400'}`}>Online</span>
                 </span>
               </div>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              className={`transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white' : 'text-slate-400 hover:text-slate-900'}`}
+              className={`flex-shrink-0 ml-2 transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white' : 'text-slate-400 hover:text-slate-900'}`}
             >
-              <X size={20} />
+              <X size={18} />
             </button>
           </div>
 
           {/* Messages Area */}
-          <div className={`flex-1 overflow-y-auto p-4 space-y-4 transition-colors ${isDarkMode ? 'bg-[#0B0F19]' : 'bg-slate-50'}`}>
+          <div className={`flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 transition-colors ${isDarkMode ? 'bg-[#0B0F19]' : 'bg-slate-50'}`}>
             {messages.map((msg) => (
               <div 
                 key={msg.id} 
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div 
-                  className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed transition-colors ${
+                  className={`max-w-[85%] rounded-2xl px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm leading-relaxed transition-colors ${
                     msg.role === 'user' 
                       ? 'bg-gradient-to-r from-viral-cyan to-viral-purple text-white rounded-tr-none' 
                       : isDarkMode 
@@ -184,41 +184,41 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
               onChange={handleFileChange}
               accept="image/*,video/*,.pdf,.doc,.docx"
             />
-            <form onSubmit={handleSubmit} className="p-4 flex gap-2">
+            <form onSubmit={handleSubmit} className="p-3 sm:p-4 flex gap-1.5 sm:gap-2 items-center">
               <button 
                 type="button"
                 onClick={handleFileUpload}
-                className={`p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-slate-700' : 'text-slate-400 hover:text-slate-900 hover:bg-slate-100'}`}
+                className={`h-9 w-9 sm:h-10 sm:w-10 rounded-full transition-colors flex-shrink-0 flex items-center justify-center ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-slate-700' : 'text-slate-400 hover:text-slate-900 hover:bg-slate-100'}`}
                 title="Attach file"
               >
-                <Paperclip size={20} />
+                <Paperclip size={16} />
               </button>
               <button 
                 type="button"
                 onClick={handleVoiceMessage}
-                className={`p-2 rounded-full transition-colors ${isRecording ? 'text-red-500 animate-pulse' : isDarkMode ? 'text-slate-400 hover:text-white hover:bg-slate-700' : 'text-slate-400 hover:text-slate-900 hover:bg-slate-100'}`}
+                className={`h-9 w-9 sm:h-10 sm:w-10 rounded-full transition-colors flex-shrink-0 flex items-center justify-center ${isRecording ? 'text-red-500 animate-pulse' : isDarkMode ? 'text-slate-400 hover:text-white hover:bg-slate-700' : 'text-slate-400 hover:text-slate-900 hover:bg-slate-100'}`}
                 title={isRecording ? 'Recording... Click to stop' : 'Voice message'}
               >
-                <Mic size={20} />
+                <Mic size={16} />
               </button>
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your question here..."
-                className={`flex-1 border rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-viral-cyan transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-200 text-slate-900 placeholder-slate-400'}`}
+                placeholder="Ask..."
+                className={`flex-1 min-w-0 border rounded-xl px-3 py-2 text-xs sm:text-sm focus:outline-none focus:border-viral-cyan transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-200 text-slate-900 placeholder-slate-400'}`}
               />
               <button 
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="bg-viral-cyan hover:bg-cyan-400 text-slate-900 rounded-xl p-2.5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="h-10 w-10 sm:h-11 sm:w-11 bg-viral-cyan hover:bg-cyan-400 text-slate-900 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0 flex items-center justify-center"
               >
-                <Send size={18} />
+                <Send size={16} />
               </button>
             </form>
-            <div className={`px-4 pb-3 flex items-center gap-1 text-[10px] ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>
+            <div className={`px-3 sm:px-4 pb-2 sm:pb-3 flex items-center gap-1 text-[9px] sm:text-[10px] ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>
               <MessageSquare size={12} />
-              <span>Use Voice Text or Upload files</span>
+              <span className="hidden sm:inline">Voice, Text & Upload files</span>
             </div>
           </div>
         </div>
@@ -227,10 +227,10 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
       {/* Launcher Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`pointer-events-auto w-16 h-16 rounded-full border shadow-[0_0_20px_rgba(35,189,223,0.3)] hover:shadow-[0_0_30px_rgba(207,41,245,0.5)] transition-all duration-300 flex items-center justify-center overflow-hidden group hover:scale-105 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}
+        className={`pointer-events-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full border shadow-[0_0_20px_rgba(35,189,223,0.3)] hover:shadow-[0_0_30px_rgba(207,41,245,0.5)] transition-all duration-300 flex items-center justify-center overflow-hidden group hover:scale-105 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}
       >
         {isOpen ? (
-            <X size={32} className={isDarkMode ? 'text-white' : 'text-slate-900'} />
+            <X size={24} className={isDarkMode ? 'text-white' : 'text-slate-900'} />
         ) : (
             <img src="/assets/bot-icon.png" alt="TiC Bot" className="w-full h-full object-contain p-2" />
         )}
