@@ -1,7 +1,6 @@
 import React from 'react';
 import { Metric } from '../types';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Activity, TrendingUp, Users, DollarSign, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 const data = [
   { name: 'Mon', engagement: 4000, reach: 2400 },
@@ -13,11 +12,11 @@ const data = [
   { name: 'Sun', engagement: 3490, reach: 4300 },
 ];
 
-const metrics: (Metric & { icon: React.ElementType })[] = [
-  { label: 'Global Engagement Rate', value: '8.4%', change: '+2.1%', positive: true, icon: Activity },
-  { label: 'Viral Content Ratio', value: '32%', change: '+5%', positive: true, icon: TrendingUp },
-  { label: 'Total Reach', value: '1.2M', change: '+18%', positive: true, icon: Users },
-  { label: 'Ad ROI', value: '4.2x', change: '-0.3%', positive: false, icon: DollarSign },
+const metrics: (Metric & { icon: string })[] = [
+  { label: 'Global Engagement Rate', value: '8.4%', change: '+2.1%', positive: true, icon: 'fa-chart-line' },
+  { label: 'Viral Content Ratio', value: '32%', change: '+5%', positive: true, icon: 'fa-fire' },
+  { label: 'Total Reach', value: '1.2M', change: '+18%', positive: true, icon: 'fa-users' },
+  { label: 'Ad ROI', value: '4.2x', change: '-0.3%', positive: false, icon: 'fa-dollar-sign' },
 ];
 
 interface DashboardProps {
@@ -44,10 +43,10 @@ const Dashboard: React.FC<DashboardProps> = ({ isDarkMode = true }) => {
           <div key={idx} className={`glass-card p-5 rounded-2xl transition-all border ${isDarkMode ? 'hover:bg-slate-800/80 border-slate-700/50' : 'hover:bg-slate-100 border-slate-200'}`}>
             <div className="flex justify-between items-start mb-4">
               <div className={`p-2 rounded-lg text-viral-cyan ${isDarkMode ? 'bg-slate-800' : 'bg-slate-100'}`}>
-                <metric.icon size={20} />
+                <i className={`fas ${metric.icon} text-xl`}></i>
               </div>
               <div className={`flex items-center text-xs font-bold px-2 py-1 rounded-full ${metric.positive ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-                {metric.positive ? <ArrowUpRight size={12} className="mr-1"/> : <ArrowDownRight size={12} className="mr-1"/>}
+                <i className={`fas ${metric.positive ? 'fa-arrow-up' : 'fa-arrow-down'} mr-1`}></i>
                 {metric.change}
               </div>
             </div>

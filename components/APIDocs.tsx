@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Code, Copy, Check, Key, BookOpen, Zap, Shield } from 'lucide-react';
 
 const APIDocs: React.FC = () => {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
@@ -174,7 +173,7 @@ analytics = response.json()`
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-xl font-semibold transition-all"
         >
-          <BookOpen size={20} />
+          <i className="fas fa-book"></i>
           Full Documentation
         </a>
       </div>
@@ -183,7 +182,7 @@ analytics = response.json()`
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="glass-card p-6 rounded-xl border border-slate-700/50">
           <div className="w-12 h-12 rounded-lg bg-viral-cyan/20 flex items-center justify-center mb-4">
-            <Key className="text-viral-cyan" size={24} />
+            <i className="fas fa-key text-viral-cyan text-2xl"></i>
           </div>
           <h3 className="text-white font-bold text-lg mb-2">Get API Key</h3>
           <p className="text-slate-400 text-sm mb-4">
@@ -196,7 +195,7 @@ analytics = response.json()`
 
         <div className="glass-card p-6 rounded-xl border border-slate-700/50">
           <div className="w-12 h-12 rounded-lg bg-viral-purple/20 flex items-center justify-center mb-4">
-            <Zap className="text-viral-purple" size={24} />
+            <i className="fas fa-bolt text-viral-purple text-2xl"></i>
           </div>
           <h3 className="text-white font-bold text-lg mb-2">Quick Start</h3>
           <p className="text-slate-400 text-sm mb-4">
@@ -209,7 +208,7 @@ analytics = response.json()`
 
         <div className="glass-card p-6 rounded-xl border border-slate-700/50">
           <div className="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center mb-4">
-            <Shield className="text-green-500" size={24} />
+            <i className="fas fa-shield-alt text-green-500 text-2xl"></i>
           </div>
           <h3 className="text-white font-bold text-lg mb-2">Rate Limits</h3>
           <p className="text-slate-400 text-sm mb-4">
@@ -276,7 +275,7 @@ analytics = response.json()`
               onClick={() => copyToClipboard(codeExamples[selectedLanguage as keyof typeof codeExamples].auth, 'auth')}
               className="absolute top-3 right-3 p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-all"
             >
-              {copiedCode === 'auth' ? <Check size={16} /> : <Copy size={16} />}
+              {copiedCode === 'auth' ? <i className="fas fa-check"></i> : <i className="fas fa-copy"></i>}
             </button>
           </div>
         </div>
@@ -294,7 +293,7 @@ analytics = response.json()`
               onClick={() => copyToClipboard(codeExamples[selectedLanguage as keyof typeof codeExamples].generateContent, 'content')}
               className="absolute top-3 right-3 p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-all"
             >
-              {copiedCode === 'content' ? <Check size={16} /> : <Copy size={16} />}
+              {copiedCode === 'content' ? <i className="fas fa-check"></i> : <i className="fas fa-copy"></i>}
             </button>
           </div>
         </div>
@@ -312,7 +311,7 @@ analytics = response.json()`
               onClick={() => copyToClipboard(codeExamples[selectedLanguage as keyof typeof codeExamples].analytics, 'analytics')}
               className="absolute top-3 right-3 p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-all"
             >
-              {copiedCode === 'analytics' ? <Check size={16} /> : <Copy size={16} />}
+              {copiedCode === 'analytics' ? <i className="fas fa-check"></i> : <i className="fas fa-copy"></i>}
             </button>
           </div>
         </div>
@@ -353,7 +352,7 @@ analytics = response.json()`
           ].map((sdk, idx) => (
             <div key={idx} className="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
               <div className="flex items-center gap-2 mb-2">
-                <Code className="text-viral-cyan" size={20} />
+                <i className="fas fa-code text-viral-cyan text-xl"></i>
                 <h4 className="text-white font-semibold">{sdk.name}</h4>
               </div>
               <div className="flex items-center gap-4 text-xs text-slate-400 mb-3">

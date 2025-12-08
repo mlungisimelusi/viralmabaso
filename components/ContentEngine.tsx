@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { generateSocialContent } from '../services/geminiService';
 import { GeneratedContent } from '../types';
-import { Sparkles, Copy, Loader2, Image as ImageIcon, Send } from 'lucide-react';
 
 const ContentEngine: React.FC = () => {
   const [topic, setTopic] = useState('');
@@ -34,7 +33,7 @@ const ContentEngine: React.FC = () => {
       <div className="glass-card p-6 rounded-2xl border border-slate-700/50 h-fit">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-            <Sparkles className="text-viral-purple" />
+            <i className="fas fa-magic text-viral-purple"></i>
             AI Content Engine
           </h2>
           <p className="text-slate-400 mt-2">
@@ -92,11 +91,11 @@ const ContentEngine: React.FC = () => {
           >
             {loading ? (
               <>
-                <Loader2 className="animate-spin" /> Generating...
+                <i className="fas fa-spinner fa-spin"></i> Generating...
               </>
             ) : (
               <>
-                Generate Magic <Sparkles size={20} />
+                Generate Magic <i className="fas fa-magic"></i>
               </>
             )}
           </button>
@@ -112,7 +111,7 @@ const ContentEngine: React.FC = () => {
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-bold text-white">Generated Script</h3>
                 <button className="text-slate-400 hover:text-viral-cyan transition-colors" title="Copy">
-                  <Copy size={18} />
+                  <i className="fas fa-copy"></i>
                 </button>
               </div>
               <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 text-sm whitespace-pre-wrap leading-relaxed">
@@ -125,7 +124,7 @@ const ContentEngine: React.FC = () => {
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-bold text-white">Caption & Metadata</h3>
                 <button className="text-slate-400 hover:text-viral-cyan transition-colors">
-                  <Copy size={18} />
+                  <i className="fas fa-copy"></i>
                 </button>
               </div>
               <div className="bg-slate-900/50 p-4 rounded-xl border border-slate-800 text-slate-300 text-sm mb-4">
@@ -143,7 +142,7 @@ const ContentEngine: React.FC = () => {
              {/* Visual Suggestion */}
              <div className="glass-card p-6 rounded-2xl border border-slate-700/50">
                 <div className="flex items-center gap-2 mb-4 text-white font-bold">
-                    <ImageIcon size={20} className="text-viral-cyan"/>
+                    <i className="fas fa-image text-viral-cyan"></i>
                     <h3>Visual Direction</h3>
                 </div>
                 <p className="text-slate-400 text-sm italic border-l-2 border-viral-cyan pl-4">
@@ -162,7 +161,7 @@ const ContentEngine: React.FC = () => {
         ) : (
           <div className="h-full flex flex-col items-center justify-center glass-card rounded-2xl border border-slate-700/50 p-10 text-center opacity-70">
             <div className="w-20 h-20 rounded-full bg-slate-800 flex items-center justify-center mb-4">
-              <Sparkles className="text-slate-600" size={40} />
+              <i className="fas fa-magic text-slate-600 text-4xl"></i>
             </div>
             <h3 className="text-xl font-bold text-white">Ready to Create?</h3>
             <p className="text-slate-400 mt-2 max-w-xs mx-auto">
