@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, CheckCircle2, Menu, X, Sun, Moon } from 'lucide-react';
+import Footer from './Footer';
 
 interface AdAutomationPageProps {
   onBack: () => void;
@@ -501,11 +502,7 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
       </section>
 
       {/* Footer */}
-      <footer className={`border-t py-8 px-4 md:px-6 ${isDarkMode ? 'border-white/10 text-slate-400' : 'border-slate-200 text-slate-600'}`}>
-        <div className="max-w-7xl mx-auto text-center text-sm">
-          <p>© 2024 Viralitics. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
     </div>
   );
 };

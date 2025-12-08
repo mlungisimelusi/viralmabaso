@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, CheckCircle2, Menu, X, Sun, Moon } from 'lucide-react';
+import Footer from './Footer';
 
 interface AISocialMediaManagerPageProps {
   onBack: () => void;
@@ -96,6 +97,42 @@ const AISocialMediaManagerPage: React.FC<AISocialMediaManagerPageProps> = ({
     "Keep your account safe with platform-compliant automation"
   ];
 
+  // List of 15 major website Font Awesome icon classes
+  const majorWebsites = [
+    'fa-facebook-f', 'fa-x-twitter', 'fa-instagram', 'fa-youtube', 'fa-tiktok',
+    'fa-linkedin-in', 'fa-pinterest-p', 'fa-snapchat-ghost', 'fa-reddit-alien', 'fa-discord',
+    'fa-twitch', 'fa-telegram-plane', 'fa-whatsapp', 'fa-slack', 'fa-dribbble'
+  ];
+
+  // Logo brand colors
+  const brandColors = [
+    'text-viral-cyan',
+    'text-viral-purple',
+    'text-viral-cyan',
+    'text-viral-purple',
+    'text-viral-cyan',
+    'text-viral-purple',
+    'text-viral-cyan',
+    'text-viral-purple',
+    'text-viral-cyan',
+    'text-viral-purple',
+    'text-viral-cyan',
+    'text-viral-purple',
+    'text-viral-cyan',
+    'text-viral-purple',
+    'text-viral-cyan',
+  ];
+
+  // Helper to generate random positions for icons with better spacing
+  function getRandomPosition(seed: number) {
+    // Create a grid-like distribution to avoid clustering
+    const gridCol = seed % 5; // 5 columns
+    const gridRow = Math.floor(seed / 5); // 3 rows
+    const x = 10 + gridCol * 18 + (Math.abs(Math.sin(seed * 2.3) * 10)); // Spread across width
+    const y = 10 + gridRow * 25 + (Math.abs(Math.cos(seed * 1.7) * 15)); // Spread across height
+    return { left: `${x}%`, top: `${y}%` };
+  }
+
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#0B0F19] text-white' : 'bg-slate-50 text-slate-900'}`}>
       {/* Ambient Background */}
@@ -179,8 +216,26 @@ const AISocialMediaManagerPage: React.FC<AISocialMediaManagerPageProps> = ({
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative w-full min-h-[480px] flex flex-col items-center justify-center py-16 md:py-28 overflow-hidden">
+        {/* Animated Icon Background */}
+        <div className="absolute inset-0 pointer-events-none z-0" style={{ filter: 'blur(0.5px)' }}>
+          {majorWebsites.map((icon, i) => {
+            const pos = getRandomPosition(i);
+            return (
+              <i
+                key={icon}
+                className={`fab ${icon} text-[24px] md:text-[36px] opacity-20 animate-float-icon icon-anim-${i} ${brandColors[i % brandColors.length]}`}
+                style={{
+                  position: 'absolute',
+                  ...pos,
+                  animationDelay: `${i * 0.4}s`
+                }}
+              />
+            );
+          })}
+        </div>
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-block px-4 py-1.5 rounded-full border mb-6 text-xs font-bold tracking-widest bg-viral-cyan/10 border-viral-cyan/30 text-viral-cyan">
             CORE FEATURE
           </div>
@@ -485,13 +540,19 @@ const AISocialMediaManagerPage: React.FC<AISocialMediaManagerPageProps> = ({
       </section>
 
       {/* Footer */}
-      <footer className={`border-t py-8 px-4 md:px-6 ${isDarkMode ? 'border-white/10 text-slate-400' : 'border-slate-200 text-slate-600'}`}>
-        <div className="max-w-7xl mx-auto text-center text-sm">
-          <p>© 2024 Viralitics. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
     </div>
   );
 };
 
 export default AISocialMediaManagerPage;
+
+/* Add to global CSS (e.g., index.css or in a <style jsx global>)
+.animate-float-icon {
+  animation: floatIcon 7s ease-in-out infinite alternate;
+}
+@keyframes floatIcon {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-40px) scale(1.15); }
+}
+*/
