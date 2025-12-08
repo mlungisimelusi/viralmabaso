@@ -142,20 +142,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
     };
   }, [showAIMSModal, showAdModal, showTutorModal]);
 
-  // Typewriter-style letter reveal for hero headline
-  useEffect(() => {
-    const headlineText = 'The All-In-One AI Platform\nThat Powers Your Entire Social Media Universe';
-    if (typedHeadlineLength >= headlineText.length) return;
 
-    const interval = setInterval(() => {
-      setTypedHeadlineLength((prev) => {
-        const next = prev + 1;
-        return next > headlineText.length ? headlineText.length : next;
-      });
-    }, 30);
-
-    return () => clearInterval(interval);
-  }, [typedHeadlineLength]);
 
   return (
     <div className={`min-h-screen selection:bg-viral-cyan selection:text-[#0B0F19] overflow-x-hidden font-sans transition-colors duration-300 ${isDarkMode ? 'bg-[#0B0F19] text-white' : 'bg-slate-50 text-slate-900'}`}>
@@ -282,28 +269,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center relative z-10">
           
            {/* Text Column (Left) */}
-          <div className="relative z-10 lg:order-1 scroll-animate text-center lg:text-left lg:pl-8">
+          <div className="relative z-10 lg:order-1 scroll-animate text-center lg:text-left">
              
-             <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                {(() => {
-                  const headlineText = 'The All-In-One AI Platform\nThat Powers Your Entire Social Media Universe';
-                  const visibleText = headlineText.slice(0, typedHeadlineLength);
-                  const [firstLine = '', secondLine = ''] = visibleText.split('\n');
-
-                  return (
-                    <>
-                      <span className="block">{firstLine || '\u00A0'}</span>
-                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">{secondLine}</span>
-                    </>
-                  );
-                })()}
+             <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-4 sm:mb-6`}>
+                <span className="text-viral-cyan">The All-In-One </span>
+                <span className="text-viral-purple">AI Social Media </span>
+                <span className="text-viral-cyan">Management Platform </span>
+                <span className="text-viral-purple">that Runs Your Entire </span>
+                <span className="text-viral-cyan">Social Media Universe</span>
              </h1>
 
-             <p className={`text-lg sm:text-xl max-w-lg mb-6 sm:mb-8 leading-relaxed mx-auto lg:mx-0 transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                An all-in-one AI social media management platform and influencer marketplace that helps creators monetize and enables brands to reach more people.
-             </p>
-
-             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start">
+             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start mt-8">
                 <button 
                   onClick={onLaunch}
                   className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-full font-bold text-lg shadow-[0_0_25px_-5px_rgba(207,41,245,0.5)] transition-all flex items-center justify-center gap-2"
@@ -313,21 +289,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
              </div>
           </div>
 
-          {/* Video Column (Right) */}
-          <div className="relative z-10 lg:order-2 scroll-animate animate-delay-200 flex justify-center items-center">
-            <div className="relative w-full max-w-[600px] h-[300px] sm:h-[450px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-contain"
-              >
-                <source src="/assets/hero-video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              {/* Gradient overlay for better blend */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+          {/* Image Column (Right) */}
+          <div className="relative z-10 lg:order-2 scroll-animate animate-delay-200 flex justify-center items-center mt-8 lg:mt-0">
+            <div className="relative w-full max-w-[350px] sm:max-w-[400px] md:max-w-[500px]">
+              <img
+                src="/assets/hero-image.png"
+                alt="Viralitics Influencer"
+                className="w-full h-auto object-contain drop-shadow-2xl"
+              />
             </div>
           </div>
 
@@ -343,54 +312,27 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     CORE FEATURES
                 </div>
                 
-                <h2 className={`text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                    Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">take over your entire workflow.</span>
+                <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                    Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">lead.</span>
                 </h2>
-                <p className={`text-xl max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    A complete suite of AI tools designed to replace fragmented workflows. One login, infinite reach.
+                <p className={`text-base sm:text-lg md:text-xl max-w-4xl mx-auto leading-relaxed transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                    Viralitics is an AI-first, all-in-one social media operating system designed to replace traditional social media teams with a unified AI-driven automation engine. It manages planning, content creation, scheduling, engagement, ads, influencer collaborations, analytics, and learning systems across 15+ major platforms.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-4">
                 
                 {/* Card 1: AI Social Media Manager */}
-                <div className={`scroll-animate animate-delay-100 rounded-2xl p-8 md:p-10 min-h-[280px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
+                <div className={`scroll-animate animate-delay-100 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
                     <div className="absolute top-0 right-0 w-40 h-40 bg-viral-cyan/5 blur-[60px] rounded-full group-hover:bg-viral-cyan/10 transition-all opacity-0 group-hover:opacity-100"></div>
                     <div className="relative z-10 flex flex-col h-full">
                         {/* Custom Brand Icon: Hand with interactions */}
-                        <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
-                             <svg viewBox="0 0 100 100" fill="none" className="w-9 h-9">
-                                {/* Hand Base */}
-                                <path d="M25 75 Q50 90 75 75" stroke="url(#icon_gradient_manager)" strokeWidth="6" strokeLinecap="round" />
-                                {/* Stems */}
-                                <path d="M50 75 L50 45" stroke="url(#icon_gradient_manager)" strokeWidth="4" />
-                                <path d="M50 75 L25 50" stroke="url(#icon_gradient_manager)" strokeWidth="4" />
-                                <path d="M50 75 L75 50" stroke="url(#icon_gradient_manager)" strokeWidth="4" />
-                                
-                                {/* Circles */}
-                                <circle cx="25" cy="40" r="14" stroke="url(#icon_gradient_manager)" strokeWidth="4" />
-                                <circle cx="50" cy="30" r="14" stroke="url(#icon_gradient_manager)" strokeWidth="4" />
-                                <circle cx="75" cy="40" r="14" stroke="url(#icon_gradient_manager)" strokeWidth="4" />
-                                
-                                {/* Icons inside circles */}
-                                {/* Heart (Left) */}
-                                <path d="M25 36 C23 34 20 34 20 37 C20 40 25 44 25 44 C25 44 30 40 30 37 C30 34 27 34 25 36" stroke="url(#icon_gradient_manager)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                                {/* Play (Middle) */}
-                                <path d="M47 26 L56 30 L47 34 Z" stroke="url(#icon_gradient_manager)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                                {/* Thumbs Up (Right) - Simple check/tick style for scale */}
-                                <path d="M72 40 V36 H75 L76 34 L78 34 C79 34 79 35 79 36 L78 38 H80 V42 H72" stroke="url(#icon_gradient_manager)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-
-                                <defs>
-                                    <linearGradient id="icon_gradient_manager" x1="15" y1="15" x2="85" y2="85" gradientUnits="userSpaceOnUse">
-                                        <stop stopColor="#23bddf" />
-                                        <stop offset="1" stopColor="#cf29f5" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
+                        <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
+                             <i className="fas fa-robot text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple text-3xl sm:text-4xl md:text-5xl"></i>
                         </div>
-                        <h3 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
-                        <p className={`mb-4 flex-grow text-base md:text-lg transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                            Stop guessing. AI plans, creates, engages, and optimizes your entire social media presence.
+                        <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
+                        <p className={`mb-4 flex-grow text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                            This AI tool serves as a complete replacement for a social media team by automating content creation and publishing across more than 15 major platforms.
                         </p>
                         
                         <button onClick={onAIManagerClick} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
@@ -400,40 +342,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </div>
 
                 {/* Card 2: Ad Automation */}
-                <div className={`scroll-animate animate-delay-200 rounded-2xl p-8 md:p-10 min-h-[280px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
+                <div className={`scroll-animate animate-delay-200 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
                      <div className="absolute top-0 right-0 w-40 h-40 bg-viral-cyan/5 blur-[60px] rounded-full group-hover:bg-viral-cyan/10 transition-all opacity-0 group-hover:opacity-100"></div>
                      <div className="relative z-10 flex flex-col h-full">
                          {/* Custom Brand Icon: Gear with Play + Arrows */}
-                         <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
-                            <svg viewBox="0 0 100 100" fill="none" className="w-9 h-9">
-                                {/* Rotating Arrow Top */}
-                                <path d="M20 50 A30 30 0 0 1 50 20" stroke="url(#icon_gradient_ads)" strokeWidth="5" strokeLinecap="round" />
-                                <path d="M50 20 L44 26 M50 20 L56 26" stroke="url(#icon_gradient_ads)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-
-                                {/* Rotating Arrow Bottom */}
-                                <path d="M80 50 A30 30 0 0 1 50 80" stroke="url(#icon_gradient_ads)" strokeWidth="5" strokeLinecap="round" />
-                                <path d="M50 80 L56 74 M50 80 L44 74" stroke="url(#icon_gradient_ads)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-                                
-                                {/* Gear Body */}
-                                <circle cx="50" cy="50" r="16" stroke="url(#icon_gradient_ads)" strokeWidth="5" />
-                                {/* Gear Teeth */}
-                                <path d="M50 26 V22 M50 78 V74 M74 50 H78 M26 50 H22" stroke="url(#icon_gradient_ads)" strokeWidth="5" strokeLinecap="round" />
-                                <path d="M67 33 L70 30 M33 67 L30 70 M67 67 L70 70 M33 33 L30 30" stroke="url(#icon_gradient_ads)" strokeWidth="5" strokeLinecap="round" />
-
-                                {/* Play Button in center */}
-                                <path d="M46 44 L56 50 L46 56 Z" fill="url(#icon_gradient_ads)" />
-
-                                <defs>
-                                    <linearGradient id="icon_gradient_ads" x1="20" y1="95" x2="75" y2="5" gradientUnits="userSpaceOnUse">
-                                        <stop stopColor="#23bddf" />
-                                        <stop offset="1" stopColor="#cf29f5" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
+                         <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
+                            <i className="fas fa-gears text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple text-3xl sm:text-4xl md:text-5xl"></i>
                         </div>
-                        <h3 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Ad Automation</h3>
-                        <p className={`mb-4 flex-grow text-base md:text-lg transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                            Launch campaigns that optimize themselves. We test hundreds of creative variations and automatically shift budget to the winners.
+                        <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Ad Automation</h3>
+                        <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                            The Ads AI builds, launches, tests, and optimizes entire multi-platform ad campaigns without human intervention. It analyzes real-time performance and shifts budgets to the highest-performing variations automatically.
                         </p>
                         
                         <button onClick={onAdAutomationClick} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
@@ -443,16 +361,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </div>
 
                 {/* Card 3: AI Tutor */}
-                <div className={`scroll-animate animate-delay-300 rounded-2xl p-8 md:p-10 min-h-[280px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-purple/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-purple/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
+                <div className={`scroll-animate animate-delay-300 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-purple/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-purple/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
                      <div className="absolute top-0 right-0 w-40 h-40 bg-viral-purple/5 blur-[60px] rounded-full group-hover:bg-viral-purple/10 transition-all opacity-0 group-hover:opacity-100"></div>
                      <div className="relative z-10 flex flex-col h-full">
                          {/* Custom Brand Icon: Tutor/Book */}
-                         <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
-                             <i className="fas fa-book text-transparent bg-clip-text bg-gradient-to-r from-viral-purple to-viral-cyan text-2xl"></i>
+                         <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
+                             <i className="fas fa-book text-transparent bg-clip-text bg-gradient-to-r from-viral-purple to-viral-cyan text-3xl sm:text-4xl md:text-5xl"></i>
                         </div>
-                        <h3 className={`text-3xl md:text-4xl font-bold mb-4 transition-colors line-clamp-2 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Tutor</h3>
-                        <p className={`mb-4 flex-grow text-base md:text-lg transition-colors line-clamp-3 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                             Your personal algorithm coach. Learn exactly why a post failed and get step-by-step instructions to improve your next one.
+                        <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Tutor</h3>
+                        <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                             The AI Tutor teaches users how to grow faster on every platform using real data. It adapts lessons, recommendations, and strategies based on algorithm knowledge and the user's performance.
                         </p>
                         
                         <button onClick={onAITutorClick} className="inline-flex items-center gap-1 text-viral-purple font-bold text-sm hover:gap-2 transition-all mt-auto">
@@ -472,18 +390,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <div className={`inline-block px-3 py-1 rounded-full border text-viral-cyan text-xs font-bold tracking-wider mb-6 transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
                     INFLUENCER MARKETPLACE
                 </div>
-                <h2 className={`text-4xl md:text-6xl font-bold mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+                <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                     Connect with <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Top Influencers</span>
                 </h2>
-                <p className={`text-xl max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                <p className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     Join to work with brands, help them achieve their goals, while you monetize your influence.
                 </p>
-                <p className={`text-xl max-w-2xl mx-auto transition-colors mt-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                <p className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto transition-colors mt-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     Brands and companies looking for the best creators and influencers can rely on Viralitics as the platform to explore because no matter the country, language, or region we have you covered.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative">
                 
                 {/* Nano Tier */}
                 <div 
@@ -568,8 +486,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             </div>
 
             <div className="mt-12 text-center">
-                <button onClick={onLaunch} className="px-8 py-4 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-xl font-bold text-lg shadow-lg transition-all inline-flex items-center gap-2">
-                    Browse Marketplace <ArrowRight size={20} />
+                <button onClick={onLaunch} className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-xl font-bold text-base sm:text-lg shadow-lg transition-all inline-flex items-center gap-2">
+                    Browse Marketplace <ArrowRight size={20} className="hidden sm:block" /><ArrowRight size={16} className="sm:hidden" />
                 </button>
             </div>
         </div>
@@ -711,15 +629,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             <div className={`inline-block px-4 py-1.5 rounded-full border text-xs font-bold tracking-widest mb-6 transition-colors ${isDarkMode ? 'bg-viral-purple/10 border-viral-purple/30 text-viral-purple' : 'bg-viral-purple/10 border-viral-purple/30 text-viral-purple'}`}>
               CONTENT TYPES
             </div>
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
               Create <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Every Type of Content</span>
             </h2>
-            <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+            <p className={`text-base sm:text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               From video scripts to trending hashtags - generate everything you need in seconds.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {/* Video Content */}
             <div className={`scroll-animate animate-delay-100 group relative rounded-3xl p-8 border overflow-hidden transition-all duration-300 hover:scale-105 ${isDarkMode ? 'bg-[#131b2c] border-white/10 hover:border-viral-cyan/50' : 'bg-white border-slate-200 hover:border-viral-cyan/50 shadow-sm hover:shadow-xl'}`}>
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&h=400&fit=crop')] bg-cover bg-center opacity-10 blur-sm transition-opacity duration-500"></div>
@@ -888,60 +806,60 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             <div className="inline-block px-4 py-1.5 rounded-full border border-viral-purple/30 bg-viral-purple/10 text-xs font-bold tracking-widest mb-6 text-viral-purple">
               PLATFORM INTEGRATION
             </div>
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
               One Dashboard for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">All Major Platforms</span>
             </h2>
-            <p className={`text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`}>
+            <p className={`text-base sm:text-lg max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`}>
               Connect and manage content across 15+ major social media platforms seamlessly.
             </p>
           </div>
 
-          {/* All Platform Icons - No Cards */}
-          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-12">
+          {/* All Platform Icons - 3 per row */}
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8 lg:gap-10 max-w-4xl mx-auto">
             {/* TikTok */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-900/50 transition-all mx-auto">
-                <i className="fab fa-tiktok text-white text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-900/50 transition-all mx-auto">
+                <i className="fab fa-tiktok text-white text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">1.7B+ users</p>
             </div>
 
             {/* YouTube */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-[#FF0000] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-red-500/50 transition-all mx-auto">
-                <i className="fab fa-youtube text-white text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#FF0000] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-red-500/50 transition-all mx-auto">
+                <i className="fab fa-youtube text-white text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">2.9B+ users</p>
             </div>
 
             {/* Instagram */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-pink-500/50 transition-all mx-auto">
-                <i className="fab fa-instagram text-white text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-pink-500/50 transition-all mx-auto">
+                <i className="fab fa-instagram text-white text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">2.4B+ users</p>
             </div>
 
             {/* Facebook */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-[#1877F2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-600/50 transition-all mx-auto">
-                <i className="fab fa-facebook text-white text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#1877F2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-600/50 transition-all mx-auto">
+                <i className="fab fa-facebook text-white text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">3.1B+ users</p>
             </div>
 
             {/* LinkedIn */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-[#0A66C2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-700/50 transition-all mx-auto">
-                <i className="fab fa-linkedin text-white text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#0A66C2] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-700/50 transition-all mx-auto">
+                <i className="fab fa-linkedin text-white text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">1B+ users</p>
             </div>
 
             {/* X (Twitter) */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-800/50 transition-all mx-auto">
-                <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-black flex items-center justify-center group-hover:shadow-lg group-hover:shadow-slate-800/50 transition-all mx-auto">
+                <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
               </div>
@@ -950,32 +868,32 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
             {/* Reddit */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-[#FF4500] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all mx-auto">
-                <i className="fab fa-reddit text-white text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#FF4500] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-orange-500/50 transition-all mx-auto">
+                <i className="fab fa-reddit text-white text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">850M+ users</p>
             </div>
 
             {/* Twitch */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-[#9146FF] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-all mx-auto">
-                <i className="fab fa-twitch text-white text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#9146FF] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-all mx-auto">
+                <i className="fab fa-twitch text-white text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">240M+ users</p>
             </div>
 
             {/* Pinterest */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-[#E60B3B] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-red-600/50 transition-all mx-auto">
-                <i className="fab fa-pinterest text-white text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#E60B3B] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-red-600/50 transition-all mx-auto">
+                <i className="fab fa-pinterest text-white text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">520M+ users</p>
             </div>
 
             {/* Snapchat */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-[#FFFC00] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-yellow-400/50 transition-all mx-auto">
-                <i className="fab fa-snapchat text-black text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#FFFC00] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-yellow-400/50 transition-all mx-auto">
+                <i className="fab fa-snapchat text-black text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">800M+ users</p>
             </div>
@@ -990,24 +908,24 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
             {/* WhatsApp */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-[#25D366] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-green-500/50 transition-all mx-auto">
-                <i className="fab fa-whatsapp text-white text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#25D366] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-green-500/50 transition-all mx-auto">
+                <i className="fab fa-whatsapp text-white text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">3B+ users</p>
             </div>
 
             {/* Telegram */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-[#0088cc] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-all mx-auto">
-                <i className="fab fa-telegram text-white text-3xl"></i>
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#0088cc] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-all mx-auto">
+                <i className="fab fa-telegram text-white text-2xl sm:text-3xl"></i>
               </div>
               <p className="text-slate-500 text-xs mt-2">950M+ users</p>
             </div>
 
             {/* Bluesky */}
             <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
-              <div className="w-20 h-20 rounded-xl bg-[#1185FE] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all mx-auto">
-                <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#1185FE] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all mx-auto">
+                <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M9.5 3.5C9.5 2.119 10.619 1 12 1s2.5 1.119 2.5 2.5c0 .99-.725 1.807-1.675 1.964C12.896 6.297 12 7.461 12 8.5c0 .78.38 1.47 1 1.895V20h2v-9.605c.62-.425 1-1.115 1-1.895 0-1.039-.896-2.203-1.825-2.036.95-.157 1.675-.974 1.675-1.964zm-6 0C3.5 2.119 4.619 1 6 1s2.5 1.119 2.5 2.5c0 .99.725 1.807 1.675 1.964.929.833 1.675 1.997 1.675 3.036 0 .78.38 1.47 1 1.895V20h2v-9.605c.62-.425 1-1.115 1-1.895 0-1.039-.896-2.203-1.825-2.036.95-.157 1.675-.974 1.675-1.964 0-1.381-1.119-2.5-2.5-2.5s-2.5 1.119-2.5 2.5c0 .99.725 1.807 1.675 1.964-.929.833-1.675 1.997-1.675 3.036 0 .78-.38 1.47-1 1.895V20h-2v-9.605c-.62-.425-1-1.115-1-1.895 0-1.039.896-2.203 1.825-2.036-.95-.157-1.675-.974-1.675-1.964z"/>
                 </svg>
               </div>
@@ -1035,18 +953,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
         </div>
 
         <div className="max-w-4xl mx-auto relative z-10">
-            <div className="text-center mb-16 scroll-animate">
-                <h2 className={`text-3xl md:text-5xl font-bold mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+            <div className="text-center mb-12 md:mb-16 scroll-animate">
+                <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
                     Give Your Team the Right Tools to Succeed
                 </h2>
-                <p className={`text-base max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                <p className={`text-sm sm:text-base max-w-2xl mx-auto transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                    Our goal is to make Identity accessible to every team, no matter the size.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 items-stretch justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 md:mb-16 items-stretch justify-center">
                 {/* Launch Plan */}
-                <div className={`scroll-animate rounded-2xl p-8 transition-all relative border hover:scale-105 hover:shadow-2xl hover:shadow-viral-cyan/20 cursor-pointer ${
+                <div className={`scroll-animate rounded-2xl p-6 sm:p-8 transition-all relative border hover:scale-105 hover:shadow-2xl hover:shadow-viral-cyan/20 cursor-pointer ${
                   'border-slate-500/30 bg-slate-900/40'
                 }`}>
                     {/* Plan Label */}
@@ -1062,8 +980,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     {/* Price */}
                     <div className="mb-6 pb-6 border-b border-slate-600/30">
                         <div className="flex items-baseline gap-1">
-                            <span className="text-4xl font-bold text-white">$9</span>
-                            <span className="text-slate-400 text-sm">/month</span>
+                            <span className="text-3xl sm:text-4xl font-bold text-white">$29</span>
+                            <span className="text-slate-400 text-xs sm:text-sm">/month</span>
                         </div>
                     </div>
 
@@ -1097,7 +1015,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </div>
 
                 {/* Creator Pro Plan */}
-                <div className={`scroll-animate rounded-2xl p-8 transition-all relative border hover:scale-110 hover:shadow-2xl hover:shadow-teal-400/20 cursor-pointer ${
+                <div className={`scroll-animate rounded-2xl p-6 sm:p-8 transition-all relative border hover:scale-110 hover:shadow-2xl hover:shadow-teal-400/20 cursor-pointer ${
                   'md:col-span-1 bg-teal-900/30 border-2 border-teal-400 md:scale-105'
                 }`}>
                     {/* Plan Label */}
@@ -1113,8 +1031,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     {/* Price */}
                     <div className="mb-6 pb-6 border-b border-slate-600/30">
                         <div className="flex items-baseline gap-1">
-                            <span className="text-4xl font-bold text-white">$29</span>
-                            <span className="text-slate-400 text-sm">/month</span>
+                            <span className="text-3xl sm:text-4xl font-bold text-white">$99</span>
+                            <span className="text-slate-400 text-xs sm:text-sm">/month</span>
                         </div>
                     </div>
 
@@ -1156,7 +1074,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </div>
 
                 {/* Business Plan */}
-                <div className={`scroll-animate rounded-2xl p-8 transition-all relative border hover:scale-110 hover:shadow-2xl hover:shadow-slate-400/20 cursor-pointer ${
+                <div className={`scroll-animate rounded-2xl p-6 sm:p-8 transition-all relative border hover:scale-110 hover:shadow-2xl hover:shadow-slate-400/20 cursor-pointer ${
                   'border-slate-500/30 bg-slate-900/40'
                 }`}>
                     {/* Plan Label */}

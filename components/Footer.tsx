@@ -31,11 +31,11 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
     <footer className={`transition-colors duration-300 ${isDarkMode ? 'bg-[#0a0e1a]' : 'bg-slate-50'}`}>
       <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Top Section - 4 Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12 mb-12 md:mb-16">
           {/* Brand Column */}
           <div>
-            <a href="#" className="inline-block mb-6">
-              <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[60px] md:h-[100px] w-auto object-contain" />
+            <a href="#" className="inline-block mb-4 sm:mb-6">
+              <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[50px] sm:h-[60px] md:h-[80px] lg:h-[100px] w-auto object-contain" />
             </a>
             <p className={`text-sm leading-relaxed mb-8 max-w-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               AI-first operating system for modern social media. Automated, intelligent, and scalable.
@@ -63,6 +63,52 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
               <a href="https://youtube.com/@viralitics" target="_blank" rel="noopener noreferrer" className={`p-2 rounded-lg transition-all ${isDarkMode ? 'bg-slate-800 hover:bg-viral-cyan/20 text-slate-400 hover:text-viral-cyan' : 'bg-slate-200 hover:bg-viral-cyan/20 text-slate-600 hover:text-viral-cyan'}`}>
                 <Youtube size={18} />
               </a>
+            </div>
+
+            {/* Language Selector */}
+            <div className="relative mt-6">
+              <button
+                onClick={() => setShowLanguages(!showLanguages)}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-all ${
+                  isDarkMode
+                    ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-viral-cyan'
+                    : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-viral-cyan'
+                }`}
+              >
+                <Globe size={16} />
+                <span>{selectedLanguage}</span>
+              </button>
+              
+              {showLanguages && (
+                <div className={`absolute bottom-full mb-2 left-0 rounded-xl shadow-2xl border overflow-hidden min-w-[160px] z-50 ${
+                  isDarkMode
+                    ? 'bg-slate-900 border-slate-700'
+                    : 'bg-white border-slate-200'
+                }`}>
+                  <div className="max-h-64 overflow-y-auto">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang}
+                        onClick={() => {
+                          setSelectedLanguage(lang);
+                          setShowLanguages(false);
+                        }}
+                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
+                          selectedLanguage === lang
+                            ? isDarkMode
+                              ? 'bg-viral-cyan/20 text-viral-cyan'
+                              : 'bg-viral-cyan/10 text-viral-cyan'
+                            : isDarkMode
+                            ? 'text-slate-300 hover:bg-slate-800'
+                            : 'text-slate-700 hover:bg-slate-100'
+                        }`}
+                      >
+                        {lang}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -99,71 +145,25 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Community</a></li>
             </ul>
           </div>
+
+          {/* Legal Column */}
+          <div>
+            <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 text-viral-cyan`}>Legal</h4>
+            <ul className={`space-y-3 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Privacy Policy</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Cookies Policy</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Terms of Service</a></li>
+            </ul>
+          </div>
         </div>
 
         {/* Divider */}
         <div className={`border-t mb-8 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}></div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="flex justify-center items-center">
           <div className={`text-sm ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
             &copy; {currentYear} Viralitics Inc. All rights reserved.
-          </div>
-
-          <div className={`flex gap-6 text-sm ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
-            <a href="#" className="hover:text-viral-cyan transition-colors">Terms of Service</a>
-            <span className={isDarkMode ? 'text-slate-700' : 'text-slate-300'}></span>
-            <a href="#" className="hover:text-viral-cyan transition-colors">Cookie Policy</a>
-            <span className={isDarkMode ? 'text-slate-700' : 'text-slate-300'}></span>
-            <a href="#" className="hover:text-viral-cyan transition-colors">Privacy</a>
-          </div>
-
-          <div className="flex items-center gap-4 mr-8">
-            {/* Language Selector */}
-            <div className="relative">
-              <button
-                onClick={() => setShowLanguages(!showLanguages)}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-all ${
-                  isDarkMode
-                    ? 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-viral-cyan'
-                    : 'bg-slate-200 text-slate-600 hover:bg-slate-300 hover:text-viral-cyan'
-                }`}
-              >
-                <Globe size={16} />
-                <span>{selectedLanguage}</span>
-              </button>
-              
-              {showLanguages && (
-                <div className={`absolute bottom-full mb-2 right-0 rounded-xl shadow-2xl border overflow-hidden min-w-[160px] z-50 ${
-                  isDarkMode
-                    ? 'bg-slate-900 border-slate-700'
-                    : 'bg-white border-slate-200'
-                }`}>
-                  <div className="max-h-64 overflow-y-auto">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang}
-                        onClick={() => {
-                          setSelectedLanguage(lang);
-                          setShowLanguages(false);
-                        }}
-                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
-                          selectedLanguage === lang
-                            ? isDarkMode
-                              ? 'bg-viral-cyan/20 text-viral-cyan'
-                              : 'bg-viral-cyan/10 text-viral-cyan'
-                            : isDarkMode
-                            ? 'text-slate-300 hover:bg-slate-800'
-                            : 'text-slate-700 hover:bg-slate-100'
-                        }`}
-                      >
-                        {lang}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
           </div>
         </div>
       </div>

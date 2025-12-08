@@ -64,7 +64,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
     {
       name: 'Launch',
       icon: Zap,
-      price: { monthly: 9, yearly: 90 },
+      price: { monthly: 29, yearly: 290 },
       description: 'Perfect for individuals getting started.',
       features: [
         'Up to 3 Social Profiles',
@@ -81,7 +81,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
     {
       name: 'Creator Pro',
       icon: Rocket,
-      price: { monthly: 29, yearly: 290 },
+      price: { monthly: 99, yearly: 990 },
       description: 'For brands and creators scaling their brand.',
       features: [
         'Unlimited Social Profiles',
