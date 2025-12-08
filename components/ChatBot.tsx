@@ -218,7 +218,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
             </form>
             <div className={`px-3 sm:px-4 pb-2 sm:pb-3 flex items-center gap-1 text-[9px] sm:text-[10px] ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>
               <MessageSquare size={12} />
-              <span className="hidden sm:inline">Voice, Text & Upload files</span>
+              <span>Voice · Text · Upload</span>
             </div>
           </div>
         </div>
