@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, CheckCircle2, Menu, X, Sun, Moon } from 'lucide-react';
 import Footer from './Footer';
 
@@ -15,8 +15,12 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
   isDarkMode, 
   setIsDarkMode 
 }) => {
-  const [activeTab, setActiveTab] = useState<'creation' | 'optimization' | 'benefits'>('creation');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const creationFeatures = [
     {
@@ -47,7 +51,7 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
     {
       icon: <i className="fas fa-cogs text-2xl"></i>,
       title: "Campaign Setup Automation",
-      description: "AI configures entire campaigns with optimal settings. No more manual setup—let AI handle the technical details"
+      description: "AI configures entire campaigns with optimal settings. No more manual setup - let AI handle the technical details"
     }
   ];
 
@@ -75,7 +79,7 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
     {
       icon: <i className="fas fa-exclamation-triangle text-2xl"></i>,
       title: "Anomaly Detection & Smart Alerts",
-      description: "AI detects unusual patterns—sudden drops in performance, fraud indicators, or breakthrough opportunities"
+      description: "AI detects unusual patterns - sudden drops in performance, fraud indicators, or breakthrough opportunities"
     },
     {
       icon: <i className="fas fa-gavel text-2xl"></i>,
@@ -263,210 +267,96 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
         </div>
       </section>
 
-      {/* Tab Navigation */}
-      <section className="border-b border-white/10 sticky top-20 z-40 bg-opacity-80 backdrop-blur-lg">
-        <div className={`max-w-7xl mx-auto px-4 md:px-6 flex gap-8 overflow-x-auto ${isDarkMode ? 'bg-[#0B0F19]/80' : 'bg-white/80'}`}>
-          <button 
-            onClick={() => setActiveTab('creation')}
-            className={`py-4 px-2 font-semibold border-b-2 transition-colors whitespace-nowrap ${
-              activeTab === 'creation'
-                ? 'border-viral-cyan text-viral-cyan'
-                : isDarkMode ? 'border-transparent text-slate-400 hover:text-white' : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Campaign Creation
-          </button>
-          <button 
-            onClick={() => setActiveTab('optimization')}
-            className={`py-4 px-2 font-semibold border-b-2 transition-colors whitespace-nowrap ${
-              activeTab === 'optimization'
-                ? 'border-viral-purple text-viral-purple'
-                : isDarkMode ? 'border-transparent text-slate-400 hover:text-white' : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Optimization
-          </button>
-          <button 
-            onClick={() => setActiveTab('benefits')}
-            className={`py-4 px-2 font-semibold border-b-2 transition-colors whitespace-nowrap ${
-              activeTab === 'benefits'
-                ? 'border-viral-cyan text-viral-cyan'
-                : isDarkMode ? 'border-transparent text-slate-400 hover:text-white' : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Benefits
-          </button>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="py-16 md:py-24 px-4 md:px-6">
+      {/* Campaign & AD Creation Section */}
+      <section className="py-16 md:py-24 px-4 md:px-6 border-b border-white/10">
         <div className="max-w-7xl mx-auto">
-          {activeTab === 'creation' && (
-            <div>
-              <div className="mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Campaign & Ad Creation</h2>
-                <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                  AI-powered ad creation that generates complete campaigns with audience insights and creative variations
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Campaign & AD Creation</h2>
+            <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              AI-powered AD creation that generates complete campaigns with audience insights and creative variations
+            </p>
+            <p className={`text-lg font-semibold mt-4 ${isDarkMode ? 'text-viral-cyan' : 'text-viral-purple'}`}>
+              Social media outperforms every traditional advertising platform.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {creationFeatures.map((feature, idx) => (
+              <div 
+                key={idx}
+                className={`p-6 rounded-2xl border transition-all hover:border-viral-cyan ${
+                  isDarkMode 
+                    ? 'bg-slate-800/30 border-white/10 hover:bg-slate-800/50' 
+                    : 'bg-white border-slate-200 hover:bg-slate-50'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
+                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
+                  {feature.description}
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {creationFeatures.map((feature, idx) => (
-                  <div 
-                    key={idx}
-                    className={`p-6 rounded-2xl border transition-all hover:border-viral-cyan ${
-                      isDarkMode 
-                        ? 'bg-slate-800/30 border-white/10 hover:bg-slate-800/50' 
-                        : 'bg-white border-slate-200 hover:bg-slate-50'
-                    }`}
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white mb-4">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                    <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                      {feature.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'optimization' && (
-            <div>
-              <div className="mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Campaign Optimization</h2>
-                <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Continuous AI-powered optimization that improves your campaigns every single day
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {optimizationFeatures.map((feature, idx) => (
-                  <div 
-                    key={idx}
-                    className={`p-6 rounded-2xl border transition-all hover:border-viral-purple ${
-                      isDarkMode 
-                        ? 'bg-slate-800/30 border-white/10 hover:bg-slate-800/50' 
-                        : 'bg-white border-slate-200 hover:bg-slate-50'
-                    }`}
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white mb-4">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                    <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                      {feature.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'benefits' && (
-            <div>
-              <div className="mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Ad Automation</h2>
-                <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Get the results of a dedicated ads manager and data analyst combined in one system
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {benefits.map((benefit, idx) => (
-                  <div 
-                    key={idx}
-                    className={`flex items-start gap-4 p-6 rounded-xl border ${
-                      isDarkMode 
-                        ? 'bg-slate-800/30 border-white/10' 
-                        : 'bg-white border-slate-200'
-                    }`}
-                  >
-                    <CheckCircle2 className="w-6 h-6 text-viral-cyan flex-shrink-0 mt-1" />
-                    <p className="text-lg font-medium">{benefit}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className={`py-20 px-4 md:px-6 border-t border-white/10 ${isDarkMode ? 'bg-slate-800/20' : 'bg-slate-50'}`}>
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16">How Campaign & Ads AI Works</h2>
-          
-          <div className="space-y-8">
-            <div className="flex gap-8">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white font-bold text-lg">
-                  1
+      {/* Campaign Optimization Section */}
+      <section className="py-16 md:py-24 px-4 md:px-6 border-b border-white/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Campaign Optimization</h2>
+            <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              Continuous AI-powered optimization that improves your campaigns every single day
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {optimizationFeatures.map((feature, idx) => (
+              <div 
+                key={idx}
+                className={`p-6 rounded-2xl border transition-all hover:border-viral-purple ${
+                  isDarkMode 
+                    ? 'bg-slate-800/30 border-white/10 hover:bg-slate-800/50' 
+                    : 'bg-white border-slate-200 hover:bg-slate-50'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white mb-4">
+                  {feature.icon}
                 </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">You Set Goals & Budget</h3>
+                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
                 <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                  Define your target audience, goals (sales, leads, awareness), and total budget. AI takes it from there.
+                  {feature.description}
                 </p>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="flex gap-8">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white font-bold text-lg">
-                  2
-                </div>
+      {/* Benefits Section */}
+      <section className="py-16 md:py-24 px-4 md:px-6 border-b border-white/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose AD Automation</h2>
+            <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              Get the results of a dedicated ADs manager and data analyst combined in one system
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {benefits.map((benefit, idx) => (
+              <div 
+                key={idx}
+                className={`flex items-start gap-4 p-6 rounded-xl border ${
+                  isDarkMode 
+                    ? 'bg-slate-800/30 border-white/10' 
+                    : 'bg-white border-slate-200'
+                }`}
+              >
+                <CheckCircle2 className="w-6 h-6 text-viral-cyan flex-shrink-0 mt-1" />
+                <p className="text-lg font-medium">{benefit}</p>
               </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">AI Creates Campaigns</h3>
-                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                  AI generates ad sets, creates multiple creative variations, and targets audiences. Complete campaigns ready in seconds.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-8">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white font-bold text-lg">
-                  3
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">Campaigns Go Live Across Platforms</h3>
-                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                  Ads automatically launch on Meta, TikTok, YouTube, Snapchat, and Google Ads simultaneously with optimal settings.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-8">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white font-bold text-lg">
-                  4
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">AI Continuously Optimizes</h3>
-                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                  A/B tests run automatically, budgets shift to winners, bids adjust in real-time. ROI improves every day without your input.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-8">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white font-bold text-lg">
-                  5
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">You Get Results with Attribution</h3>
-                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                  Track customer journeys across platforms. See exactly which ads drive conversions and attribute revenue accurately.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
