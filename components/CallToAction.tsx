@@ -13,7 +13,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ onLaunch, isDarkMode = true
         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-r from-viral-cyan to-viral-purple blur-[120px] rounded-full pointer-events-none -z-10 ${isDarkMode ? 'opacity-20' : 'opacity-10'}`}></div>
         
         <h2 className={`text-4xl md:text-6xl font-bold mb-8 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-          One platform to create, schedule, and scale.
+          One platform to manage, go viral, and scale.
         </h2>
         
         <p className={`text-xl mb-10 max-w-xl mx-auto transition-colors duration-300 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>

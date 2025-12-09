@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import CallToAction from './CallToAction';
 import ChatBot from './ChatBot';
@@ -152,8 +151,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
       <div className="fixed bottom-0 right-0 w-[800px] h-[600px] bg-viral-cyan/10 rounded-full blur-[120px] -z-10 pointer-events-none opacity-30 mix-blend-screen"></div>
 
       {/* --- Navbar --- */}
-      <nav className={`fixed w-full z-50 top-0 border-b backdrop-blur-xl transition-all duration-300 ${scrollY > 50 ? 'shadow-lg' : ''} ${isDarkMode ? 'bg-[#0B0F19]/80 border-white/5' : 'bg-white/80 border-slate-200'}`}>
-        <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+      <nav className={`fixed left-1/2 -translate-x-1/2 top-4 z-50 border backdrop-blur-xl transition-all duration-300 rounded-full ${scrollY > 50 ? 'shadow-lg' : ''} bg-transparent border-white/10 w-[90%] md:w-[95%] max-w-7xl`}>
+        <div className="px-6 md:px-12 h-16 md:h-20 flex items-center justify-between">
           
           {/* Left Side: Logo */}
           <a href="#" className="inline-flex items-center h-full md:mr-8">
@@ -162,13 +161,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
           </a>
           
           {/* Desktop Nav (Center) */}
-          <div className={`hidden md:flex items-center gap-8 text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            <a href="#" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Home</a>
-            <a href="#ai-manager" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>AI Manager</a>
-            <a href="#influencers" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Influencers</a>
-            <a href="#ai-tutor" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>AI Tutor</a>
-            <a href="#ad-creator" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Ad Creator</a>
-            <button onClick={onPricing} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Pricing</button>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 transition-colors">
+            <a href="#" className="transition-colors hover:text-slate-800">Home</a>
+            <a href="#ai-manager" className="transition-colors hover:text-slate-800">AI Manager</a>
+            <a href="#influencers" className="transition-colors hover:text-slate-800">Influencers</a>
+            <a href="#ai-tutor" className="transition-colors hover:text-slate-800">AI Tutor</a>
+            <a href="#ad-creator" className="transition-colors hover:text-slate-800">Ad Creator</a>
+            <button onClick={onPricing} className="transition-colors hover:text-slate-800">Pricing</button>
           </div>
 
           {/* Right Side: Theme Toggle, Log in, Get Activated */}
@@ -176,13 +175,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
              {/* Theme Toggle */}
              <button 
               onClick={toggleTheme} 
-              className={`p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'}`}
+              className="p-2 rounded-full transition-colors text-slate-600 hover:text-slate-800 hover:bg-slate-200"
               title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
 
-            <button onClick={onLogin} className={`text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}>
+            <button onClick={onLogin} className="text-sm font-medium transition-colors text-slate-600 hover:text-slate-800">
               Log in
             </button>
             <button 
@@ -271,12 +270,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
            {/* Text Column (Left) */}
           <div className="relative z-10 lg:order-1 scroll-animate text-center lg:text-left">
              
-             <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-4 sm:mb-6`}>
-                <span className="text-viral-cyan">The All-In-One </span>
-                <span className="text-viral-purple">AI Social Media </span>
-                <span className="text-viral-cyan">Management Platform </span>
-                <span className="text-viral-purple">that Runs Your Entire </span>
-                <span className="text-viral-cyan">Social Media Universe</span>
+             <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan`}>
+                The All-In-One AI Social Media Management Platform that Runs Your Entire Social Media Universe
              </h1>
 
              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start mt-8">
@@ -316,7 +311,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">lead.</span>
                 </h2>
                 <p className={`text-base sm:text-lg md:text-xl max-w-4xl mx-auto leading-relaxed transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Viralitics is an AI-first, all-in-one social media operating system designed to replace traditional social media teams with a unified AI-driven automation engine. It manages planning, content creation, scheduling, engagement, ads, influencer collaborations, analytics, and learning systems across 15+ major platforms.
+                    Viralitics is an AI-first, all-in-one social media operating system designed to replace traditional social media teams with a unified AI-driven automation engine.
                 </p>
             </div>
 
@@ -331,8 +326,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                              <i className="fas fa-robot text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple text-3xl sm:text-4xl md:text-5xl"></i>
                         </div>
                         <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
-                        <p className={`mb-4 flex-grow text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                            This AI tool serves as a complete replacement for a social media team by automating content creation and publishing across more than 15 major platforms.
+                        <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                            It manages planning, content creation, scheduling, engagement, influencer collaborations, analytics, and learning systems across 15+ major platforms.
                         </p>
                         
                         <button onClick={onAIManagerClick} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
@@ -525,7 +520,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                         <div className="w-10 h-10 rounded-full bg-gradient-to-r from-viral-cyan to-viral-purple flex items-center justify-center text-white font-bold">AI</div>
                         <div>
                             <p className={`font-bold text-sm ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Viralitics Tutor</p>
-                            <p className="text-xs text-green-400">Online</p>
+                            <p className="text-xs text-green-400">TiC is about getting things done and ticking them off your list</p>
                         </div>
                     </div>
                     <div className="space-y-4">
@@ -931,6 +926,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
               </div>
               <p className="text-slate-500 text-xs mt-2">23M+ users</p>
             </div>
+
+            {/* WeChat */}
+            <div className="group cursor-pointer transition-transform hover:scale-110 text-center">
+              <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-xl bg-[#09B83E] flex items-center justify-center group-hover:shadow-lg group-hover:shadow-green-500/50 transition-all mx-auto">
+                <i className="fab fa-weixin text-white text-2xl sm:text-3xl"></i>
+              </div>
+              <p className="text-slate-500 text-xs mt-2">1.3B+ users</p>
+            </div>
           </div>
         </div>
       </section>
@@ -1001,15 +1004,23 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                         </li>
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-viral-cyan" />
-                            <span className="text-sm text-slate-300">Basic AI Content</span>
+                            <span className="text-sm text-slate-300">Basic AI Content Generation</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-viral-cyan" />
-                            <span className="text-sm text-slate-300">Basic Analytics</span>
+                            <span className="text-sm text-slate-300">Monthly Analytics Reports</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-viral-cyan" />
                             <span className="text-sm text-slate-300">Community Support</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-viral-cyan" />
+                            <span className="text-sm text-slate-300">Content Calendar (30 days)</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-viral-cyan" />
+                            <span className="text-sm text-slate-300">Basic Scheduling & Publishing</span>
                         </li>
                     </ul>
                 </div>
@@ -1048,23 +1059,31 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     <ul className="space-y-4">
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-teal-400" />
-                            <span className="text-sm text-slate-300">Unlimited Social Profiles</span>
+                            <span className="text-sm text-slate-300">Up to 10 Social Profiles</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-teal-400" />
-                            <span className="text-sm text-slate-300">Unlimited AI Content</span>
+                            <span className="text-sm text-slate-300">Advanced AI Content Suggestions</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-teal-400" />
-                            <span className="text-sm text-slate-300">Advanced Analytics</span>
+                            <span className="text-sm text-slate-300">Advanced Analytics & Insights</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-teal-400" />
-                            <span className="text-sm text-slate-300">AI Tutor Access</span>
+                            <span className="text-sm text-slate-300">AI Tutor Access with Personalized Learning</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-teal-400" />
-                            <span className="text-sm text-slate-300">Marketplace Access</span>
+                            <span className="text-sm text-slate-300">Marketplace Access for Collaborations</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-400" />
+                            <span className="text-sm text-slate-300">Content Calendar (90 days)</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <Check size={20} className="flex-shrink-0 text-teal-400" />
+                            <span className="text-sm text-slate-300">Advanced Scheduling & Auto-Publishing</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-teal-400" />
@@ -1131,11 +1150,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </div>
             </div>
 
-            {/* Trusted By Section */}
+            {/* Disclaimer Section */}
             <div className="text-center">
-                <p className={`${isDarkMode ? 'text-slate-400' : 'text-slate-600'} text-sm mb-8`}>
-                    Trusted by 15+ major social media platforms
-                </p>
+                <div className={`max-w-2xl mx-auto flex justify-center px-4`}>
+                  <div className={`px-6 py-4 rounded-xl border flex items-center gap-3 ${isDarkMode ? 'border-slate-700/50 bg-slate-900/30' : 'border-slate-200 bg-slate-50'}`}>
+                    <svg className={`w-5 h-5 flex-shrink-0 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`} fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                    <p className={`text-xs ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                      Pricing for the influencer marketplace is independent from the platform and can be viewed upon registration.
+                    </p>
+                  </div>
+                </div>
             </div>
         </div>
       </section>

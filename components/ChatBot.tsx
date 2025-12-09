@@ -132,8 +132,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
               <div className="min-w-0">
                 <h3 className={`font-bold text-xs sm:text-sm truncate ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>TiC AI</h3>
                 <span className="flex items-center gap-1.5 text-[10px] sm:text-xs">
-                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0"></span>
-                    <span className={`${isDarkMode ? 'text-slate-400' : 'text-slate-400'}`}>Online</span>
+                  <span className={`${isDarkMode ? 'text-slate-400' : 'text-slate-400'}`}>TiC is about getting things done and ticking them off your list</span>
                 </span>
               </div>
             </div>

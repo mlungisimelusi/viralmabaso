@@ -106,8 +106,8 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
       <div className="fixed bottom-0 right-0 w-[800px] h-[600px] bg-viral-cyan/10 rounded-full blur-[120px] -z-10 pointer-events-none opacity-30 mix-blend-screen"></div>
 
       {/* Navbar */}
-      <nav className={`fixed w-full z-50 top-0 border-b backdrop-blur-xl transition-all duration-300 ${isDarkMode ? 'bg-[#0B0F19]/80 border-white/5' : 'bg-white/80 border-slate-200'}`}>
-        <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+      <nav className={`fixed left-1/2 -translate-x-1/2 top-4 z-50 border backdrop-blur-xl transition-all duration-300 rounded-full bg-transparent border-white/10 w-[90%] md:w-[95%] max-w-7xl`}>
+        <div className="px-6 md:px-12 h-16 md:h-20 flex items-center justify-between">
           
           {/* Left Side: Logo */}
           <button onClick={onBack} className="inline-flex items-center h-full md:mr-8 cursor-pointer">
@@ -115,26 +115,26 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
           </button>
           
           {/* Desktop Nav (Center) */}
-          <div className={`hidden md:flex items-center gap-8 text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Home</button>
-            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>AI Manager</button>
-            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Influencers</button>
-            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>AI Tutor</button>
-            <span className={`text-viral-cyan font-semibold`}>Ad Automation</span>
-            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Pricing</button>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 transition-colors">
+            <button onClick={onBack} className="transition-colors hover:text-slate-800">Home</button>
+            <button onClick={onBack} className="transition-colors hover:text-slate-800">AI Manager</button>
+            <button onClick={onBack} className="transition-colors hover:text-slate-800">Influencers</button>
+            <button onClick={onBack} className="transition-colors hover:text-slate-800">AI Tutor</button>
+            <span className="text-viral-cyan font-semibold">Ad Automation</span>
+            <button onClick={onBack} className="transition-colors hover:text-slate-800">Pricing</button>
           </div>
 
           {/* Right Side: Theme Toggle, Log in, Get Activated */}
           <div className="hidden md:flex items-center gap-4">
              <button 
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className={`p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'}`}
+              className="p-2 rounded-full transition-colors text-slate-600 hover:text-slate-800 hover:bg-slate-200"
               title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
 
-            <button onClick={onBack} className={`text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-slate-900'}`}>
+            <button onClick={onBack} className="text-sm font-medium transition-colors text-slate-600 hover:text-slate-800">
               Log in
             </button>
             <button 

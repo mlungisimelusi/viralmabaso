@@ -68,9 +68,11 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
       description: 'Perfect for individuals getting started.',
       features: [
         'Up to 3 Social Profiles',
-        'Basic AI Content',
-        'Basic Analytics',
+        'Basic AI Content Generation',
+        'Monthly Analytics Reports',
         'Community Support',
+        'Content Calendar (30 days)',
+        'Basic Scheduling & Publishing',
       ],
       limitations: [],
       highlighted: false,
@@ -84,11 +86,13 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
       price: { monthly: 99, yearly: 990 },
       description: 'For brands and creators scaling their brand.',
       features: [
-        'Unlimited Social Profiles',
-        'Unlimited AI Content',
-        'Advanced Analytics',
-        'AI Tutor Access',
-        'Marketplace Access',
+        'Up to 10 Social Profiles',
+        'Advanced AI Content Suggestions',
+        'Advanced Analytics & Insights',
+        'AI Tutor Access with Personalized Learning',
+        'Marketplace Access for Collaborations',
+        'Content Calendar (90 days)',
+        'Advanced Scheduling & Auto-Publishing',
         'Priority Support',
       ],
       limitations: [],
@@ -128,8 +132,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-[#0B0F19] text-white' : 'bg-slate-50 text-slate-900'}`}>
       {/* Navbar */}
-      <nav className={`fixed w-full z-50 top-0 border-b backdrop-blur-xl transition-all duration-300 ${isDarkMode ? 'bg-[#0B0F19]/80 border-white/5' : 'bg-white/80 border-slate-200'}`}>
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <nav className={`fixed left-1/2 -translate-x-1/2 top-4 z-50 border backdrop-blur-xl transition-all duration-300 rounded-full bg-transparent border-white/10 w-[90%] md:w-[95%] max-w-7xl`}>
+        <div className="px-6 md:px-12 h-16 md:h-20 flex items-center justify-between">
           
           {/* Left Side: Logo */}
           <a href="#" onClick={onBack} className="inline-flex items-center h-full md:mr-8">
@@ -138,13 +142,13 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
           </a>
           
           {/* Desktop Nav (Center) */}
-          <div className={`hidden md:flex items-center gap-8 text-sm font-medium transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            <button onClick={onBack} className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Home</button>
-            <a href="#ai-manager" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>AI Manager</a>
-            <a href="#influencers" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Influencers</a>
-            <a href="#ai-tutor" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>AI Tutor</a>
-            <a href="#ad-creator" className={`transition-colors ${isDarkMode ? 'hover:text-white' : 'hover:text-slate-900'}`}>Ad Creator</a>
-            <button className={`transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'} font-bold`}>Pricing</button>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 transition-colors">
+            <button onClick={onBack} className="transition-colors hover:text-slate-800">Home</button>
+            <a href="#ai-manager" className="transition-colors hover:text-slate-800">AI Manager</a>
+            <a href="#influencers" className="transition-colors hover:text-slate-800">Influencers</a>
+            <a href="#ai-tutor" className="transition-colors hover:text-slate-800">AI Tutor</a>
+            <a href="#ad-creator" className="transition-colors hover:text-slate-800">Ad Creator</a>
+            <button className="transition-colors text-slate-600 font-bold">Pricing</button>
           </div>
 
           {/* Right Side: Theme Toggle, Log in, Get Activated */}
@@ -152,7 +156,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
              {/* Theme Toggle */}
              <button 
               onClick={() => setIsDarkMode(!isDarkMode)} 
-              className={`p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'}`}
+              className="p-2 rounded-full transition-colors text-slate-600 hover:text-slate-800 hover:bg-slate-200"
               title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -317,6 +321,18 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
           })}
         </div>
 
+        {/* Disclaimer Section */}
+        <div className={`max-w-2xl mx-auto mb-20 flex justify-center`}>
+          <div className={`px-6 py-4 rounded-xl border flex items-center gap-3 ${isDarkMode ? 'border-slate-700/50 bg-slate-900/30' : 'border-slate-200 bg-slate-50'}`}>
+            <svg className={`w-5 h-5 flex-shrink-0 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`} fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+            </svg>
+            <p className={`text-xs ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+              Pricing for the influencer marketplace is independent from the platform and can be viewed upon registration.
+            </p>
+          </div>
+        </div>
+
         {/* Trusted By Section - Creative Grid */}
         <div className="text-center mb-20">
           {/* Animated Grid Layout */}
@@ -417,7 +433,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
             <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-r from-viral-cyan to-viral-purple blur-[120px] rounded-full pointer-events-none -z-10 ${isDarkMode ? 'opacity-20' : 'opacity-10'}`}></div>
             
             <h2 className={`text-4xl md:text-6xl font-bold mb-8 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-              One platform to create, schedule, and scale.
+              One platform to manage, go viral, and scale.
             </h2>
             
             <p className={`text-xl mb-10 max-w-xl mx-auto transition-colors duration-300 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
@@ -438,7 +454,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
                       : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                   }`}
                 >
-                  Contact Sales
+                  Contact Us
                 </button>
             </div>
           </div>

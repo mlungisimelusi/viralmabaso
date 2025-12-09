@@ -29,9 +29,9 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
 
   return (
     <footer className={`transition-colors duration-300 ${isDarkMode ? 'bg-[#0a0e1a]' : 'bg-slate-50'}`}>
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        {/* Top Section - 4 Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12 mb-12 md:mb-16">
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Top Section - Column Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-10 mb-6 md:mb-10">
           {/* Brand Column */}
           <div>
             <a href="#" className="inline-block mb-4 sm:mb-6">
@@ -41,13 +41,24 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
               AI-first operating system for modern social media. Automated, intelligent, and scalable.
             </p>
             
-            {/* Location */}
+            {/* Locations */}
             <div className={`space-y-4 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               <div className="flex gap-3">
                 <MapPin size={18} className="text-viral-cyan flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className={`font-semibold mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Global Office</p>
-                  <p>Available Worldwide</p>
+                  <p className={`font-semibold mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>United States Office</p>
+                  <p>28 Geary Street, San Francisco, CA, 94109, USA</p>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <MapPin size={18} className="text-viral-cyan flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className={`font-semibold mb-1 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>South Africa Office</p>
+                  <p>61 Katherine Street</p>
+                  <p>Sandton</p>
+                  <p>Johannesburg, 2196</p>
+                  <p>South Africa</p>
                 </div>
               </div>
             </div>
@@ -119,8 +130,9 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Content Engine</a></li>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>AI Tutor</a></li>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Marketplace</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Video Analyzer</a></li>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Ad Automation</a></li>
-              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Analytics</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Viral Test</a></li>
             </ul>
           </div>
 
@@ -131,8 +143,8 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>About Us</a></li>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Careers</a></li>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Press</a></li>
-              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Contacts</a></li>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Blog</a></li>
+              <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Contacts</a></li>
             </ul>
           </div>
 
@@ -158,12 +170,12 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
         </div>
 
         {/* Divider */}
-        <div className={`border-t mb-8 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}></div>
+        <div className={`border-t mb-2 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`}></div>
 
         {/* Bottom Section */}
         <div className="flex justify-center items-center">
           <div className={`text-sm ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
-            &copy; {currentYear} Viralitics Inc. All rights reserved.
+            &copy; {currentYear} Viralitics. All Rights Reserved.
           </div>
         </div>
       </div>
