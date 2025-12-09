@@ -311,7 +311,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">lead.</span>
                 </h2>
                 <p className={`text-base sm:text-lg md:text-xl max-w-4xl mx-auto leading-relaxed transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Viralitics is an AI-first, all-in-one social media operating system designed to replace traditional social media teams with a unified AI-driven automation engine.
+                    Manage all your social media accounts from one platform and create viral videos, while helping brands reach wider markets through an influencer marketplace with higher conversion rates.
                 </p>
             </div>
 

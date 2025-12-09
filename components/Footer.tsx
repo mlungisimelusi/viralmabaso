@@ -34,10 +34,10 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-10 mb-6 md:mb-10">
           {/* Brand Column */}
           <div>
-            <a href="#" className="inline-block mb-4 sm:mb-6">
+            <a href="#" className="inline-block mb-1.5">
               <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[50px] sm:h-[60px] md:h-[80px] lg:h-[100px] w-auto object-contain" />
             </a>
-            <p className={`text-sm leading-relaxed mb-8 max-w-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+            <p className={`text-sm leading-relaxed mb-6 max-w-xs ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               AI-first operating system for modern social media. Automated, intelligent, and scalable.
             </p>
             
