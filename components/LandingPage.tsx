@@ -163,10 +163,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
           {/* Desktop Nav (Center) */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 transition-colors">
             <a href="#" className="transition-colors hover:text-slate-800">Home</a>
-            <a href="#ai-manager" className="transition-colors hover:text-slate-800">AI Manager</a>
+            <button onClick={onAIManagerClick} className="transition-colors hover:text-slate-800">AI Manager</button>
             <a href="#influencers" className="transition-colors hover:text-slate-800">Influencers</a>
-            <a href="#ai-tutor" className="transition-colors hover:text-slate-800">AI Tutor</a>
-            <a href="#ad-creator" className="transition-colors hover:text-slate-800">Ad Creator</a>
+            <button onClick={onAITutorClick} className="transition-colors hover:text-slate-800">AI Tutor</button>
+            <button onClick={onAdAutomationClick} className="transition-colors hover:text-slate-800">Ad Creator</button>
             <button onClick={onPricing} className="transition-colors hover:text-slate-800">Pricing</button>
           </div>
 
@@ -205,11 +205,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
         {mobileMenuOpen && (
           <div className={`md:hidden absolute top-20 left-0 w-full border-b p-6 flex flex-col gap-4 animate-in slide-in-from-top-5 ${isDarkMode ? 'bg-[#0B0F19] border-white/10' : 'bg-white border-slate-200'}`}>
             <a href="#" className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Home</a>
-            <a href="#ai-manager" className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AI Manager</a>
-            <a href="#influencers" className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Influencers</a>
-            <a href="#ai-tutor" className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AI Tutor</a>
-            <a href="#ad-creator" className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Ad Creator</a>
-            <button onClick={onPricing} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Pricing</button>
+            <button onClick={() => { setMobileMenuOpen(false); onAIManagerClick?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AI Manager</button>
+            <a href="#influencers" onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Influencers</a>
+            <button onClick={() => { setMobileMenuOpen(false); onAITutorClick?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AI Tutor</button>
+            <button onClick={() => { setMobileMenuOpen(false); onAdAutomationClick?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Ad Creator</button>
+            <button onClick={() => { setMobileMenuOpen(false); onPricing?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Pricing</button>
             
             <div className="flex items-center justify-between mt-2">
                 <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Theme</span>
@@ -247,12 +247,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
         {/* Background Image Layer (video removed) */}
         <div className="absolute inset-0 w-full h-full overflow-hidden -z-20" style={{ transform: `translateY(${scrollY * 0.5}px)` }}>
-            {/* Static background image replacing video */}
-            <img
-                src="https://images.pexels.com/photos/3196024/pexels-photo-3196024.jpeg"
-                alt="Influencers Background"
-                className="absolute inset-0 w-full h-full object-cover -z-20"
-            />
 
             {/* Decorative hero image (dimmed) - visible on large screens only and placed fully in the background */}
             <img
@@ -331,7 +325,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                         </div>
                         <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
                         <p className={`mb-2 text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                            Stop guessing — let AI plan, create, publish and optimize at scale.
+                            Stop guessing - let AI plan, create, publish and optimize at scale.
                         </p>
                         <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                             It manages planning, content creation, scheduling, engagement, influencer collaborations, analytics, and learning systems across 15+ major platforms.
@@ -1162,7 +1156,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <div className={`max-w-2xl mx-auto flex justify-center px-4`}>
                   <div className={`px-6 py-4 rounded-xl border flex items-center gap-3 ${isDarkMode ? 'border-slate-700/50 bg-slate-900/30' : 'border-slate-200 bg-slate-50'}`}>
                     <svg className={`w-5 h-5 flex-shrink-0 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                     </svg>
                     <p className={`text-xs ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
                       Pricing for the influencer marketplace is independent from the platform and can be viewed upon registration.
@@ -1191,7 +1185,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             <div className="flex items-start justify-between p-6 border-b" style={{ borderColor: isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(15,23,42,0.04)' }}>
               <div>
                 <h3 className="text-2xl font-bold">AI Social Media Manager</h3>
-                <p className={`mt-1 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Stop guessing — let AI plan, create, publish and optimize at scale.</p>
+                <p className={`mt-1 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Stop guessing - let AI plan, create, publish and optimize at scale.</p>
               </div>
               <div className="ml-4">
                 <button
@@ -1243,7 +1237,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                   <SearchIcon className="text-viral-cyan mt-1" />
                   <div>
                     <strong className="block">Influencer Matchmaking</strong>
-                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Find creators by audience, niche, and engagement quality — collaborate directly from the platform.</span>
+                    <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Find creators by audience, niche, and engagement quality - collaborate directly from the platform.</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
