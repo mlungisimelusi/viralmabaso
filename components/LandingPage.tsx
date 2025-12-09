@@ -274,6 +274,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 The All-In-One AI Social Media Management Platform that Runs Your Entire Social Media Universe
              </h1>
 
+             <p className={`text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto lg:mx-0 leading-relaxed mb-6 transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
+                Manage all your social media accounts from one platform and create viral videos, while helping brands reach wider markets through an influencer marketplace with higher conversion rates.
+             </p>
+
              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start mt-8">
                 <button 
                   onClick={onLaunch}
@@ -311,7 +315,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">lead.</span>
                 </h2>
                 <p className={`text-base sm:text-lg md:text-xl max-w-4xl mx-auto leading-relaxed transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Manage all your social media accounts from one platform and create viral videos, while helping brands reach wider markets through an influencer marketplace with higher conversion rates.
+                    Viralitics is an AI-first, all-in-one social media operating system designed to replace traditional social media teams with a unified AI-driven automation engine.
                 </p>
             </div>
 
@@ -326,6 +330,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                              <i className="fas fa-robot text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple text-3xl sm:text-4xl md:text-5xl"></i>
                         </div>
                         <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
+                        <p className={`mb-2 text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                            Stop guessing — let AI plan, create, publish and optimize at scale.
+                        </p>
                         <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                             It manages planning, content creation, scheduling, engagement, influencer collaborations, analytics, and learning systems across 15+ major platforms.
                         </p>
@@ -410,7 +417,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                             Very High Engagement
                         </div>
                         <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-white/10' : 'border-slate-200'}`}>
-                            <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                            <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                                 Perfect for niche communities and authentic engagement. Nano influencers connect deeply with loyal followers, ideal for authentic product recommendations and grassroots campaigns. Get direct access to engaged communities with genuine interest in your brand.
                             </p>
                         </div>
@@ -430,7 +437,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                             High Engagement
                         </div>
                         <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-white/10' : 'border-slate-200'}`}>
-                            <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                            <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                                 The sweet spot for ROI. Micro influencers maintain exceptional engagement rates while reaching meaningful audiences. Ideal for building brand awareness and driving conversions with authentic voices and dedicated followers who trust their recommendations.
                             </p>
                         </div>
@@ -450,7 +457,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                             Medium Engagement
                         </div>
                         <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-white/10' : 'border-slate-200'}`}>
-                            <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                            <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                                 Reach a substantial audience with established credibility. Macro influencers excel at brand awareness campaigns and reaching larger demographics. Perfect for campaigns requiring significant reach while maintaining professional influence and brand partnerships.
                             </p>
                         </div>
@@ -470,7 +477,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                             Medium Engagement
                         </div>
                         <div className={`mt-6 pt-6 border-t ${isDarkMode ? 'border-white/10' : 'border-slate-200'}`}>
-                            <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                            <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                                 Maximum reach and brand visibility. Mega influencers command massive audiences and are ideal for major campaign launches and global brand awareness. Perfect for established brands looking to make a big impact across multiple markets and demographics.
                             </p>
                         </div>
@@ -1052,7 +1059,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                         onClick={onLaunch}
                         className="w-full py-3 px-6 rounded-2xl font-bold transition-all mb-6 bg-white text-teal-900 hover:bg-teal-50"
                     >
-                        Start Free Trial
+                        Get Started
                     </button>
 
                     {/* Features */}

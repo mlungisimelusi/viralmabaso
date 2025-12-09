@@ -32,8 +32,8 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Top Section - Column Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-10 mb-6 md:mb-10">
-          {/* Brand Column */}
-          <div>
+          {/* Brand Column - spans both columns on mobile, then normal on larger screens */}
+          <div className="col-span-2 sm:col-span-2 md:col-span-1 lg:col-span-1">
             <a href="#" className="inline-block mb-1.5">
               <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[50px] sm:h-[60px] md:h-[80px] lg:h-[100px] w-auto object-contain" />
             </a>
@@ -124,7 +124,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
           </div>
 
           {/* Solutions Column */}
-          <div>
+          <div className="col-span-1">
             <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 text-viral-cyan`}>Solutions</h4>
             <ul className={`space-y-3 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Content Engine</a></li>
@@ -137,7 +137,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
           </div>
 
           {/* Company Column */}
-          <div>
+          <div className="col-span-1">
             <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 text-viral-cyan`}>Company</h4>
             <ul className={`space-y-3 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>About Us</a></li>
@@ -149,7 +149,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
           </div>
 
           {/* Resources Column */}
-          <div>
+          <div className="col-span-1">
             <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 text-viral-cyan`}>Resources</h4>
             <ul className={`space-y-3 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Help Center</a></li>
@@ -159,7 +159,7 @@ const Footer: React.FC<FooterProps> = ({ isDarkMode = true, setIsDarkMode }) => 
           </div>
 
           {/* Legal Column */}
-          <div>
+          <div className="col-span-1">
             <h4 className={`font-semibold text-sm uppercase tracking-wider mb-6 text-viral-cyan`}>Legal</h4>
             <ul className={`space-y-3 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               <li><a href="#" className={`transition-colors hover:text-viral-cyan ${isDarkMode ? 'hover:text-viral-cyan' : 'hover:text-slate-900'}`}>Privacy Policy</a></li>
