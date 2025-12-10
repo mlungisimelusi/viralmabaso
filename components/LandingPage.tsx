@@ -497,11 +497,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     The AI Tutor teaches you how to succeed on social media, helping creators and brands grow their accounts, boost engagement, and increase their chances of going viral.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
-                    <div className={`p-4 rounded-xl border ${isDarkMode ? 'bg-slate-800 border-white/5' : 'bg-white border-slate-200'}`}>
+                    <div className={`p-4 rounded-xl border ${isDarkMode ? 'bg-gradient-to-br from-viral-cyan/30 via-viral-purple/20 to-slate-800 border-white/10' : 'bg-gradient-to-br from-viral-cyan/10 via-viral-purple/10 to-white border-viral-cyan/20'}`}>
                         <h4 className={`font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple ${isDarkMode ? '' : ''}`}>Trend Alerts</h4>
                         <p className="text-sm text-slate-500">Get notified of rising audio and formats before they peak.</p>
                     </div>
-                    <div className={`p-4 rounded-xl border ${isDarkMode ? 'bg-slate-800 border-white/5' : 'bg-white border-slate-200'}`}>
+                    <div className={`p-4 rounded-xl border ${isDarkMode ? 'bg-gradient-to-br from-viral-purple/30 via-viral-cyan/20 to-slate-800 border-white/10' : 'bg-gradient-to-br from-viral-purple/10 via-viral-cyan/10 to-white border-viral-purple/20'}`}>
                         <h4 className={`font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-viral-purple to-viral-cyan ${isDarkMode ? '' : ''}`}>Step-by-Step</h4>
                         <p className="text-sm text-slate-500">Actionable checklists to improve your content quality.</p>
                     </div>
