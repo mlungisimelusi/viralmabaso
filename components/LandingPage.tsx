@@ -172,17 +172,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             <button onClick={onPricing} className="transition-colors hover:text-slate-800">Pricing</button>
           </div>
 
+
           {/* Right Side: Theme Toggle, Log in, Get Activated */}
           <div className="hidden md:flex items-center gap-4">
-             {/* Theme Toggle */}
-             <button 
+            <button 
               onClick={toggleTheme} 
               className="p-2 rounded-full transition-colors text-slate-600 hover:text-slate-800 hover:bg-slate-200"
               title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-
             <button onClick={onLogin} className="text-sm font-medium transition-colors text-slate-600 hover:text-slate-800">
               Log in
             </button>
@@ -193,6 +192,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
               Get Activated
             </button>
           </div>
+
+          {/* Mobile Theme Toggle (in navbar) */}
+          <button 
+            className={`md:hidden ml-2 p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white hover:bg-slate-800' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200'}`}
+            onClick={toggleTheme}
+            title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
 
           {/* Mobile Menu Button */}
           <button 
@@ -205,23 +213,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
         {/* Mobile Nav Dropdown */}
         {mobileMenuOpen && (
-          <div className={`md:hidden absolute top-20 left-0 w-full border-b p-6 flex flex-col gap-4 animate-in slide-in-from-top-5 ${isDarkMode ? 'bg-[#0B0F19] border-white/10' : 'bg-white border-slate-200'}`}>
-            <a href="#" className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Home</a>
-            <button onClick={() => { setMobileMenuOpen(false); onAIManagerClick?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AI Manager</button>
-            <a href="#influencers" onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Influencers</a>
+          <div className={`md:hidden absolute top-20 left-0 w-full border-b p-6 flex flex-col gap-4 items-center text-center animate-in slide-in-from-top-5 ${isDarkMode ? 'bg-[#0B0F19] border-white/10' : 'bg-white border-slate-200'}`}>
+            <a href="#" className={`text-lg font-medium w-full ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Home</a>
+            <button onClick={() => { setMobileMenuOpen(false); onAIManagerClick?.(); }} className={`text-lg font-medium w-full ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AI Manager</button>
+            <a href="#influencers" onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium w-full ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Influencers</a>
             <button onClick={() => { setMobileMenuOpen(false); onAITutorClick?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AI Tutor</button>
             <button onClick={() => { setMobileMenuOpen(false); onAdAutomationClick?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AD Creator</button>
             <button onClick={() => { setMobileMenuOpen(false); onPricing?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Pricing</button>
             
-            <div className="flex items-center justify-between mt-2">
-                <span className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Theme</span>
-                <button 
-                    onClick={toggleTheme} 
-                    className={`p-2 rounded-full ${isDarkMode ? 'bg-white/10 text-white' : 'bg-slate-100 text-slate-900'}`}
-                >
-                    {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-                </button>
-            </div>
+
 
             <button onClick={onLogin} className="w-full bg-slate-200 text-slate-900 py-3 rounded-lg font-bold mt-4 mb-2">
               Login
