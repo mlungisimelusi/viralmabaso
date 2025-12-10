@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, CheckCircle2, Menu, X, Sun, Moon } from 'lucide-react';
 import Footer from './Footer';
 
-interface AdAutomationPageProps {
+interface ADAutomationPageProps {
   onBack: () => void;
   onLaunch: () => void;
   isDarkMode: boolean;
   setIsDarkMode: (value: boolean) => void;
 }
 
-const AdAutomationPage: React.FC<AdAutomationPageProps> = ({ 
+const ADAutomationPage: React.FC<ADAutomationPageProps> = ({ 
   onBack, 
   onLaunch, 
   isDarkMode, 
@@ -25,8 +25,8 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
   const creationFeatures = [
     {
       icon: <i className="fas fa-bullhorn text-2xl"></i>,
-      title: "Smart Ad Set Creation",
-      description: "Automatically generate ad sets and creative variations. AI designs multiple ad versions optimized for different audiences and platforms"
+      title: "Smart AD Set Creation",
+      description: "Automatically generate AD sets and creative variations. AI designs multiple AD versions optimized for different audiences and platforms"
     },
     {
       icon: <i className="fas fa-brain text-2xl"></i>,
@@ -41,12 +41,12 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
     {
       icon: <i className="fas fa-magic text-2xl"></i>,
       title: "Creative Variation Generation",
-      description: "Automatically create multiple ad creatives with different headlines, copy, CTAs, and visuals. Test what resonates"
+      description: "Automatically create multiple AD creatives with different headlines, copy, CTAs, and visuals. Test what resonates"
     },
     {
       icon: <i className="fas fa-plug text-2xl"></i>,
       title: "Multi-Platform Integration",
-      description: "Seamless integration with Meta, TikTok, YouTube, Snapchat, and Google Ads APIs. Manage all campaigns from one dashboard"
+      description: "Seamless integration with Meta, TikTok, YouTube, Snapchat, and Google ADs APIs. Manage all campaigns from one dashboard"
     },
     {
       icon: <i className="fas fa-cogs text-2xl"></i>,
@@ -89,15 +89,15 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
   ];
 
   const benefits = [
-    "Reduce ad management time by 90% with full automation",
-    "Increase ROAS (Return on Ad Spend) by 5-10x",
+    "Reduce AD management time by 90% with full automation",
+    "Increase ROAS (Return on AD Spend) by 5-10x",
     "Run unlimited A/B tests simultaneously without manual work",
     "Scale profitable campaigns instantly with AI-driven budgets",
     "Access predictive audience modeling for precision targeting",
     "Manage campaigns across 5+ platforms from one dashboard",
-    "Eliminate wasted ad spend with real-time optimization",
+    "Eliminate wasted AD spend with real-time optimization",
     "Get actionable insights on what's driving conversions",
-    "Automatically find and scale your best-performing ads",
+    "Automatically find and scale your best-performing ADs",
     "Reduce customer acquisition costs by 50%+",
     "Never miss a performance opportunity with AI alerts",
     "Build lookalike audiences that actually convert"
@@ -186,116 +186,200 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <section
+        className="pt-32 pb-16 md:pt-40 md:pb-24 px-4 md:px-6 relative"
+        style={{
+          position: 'relative',
+        }}
+      >
+        <div
+          className="absolute left-0 right-0 top-0 z-0"
+          style={{
+            backgroundImage: 'url(/assets/ad-hero-bg.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            opacity: 0.45,
+            pointerEvents: 'none',
+            minHeight: '600px',
+            height: '100%',
+            maxHeight: 'none',
+          }}
+        />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-block px-4 py-1.5 rounded-full border mb-6 text-xs font-bold tracking-widest bg-viral-cyan/10 border-viral-cyan/30 text-viral-cyan">
             CORE FEATURE
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
-            Ad <br />
+            AD <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Automation</span>
           </h1>
 
           <p className={`text-xl md:text-2xl max-w-3xl mx-auto mb-8 leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            Intelligent campaign and ads AI that creates, tests, and optimizes ad campaigns across all platforms. From audience generation to real-time budget optimization, let AI handle your ad strategy.
+            Intelligent campaign and ADs AI that creates, tests, and optimizes AD campaigns across all platforms. From audience generation to real-time budget optimization, let AI handle your AD strategy.
           </p>
 
           <button 
             onClick={onLaunch}
             className="px-8 py-4 rounded-full text-lg font-bold bg-gradient-to-r from-viral-cyan to-viral-purple text-white hover:opacity-90 transition-all shadow-lg shadow-viral-purple/30"
           >
-            Start Your Free Trial
+            Get Activated
           </button>
         </div>
       </section>
 
-      {/* Two Pillars Overview */}
-      <section className="py-16 md:py-24 px-4 md:px-6 border-b border-white/10">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Pillar 1: Creation */}
-            <div className={`p-8 md:p-10 rounded-2xl border transition-all ${isDarkMode ? 'bg-slate-800/30 border-viral-cyan/30 hover:bg-slate-800/50' : 'bg-white border-viral-cyan/30 hover:bg-slate-50'}`}>
-              <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white mb-6">
-                <i className="fas fa-bullhorn text-3xl"></i>
+      {/* Redesigned Two Pillars Overview */}
+      <section className="relative py-20 md:py-32 px-4 md:px-6 border-b border-white/10 overflow-hidden" style={{background: isDarkMode ? 'linear-gradient(135deg, #0B0F19 60%, #1a1d2b 100%)' : 'linear-gradient(135deg, #f8fafc 60%, #e0e7ef 100%)'}}>
+        {/* Glowing background elements */}
+        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-viral-cyan/20 rounded-full blur-[120px] pointer-events-none z-0 animate-pulse"></div>
+        <div className="absolute -bottom-40 right-0 w-[600px] h-[400px] bg-viral-purple/20 rounded-full blur-[120px] pointer-events-none z-0 animate-pulse"></div>
+        {/* Faint flowing lines and arrows */}
+        <svg className="absolute left-1/4 top-1/3 w-2/3 h-1/2 pointer-events-none z-0" viewBox="0 0 600 200" fill="none">
+          <defs>
+            <linearGradient id="lineGrad" x1="0" y1="0" x2="600" y2="200" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#23bddf" />
+              <stop offset="1" stopColor="#cf29f5" />
+            </linearGradient>
+          </defs>
+          <path d="M20 180 Q300 20 580 180" stroke="url(#lineGrad)" strokeWidth="4" opacity="0.18" />
+          <path d="M100 120 Q300 80 500 120" stroke="url(#lineGrad)" strokeWidth="2" opacity="0.10" />
+          <g opacity="0.18">
+            <polygon points="570,180 580,180 575,170" fill="#23bddf" />
+            <polygon points="510,120 500,120 505,110" fill="#cf29f5" />
+          </g>
+        </svg>
+        {/* Animated gradient line connecting cards */}
+        <svg className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-32 pointer-events-none z-10 animate-pulse" viewBox="0 0 600 80" fill="none">
+          <defs>
+            <linearGradient id="connectGrad" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#23bddf" />
+              <stop offset="1" stopColor="#cf29f5" />
+            </linearGradient>
+          </defs>
+          <path d="M100 40 Q300 0 500 40" stroke="url(#connectGrad)" strokeWidth="6" opacity="0.5">
+            <animate attributeName="stroke-dashoffset" values="0;40;0" dur="2s" repeatCount="indefinite" />
+          </path>
+        </svg>
+        {/* 3D-style floating cards behind */}
+        <div className="absolute left-1/4 top-1/4 w-60 h-40 bg-gradient-to-br from-viral-cyan/40 to-viral-purple/30 rounded-3xl shadow-2xl blur-[2px] rotate-[-8deg] z-0 animate-float" style={{filter:'drop-shadow(0 0 40px #23bddf88)'}}></div>
+        <div className="absolute right-1/4 bottom-1/4 w-52 h-36 bg-gradient-to-br from-viral-purple/40 to-viral-cyan/30 rounded-3xl shadow-2xl blur-[2px] rotate-[7deg] z-0 animate-float2" style={{filter:'drop-shadow(0 0 40px #cf29f588)'}}></div>
+        {/* Main content */}
+        <div className="relative max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 z-20">
+          {/* Campaign & AD Creation Card */}
+          <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-[#10182a] to-[#1a1d2b] shadow-xl border border-viral-cyan/30 hover:shadow-viral-cyan/40 transition-all overflow-hidden cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300">
+            <div className="absolute -top-8 -left-8 w-24 h-24 bg-viral-cyan/30 rounded-full blur-2xl z-0 animate-pulse"></div>
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white mb-6 shadow-lg animate-glow">
+                <i className="fas fa-bullhorn text-4xl" style={{textShadow:'0 0 16px #23bddf, 0 0 32px #cf29f5'}}></i>
               </div>
-              <h2 className="text-3xl font-bold mb-4">Campaign & Ad Creation</h2>
-              <p className={`mb-6 leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                AI creates complete ad sets with creative variations and intelligent audience targeting. Set it up once and let AI build your campaigns.
-              </p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">Campaign & AD Creation</h2>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-cyan flex-shrink-0 mt-0.5" />
-                  <span>Ad set & creative generation</span>
+                  <CheckCircle2 className="w-5 h-5 text-viral-cyan flex-shrink-0 mt-0.5 animate-glow" />
+                  <span className="text-slate-200">AD set & creative generation</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-cyan flex-shrink-0 mt-0.5" />
-                  <span>Predictive audience modeling</span>
+                  <CheckCircle2 className="w-5 h-5 text-viral-cyan flex-shrink-0 mt-0.5 animate-glow" />
+                  <span className="text-slate-200">Predictive audience modeling</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-cyan flex-shrink-0 mt-0.5" />
-                  <span>Multi-platform integration</span>
+                  <CheckCircle2 className="w-5 h-5 text-viral-cyan flex-shrink-0 mt-0.5 animate-glow" />
+                  <span className="text-slate-200">Multi-platform integration</span>
                 </li>
               </ul>
             </div>
-
-            {/* Pillar 2: Optimization */}
-            <div className={`p-8 md:p-10 rounded-2xl border transition-all ${isDarkMode ? 'bg-slate-800/30 border-viral-purple/30 hover:bg-slate-800/50' : 'bg-white border-viral-purple/30 hover:bg-slate-50'}`}>
-              <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white mb-6">
-                <i className="fas fa-chart-line text-3xl"></i>
+          </div>
+          {/* Campaign Optimization Card */}
+          <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-[#18102a] to-[#1a1d2b] shadow-xl border border-viral-purple/30 hover:shadow-viral-purple/40 transition-all overflow-hidden cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300">
+            <div className="absolute -top-8 -right-8 w-24 h-24 bg-viral-purple/30 rounded-full blur-2xl z-0 animate-pulse"></div>
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white mb-6 shadow-lg animate-glow">
+                <i className="fas fa-chart-line text-4xl" style={{textShadow:'0 0 16px #cf29f5, 0 0 32px #23bddf'}}></i>
               </div>
-              <h2 className="text-3xl font-bold mb-4">Campaign Optimization</h2>
-              <p className={`mb-6 leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                AI continuously optimizes campaigns with A/B testing and real-time budget allocation. Maximize ROI without manual tweaking.
-              </p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">Campaign Optimization</h2>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-purple flex-shrink-0 mt-0.5" />
-                  <span>Automatic A/B testing</span>
+                  <CheckCircle2 className="w-5 h-5 text-viral-purple flex-shrink-0 mt-0.5 animate-glow" />
+                  <span className="text-slate-200">Automatic A/B testing</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-purple flex-shrink-0 mt-0.5" />
-                  <span>Real-time budget shifts</span>
+                  <CheckCircle2 className="w-5 h-5 text-viral-purple flex-shrink-0 mt-0.5 animate-glow" />
+                  <span className="text-slate-200">Real-time budget shifts</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-purple flex-shrink-0 mt-0.5" />
-                  <span>Cross-platform attribution</span>
+                  <CheckCircle2 className="w-5 h-5 text-viral-purple flex-shrink-0 mt-0.5 animate-glow" />
+                  <span className="text-slate-200">Cross-platform attribution</span>
                 </li>
               </ul>
             </div>
           </div>
         </div>
+        {/* Micro-movement particles */}
+        <div className="absolute left-1/2 top-1/3 w-2 h-2 bg-viral-cyan rounded-full blur-sm animate-ping z-20"></div>
+        <div className="absolute left-1/3 top-2/3 w-3 h-3 bg-viral-purple rounded-full blur-md animate-ping z-20"></div>
+        <div className="absolute right-1/4 bottom-1/4 w-2 h-2 bg-viral-cyan rounded-full blur-sm animate-ping z-20"></div>
       </section>
 
       {/* Campaign & AD Creation Section */}
       <section className="py-16 md:py-24 px-4 md:px-6 border-b border-white/10">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Campaign & AD Creation</h2>
-            <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-              AI-powered AD creation that generates complete campaigns with audience insights and creative variations
-            </p>
-            <p className={`text-lg font-semibold mt-4 ${isDarkMode ? 'text-viral-cyan' : 'text-viral-purple'}`}>
-              Social media outperforms every traditional advertising platform.
-            </p>
+        <div className="relative max-w-7xl mx-auto py-12 md:py-20 rounded-3xl overflow-visible" style={{background: isDarkMode ? 'linear-gradient(135deg, #0B0F19 60%, #18102a 100%)' : 'linear-gradient(135deg, #f8fafc 60%, #e0e7ef 100%)'}}>
+          {/* Soft gradient glows and floating cards */}
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-viral-cyan/20 rounded-full blur-[120px] pointer-events-none z-0 animate-pulse"></div>
+          <div className="absolute -bottom-32 right-0 w-[400px] h-[300px] bg-viral-purple/20 rounded-full blur-[100px] pointer-events-none z-0 animate-pulse"></div>
+          {/* Abstract AI lines and arrows */}
+          <svg className="absolute left-1/4 top-1/3 w-2/3 h-1/2 pointer-events-none z-0" viewBox="0 0 600 200" fill="none">
+            <defs>
+              <linearGradient id="aiLineGrad" x1="0" y1="0" x2="600" y2="200" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#23bddf" />
+                <stop offset="1" stopColor="#cf29f5" />
+              </linearGradient>
+            </defs>
+            <path d="M40 180 Q300 20 560 180" stroke="url(#aiLineGrad)" strokeWidth="4" opacity="0.18" />
+            <path d="M120 120 Q300 80 480 120" stroke="url(#aiLineGrad)" strokeWidth="2" opacity="0.10" />
+            <g opacity="0.18">
+              <polygon points="550,180 560,180 555,170" fill="#23bddf" />
+              <polygon points="470,120 480,120 475,110" fill="#cf29f5" />
+            </g>
+          </svg>
+          {/* Section header */}
+          <div className="mb-12 relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-lg">Campaign & AD Creation</h2>
+            <p className="text-lg text-viral-cyan mb-2">AI-powered AD creation that generates complete campaigns with audience insights and creative variations</p>
+            <p className="text-lg font-semibold mt-2 text-viral-purple">Social media outperforms every traditional advertising platform.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Feature mini-cards with workflow lines */}
+          <div className="relative flex flex-col md:flex-row items-center justify-center gap-8 z-10">
+            {/* Connecting curved line */}
+            <svg className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 pointer-events-none z-0 animate-pulse" viewBox="0 0 600 80" fill="none">
+              <defs>
+                <linearGradient id="workflowGrad" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#23bddf" />
+                  <stop offset="1" stopColor="#cf29f5" />
+                </linearGradient>
+              </defs>
+              <path d="M100 40 Q300 0 500 40" stroke="url(#workflowGrad)" strokeWidth="6" opacity="0.5">
+                <animate attributeName="stroke-dashoffset" values="0;40;0" dur="2s" repeatCount="indefinite" />
+              </path>
+            </svg>
             {creationFeatures.map((feature, idx) => (
-              <div 
+              <div
                 key={idx}
-                className={`p-6 rounded-2xl border transition-all hover:border-viral-cyan ${
-                  isDarkMode 
-                    ? 'bg-slate-800/30 border-white/10 hover:bg-slate-800/50' 
-                    : 'bg-white border-slate-200 hover:bg-slate-50'
-                }`}
+                className={
+                  `relative flex flex-col items-center text-center p-6 rounded-2xl border-2 border-transparent bg-gradient-to-br from-[#10182a] to-[#1a1d2b] shadow-xl transition-all duration-300 cursor-pointer group ` +
+                  `hover:-translate-y-2 hover:scale-105 hover:border-viral-cyan/60 hover:shadow-viral-cyan/40 animate-fade-in` +
+                  (idx === 0 ? ' animate-delay-0' : idx === 1 ? ' animate-delay-1' : ' animate-delay-2')
+                }
+                style={{ boxShadow: '0 4px 32px 0 #23bddf22, 0 1.5px 8px 0 #cf29f522' }}
               >
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white mb-4">
+                {/* Glowing gradient border and background particles */}
+                <div className="absolute -z-10 -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-viral-cyan/30 to-viral-purple/20 rounded-full blur-2xl animate-pulse"></div>
+                {/* Icon with glow and micro-movement */}
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white mb-4 shadow-lg group-hover:animate-glow group-hover:scale-110 transition-transform duration-300" style={{textShadow:'0 0 16px #23bddf, 0 0 32px #cf29f5'}}>
                   {feature.icon}
                 </div>
-                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                  {feature.description}
-                </p>
+                <h3 className="text-lg font-bold mb-2 text-white drop-shadow-md">{feature.title}</h3>
+                <p className="text-slate-300 mb-2">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -307,25 +391,64 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
         <div className="max-w-7xl mx-auto">
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Campaign Optimization</h2>
-            <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-              Continuous AI-powered optimization that improves your campaigns every single day
-            </p>
+            <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Continuous AI-powered optimization that improves your campaigns every single day</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-6 relative">
+            {/* Minimal separator line between rows */}
+            <div className="hidden md:block absolute left-0 right-0 top-1/2 h-0.5 bg-gradient-to-r from-transparent via-white/10 to-transparent z-0" style={{pointerEvents:'none'}}></div>
             {optimizationFeatures.map((feature, idx) => (
-              <div 
+              <div
                 key={idx}
-                className={`p-6 rounded-2xl border transition-all hover:border-viral-purple ${
-                  isDarkMode 
-                    ? 'bg-slate-800/30 border-white/10 hover:bg-slate-800/50' 
-                    : 'bg-white border-slate-200 hover:bg-slate-50'
-                }`}
+                className={`relative group p-6 rounded-2xl border border-white/10 transition-all duration-300 bg-slate-800/40 overflow-hidden
+                  hover:-translate-y-1 hover:scale-[1.03] hover:shadow-2xl hover:shadow-black/30
+                  focus-within:shadow-2xl focus-within:shadow-black/30
+                  fade-in-up
+                `}
+                style={{ zIndex: 1, boxShadow: '0 2px 8px 0 #0004' }}
+                ref={el => {
+                  if (el) {
+                    if (!el._fadeInObserver) {
+                      el._fadeInObserver = new window.IntersectionObserver(([entry]) => {
+                        if (entry.isIntersecting) {
+                          el.classList.add('visible');
+                          el._fadeInObserver.disconnect();
+                        }
+                      }, { threshold: 0.3 });
+                      el._fadeInObserver.observe(el);
+                    }
+                  }
+                }}
               >
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white mb-4">
+                {/* Icon with micro-animation and scroll fade-in */}
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4 transition-transform duration-300
+                  ${
+                    idx === 0 ? 'animate-graph group-hover:scale-110 fade-in-up' :
+                    idx === 1 ? 'animate-bounce-budget group-hover:scale-110 fade-in-up' :
+                    idx === 2 ? 'animate-attribution group-hover:scale-110 fade-in-up' :
+                    idx === 3 ? 'animate-automation group-hover:scale-110 fade-in-up' :
+                    'group-hover:scale-110 fade-in-up'
+                  }
+                  bg-gradient-to-br from-viral-purple to-viral-cyan
+                `}
+                  style={{ transitionDelay: `${idx * 80 + 100}ms` }}
+                  ref={iconEl => {
+                    if (iconEl) {
+                      if (!iconEl._fadeInObserver) {
+                        iconEl._fadeInObserver = new window.IntersectionObserver(([entry]) => {
+                          if (entry.isIntersecting) {
+                            iconEl.classList.add('visible');
+                            iconEl._fadeInObserver.disconnect();
+                          }
+                        }, { threshold: 0.3 });
+                        iconEl._fadeInObserver.observe(iconEl);
+                      }
+                    }
+                  }}
+                >
                   {feature.icon}
                 </div>
-                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
+                <h3 className="text-lg font-bold mb-2 transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-105">{feature.title}</h3>
+                <p className={`transition-all duration-300 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'} group-hover:translate-x-1 group-hover:scale-105`}>
                   {feature.description}
                 </p>
               </div>
@@ -333,6 +456,36 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
           </div>
         </div>
       </section>
+      {/* Animations for icons and cards */}
+      <style jsx>{`
+        @keyframes graphLine {
+          0% { transform: translateY(0); }
+          30% { transform: translateY(-3px); }
+          60% { transform: translateY(2px); }
+          100% { transform: translateY(0); }
+        }
+        .animate-graph { animation: graphLine 2.2s cubic-bezier(.7,.2,.3,1) infinite; }
+        @keyframes bounceBudget {
+          0%, 100% { transform: translateY(0); }
+          40% { transform: translateY(-6px); }
+          60% { transform: translateY(2px); }
+        }
+        .animate-bounce-budget { animation: bounceBudget 1.8s cubic-bezier(.7,.2,.3,1) infinite; }
+        @keyframes attributionConnect {
+          0%, 100% { filter: brightness(1); }
+          50% { filter: brightness(1.3); }
+        }
+        .animate-attribution { animation: attributionConnect 2.5s ease-in-out infinite; }
+        @keyframes automationPulse {
+          0%, 100% { transform: rotate(0deg) scale(1); }
+          40% { transform: rotate(-6deg) scale(1.08); }
+          60% { transform: rotate(6deg) scale(1.08); }
+        }
+        .animate-automation { animation: automationPulse 2.1s cubic-bezier(.7,.2,.3,1) infinite; }
+        /* Scroll-based fade-in up */
+        .fade-in-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(.7,.2,.3,1), transform 0.7s cubic-bezier(.7,.2,.3,1); }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+      `}</style>
 
       {/* Benefits Section */}
       <section className="py-16 md:py-24 px-4 md:px-6 border-b border-white/10">
@@ -341,6 +494,9 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose AD Automation</h2>
             <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
               Get the results of a dedicated ADs manager and data analyst combined in one system
+            </p>
+            <p className={`text-lg font-semibold mt-4 ${isDarkMode ? 'text-viral-cyan' : 'text-viral-purple'}`}>
+              Social media outperforms every traditional advertising platform.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -365,7 +521,7 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
       <section className={`py-20 px-4 md:px-6 ${isDarkMode ? 'bg-gradient-to-r from-viral-cyan/10 to-viral-purple/10' : 'bg-gradient-to-r from-viral-cyan/5 to-viral-purple/5'}`}>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Scale Your Ad Campaigns 5x Faster
+            Scale Your AD Campaigns 5x Faster
           </h2>
           <p className={`text-lg mb-8 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
             Let AI handle campaign creation, A/B testing, and optimization while you focus on strategy.
@@ -375,7 +531,7 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
               onClick={onLaunch}
               className="px-8 py-4 rounded-full text-lg font-bold bg-gradient-to-r from-viral-cyan to-viral-purple text-white hover:opacity-90 transition-all"
             >
-              Start Your Free Trial
+              Get Activated
             </button>
             <button 
               onClick={onBack}
@@ -397,4 +553,4 @@ const AdAutomationPage: React.FC<AdAutomationPageProps> = ({
   );
 };
 
-export default AdAutomationPage;
+export default ADAutomationPage;

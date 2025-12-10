@@ -38,7 +38,7 @@ const App: React.FC = () => {
     return <PricingPage onBack={() => setCurrentPage('landing')} onSelectPlan={(plan) => {
       console.log('Selected plan:', plan);
       setCurrentPage('signup');
-    }} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
+    }} onAIManagerClick={() => setCurrentPage('ai-manager')} onAdAutomationClick={() => setCurrentPage('ad-automation')} onAITutorClick={() => setCurrentPage('ai-tutor')} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />;
   }
 
   if (currentPage === 'ai-manager') {

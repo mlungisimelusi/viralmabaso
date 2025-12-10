@@ -1,4 +1,37 @@
-import React, { useState } from 'react';
+  // AI Tutor Features (aligned with VIRALITICS.pdf and AITutorPage)
+  const tutorFeatures = [
+    {
+      icon: <i className="fas fa-brain text-2xl"></i>,
+      title: "Personalized Learning Paths",
+      description: "Customized training based on your goals. AI adapts to your skill level and learning style."
+    },
+    {
+      icon: <i className="fas fa-book-open text-2xl"></i>,
+      title: "Comprehensive Courses",
+      description: "Master content strategy, video creation, analytics, influencer partnerships, and ad campaigns."
+    },
+    {
+      icon: <i className="fas fa-chalkboard-teacher text-2xl"></i>,
+      title: "Live Mentorship",
+      description: "Connect with industry experts and creators. Get personalized feedback and guidance."
+    },
+    {
+      icon: <i className="fas fa-chart-bar text-2xl"></i>,
+      title: "Performance Analytics",
+      description: "Track your progress with detailed analytics. Get AI-powered suggestions for improvement."
+    },
+    {
+      icon: <i className="fas fa-award text-2xl"></i>,
+      title: "Certifications & Badges",
+      description: "Earn recognized certifications to showcase your expertise and build credibility."
+    },
+    {
+      icon: <i className="fas fa-project-diagram text-2xl"></i>,
+      title: "Hands-On Projects",
+      description: "Apply what you learn with real-world projects. Build your portfolio while mastering social media."
+    }
+  ];
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, CheckCircle2, Menu, X, Sun, Moon } from 'lucide-react';
 import Footer from './Footer';
 
@@ -15,8 +48,12 @@ const AISocialMediaManagerPage: React.FC<AISocialMediaManagerPageProps> = ({
   isDarkMode, 
   setIsDarkMode 
 }) => {
-  const [activeTab, setActiveTab] = useState<'content' | 'engagement' | 'benefits'>('content');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const contentFeatures = [
     {
@@ -253,261 +290,373 @@ const AISocialMediaManagerPage: React.FC<AISocialMediaManagerPageProps> = ({
             onClick={onLaunch}
             className="px-8 py-4 rounded-full text-lg font-bold bg-gradient-to-r from-viral-cyan to-viral-purple text-white hover:opacity-90 transition-all shadow-lg shadow-viral-purple/30"
           >
-            Start Free Trial
+            Get Activated
           </button>
         </div>
       </section>
 
       {/* Two Pillars Overview */}
+      <section className="relative py-20 md:py-28 px-4 md:px-6 border-b border-white/10 overflow-visible bg-[#0a0c1b]">
+        {/* Holographic grid and ambient gradient background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <svg className="absolute inset-0 w-full h-full animate-holo-grid" viewBox="0 0 1440 600" fill="none">
+            <defs>
+              <linearGradient id="gridLine2" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                <stop stopColor="#23BDEE" stopOpacity="0.10" />
+                <stop offset="1" stopColor="#7F57FF" stopOpacity="0.07" />
+              </linearGradient>
+            </defs>
+            {[...Array(16)].map((_,i)=>(
+              <line key={i} x1={i*90} y1="0" x2={i*90} y2="600" stroke="url(#gridLine2)" strokeWidth="1" />
+            ))}
+            {[...Array(8)].map((_,i)=>(
+              <line key={i} x1="0" y1={i*75} x2="1440" y2={i*75} stroke="url(#gridLine2)" strokeWidth="1" />
+            ))}
+          </svg>
+          {/* Ambient gradient blobs */}
+          <div className="absolute left-[-8%] top-[-8%] w-[420px] h-[420px] bg-gradient-to-br from-[#23BDEE55] via-[#7F57FF33] to-[#D350FF11] rounded-full blur-3xl opacity-60 animate-float-blob" />
+          <div className="absolute right-[-8%] bottom-[-8%] w-[320px] h-[320px] bg-gradient-to-tr from-[#D350FF55] via-[#23BDEE33] to-[#7F57FF11] rounded-full blur-2xl opacity-50 animate-float-blob2" />
+        </div>
+        <style jsx>{`
+          @keyframes holoGrid {
+            0% { opacity: 0.85; transform: scale(1) translateY(0px); }
+            50% { opacity: 1; transform: scale(1.01) translateY(-8px); }
+            100% { opacity: 0.85; transform: scale(1) translateY(0px); }
+          }
+          .animate-holo-grid { animation: holoGrid 7s ease-in-out infinite; }
+          @keyframes floatBlob {
+            0%,100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-18px) scale(1.04); }
+          }
+          .animate-float-blob { animation: floatBlob 8s ease-in-out infinite; }
+          @keyframes floatBlob2 {
+            0%,100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(12px) scale(1.03); }
+          }
+          .animate-float-blob2 { animation: floatBlob2 9s ease-in-out infinite; }
+        `}</style>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-stretch justify-center gap-12 md:gap-16 py-6">
+            {/* AI Content Engine Card */}
+            <div className="relative flex-1 min-w-[320px] max-w-xl bg-white/5 backdrop-blur-md rounded-3xl border-2 border-cyan-400/30 shadow-2xl group transition-all duration-300 overflow-hidden hover:shadow-cyan-400/30 hover:-translate-y-2 hover:border-cyan-400/60" style={{boxShadow:'0 8px 48px 0 #23BDEE22, 0 2px 16px 0 #7F57FF22'}}>
+              {/* Glowing lines/data streams */}
+              <svg className="absolute left-0 top-0 w-full h-full z-0 pointer-events-none" viewBox="0 0 400 400" fill="none">
+                <defs>
+                  <linearGradient id="stream1" x1="0" y1="0" x2="0" y2="1">
+                    <stop stopColor="#23BDEE" stopOpacity="0.18" />
+                    <stop offset="1" stopColor="#7F57FF" stopOpacity="0.08" />
+                  </linearGradient>
+                </defs>
+                <path d="M60 40 Q120 120 200 60 Q280 0 340 80" stroke="url(#stream1)" strokeWidth="2.5" opacity="0.18" />
+                <path d="M80 120 Q180 200 320 120" stroke="url(#stream1)" strokeWidth="2" opacity="0.13" />
+                <path d="M100 200 Q200 320 300 200" stroke="url(#stream1)" strokeWidth="1.5" opacity="0.10" />
+              </svg>
+              <div className="relative z-10 flex flex-col items-center text-center px-10 py-12">
+                {/* Icon orb and animated beams will be added next */}
+                <div className="mb-7" />
+                <h2 className="text-3xl font-bold mb-5 text-white drop-shadow-lg">AI Content Engine</h2>
+                <ul className="space-y-4 w-full max-w-xs mx-auto">
+                  <li className="flex items-center gap-3 group/item">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 via-blue-400 to-purple-400 shadow-md">
+                      <CheckCircle2 className="w-5 h-5 text-white" />
+                    </span>
+                    <span className="text-base text-slate-200 group-hover/item:text-cyan-100 transition-all">Scripts, videos & thumbnails</span>
+                  </li>
+                  <li className="flex items-center gap-3 group/item">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 via-blue-400 to-purple-400 shadow-md">
+                      <CheckCircle2 className="w-5 h-5 text-white" />
+                    </span>
+                    <span className="text-base text-slate-200 group-hover/item:text-cyan-100 transition-all">Multi-platform optimization</span>
+                  </li>
+                  <li className="flex items-center gap-3 group/item">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 via-blue-400 to-purple-400 shadow-md">
+                      <CheckCircle2 className="w-5 h-5 text-white" />
+                    </span>
+                    <span className="text-base text-slate-200 group-hover/item:text-cyan-100 transition-all">Creative scoring & rating</span>
+                  </li>
+                </ul>
+              </div>
+              {/* Glassmorphism overlay */}
+              <div className="absolute inset-0 rounded-3xl bg-white/10 backdrop-blur-[2.5px] z-0" />
+            </div>
+            {/* AI Engagement Manager Card */}
+            <div className="relative flex-1 min-w-[320px] max-w-xl bg-white/5 backdrop-blur-md rounded-3xl border-2 border-purple-400/30 shadow-2xl group transition-all duration-300 overflow-hidden hover:shadow-purple-400/30 hover:-translate-y-2 hover:border-purple-400/60" style={{boxShadow:'0 8px 48px 0 #7F57FF22, 0 2px 16px 0 #D350FF22'}}>
+              {/* Faint network node connections */}
+              <svg className="absolute left-0 top-0 w-full h-full z-0 pointer-events-none" viewBox="0 0 400 400" fill="none">
+                <circle cx="80" cy="80" r="4" fill="#7F57FF" fillOpacity="0.13" />
+                <circle cx="320" cy="120" r="5" fill="#D350FF" fillOpacity="0.10" />
+                <circle cx="200" cy="300" r="3" fill="#23BDEE" fillOpacity="0.10" />
+                <path d="M80 80 Q200 40 320 120" stroke="#7F57FF" strokeWidth="2" opacity="0.10" />
+                <path d="M80 80 Q140 200 200 300 Q260 200 320 120" stroke="#D350FF" strokeWidth="2" opacity="0.10" />
+              </svg>
+              <div className="relative z-10 flex flex-col items-center text-center px-10 py-12">
+                {/* Icon orb and animated bubbles will be added next */}
+                <div className="mb-7" />
+                <h2 className="text-3xl font-bold mb-5 text-white drop-shadow-lg">AI Engagement Manager</h2>
+                <ul className="space-y-4 w-full max-w-xs mx-auto">
+                  <li className="flex items-center gap-3 group/item">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 via-fuchsia-500 to-cyan-400 shadow-md">
+                      <CheckCircle2 className="w-5 h-5 text-white" />
+                    </span>
+                    <span className="text-base text-slate-200 group-hover/item:text-purple-100 transition-all">Comment & DM automation</span>
+                  </li>
+                  <li className="flex items-center gap-3 group/item">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 via-fuchsia-500 to-cyan-400 shadow-md">
+                      <CheckCircle2 className="w-5 h-5 text-white" />
+                    </span>
+                    <span className="text-base text-slate-200 group-hover/item:text-purple-100 transition-all">Sentiment & spam filtering</span>
+                  </li>
+                  <li className="flex items-center gap-3 group/item">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-purple-400 via-fuchsia-500 to-cyan-400 shadow-md">
+                      <CheckCircle2 className="w-5 h-5 text-white" />
+                    </span>
+                    <span className="text-base text-slate-200 group-hover/item:text-purple-100 transition-all">Real-time event system</span>
+                  </li>
+                </ul>
+              </div>
+              {/* Glassmorphism overlay */}
+              <div className="absolute inset-0 rounded-3xl bg-white/10 backdrop-blur-[2.5px] z-0" />
+            </div>
+          </div>
+        </div>
+        {/* Animation styles for micro-animations */}
+        <style jsx>{`
+          @keyframes brainPulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.08);} }
+          .animate-brain-pulse { animation: brainPulse 2.2s cubic-bezier(.7,.2,.3,1) infinite; }
+          @keyframes engageConnect { 0%,100%{filter:brightness(1);} 50%{filter:brightness(1.3);} }
+          .animate-engage-connect { animation: engageConnect 2.5s cubic-bezier(.7,.2,.3,1) infinite; }
+        `}</style>
+      </section>
+      {/* Content Engine Features Section - Premium Futuristic Design */}
+      <section className="relative py-20 md:py-28 px-4 md:px-6 border-b border-white/10 overflow-hidden bg-[#0a0c1b]">
+              {/* Animated holographic grid background */}
+              <div className="absolute inset-0 z-0 pointer-events-none">
+                {/* Animated grid */}
+                <svg className="absolute inset-0 w-full h-full animate-holo-grid" viewBox="0 0 1440 600" fill="none">
+                  <defs>
+                    <linearGradient id="gridLine" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                      <stop stopColor="#23BDEE" stopOpacity="0.13" />
+                      <stop offset="1" stopColor="#7F57FF" stopOpacity="0.09" />
+                    </linearGradient>
+                  </defs>
+                  {[...Array(16)].map((_,i)=>(
+                    <line key={i} x1={i*90} y1="0" x2={i*90} y2="600" stroke="url(#gridLine)" strokeWidth="1" />
+                  ))}
+                  {[...Array(8)].map((_,i)=>(
+                    <line key={i} x1="0" y1={i*75} x2="1440" y2={i*75} stroke="url(#gridLine)" strokeWidth="1" />
+                  ))}
+                </svg>
+                {/* Gradient blobs and holographic flares */}
+                <div className="absolute left-[-10%] top-[-10%] w-[400px] h-[400px] bg-gradient-to-br from-[#23BDEE99] via-[#7F57FF55] to-[#D350FF33] rounded-full blur-3xl opacity-60 animate-float-blob" />
+                <div className="absolute right-[-8%] bottom-[-8%] w-[320px] h-[320px] bg-gradient-to-tr from-[#D350FF88] via-[#23BDEE44] to-[#7F57FF22] rounded-full blur-2xl opacity-50 animate-float-blob2" />
+              </div>
+              <div className="relative max-w-7xl mx-auto z-10">
+                {/* Headline with glowing beam */}
+                <div className="relative flex flex-col items-center mb-14">
+                  <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-72 h-6 bg-gradient-to-r from-[#23BDEE55] via-[#7F57FF99] to-[#D350FF55] blur-lg rounded-full opacity-80 animate-glow-beam" />
+                  <h2 className="relative text-3xl md:text-4xl font-bold text-center tracking-tight text-white drop-shadow-lg z-10 px-6 py-2">AI Content Engine Features</h2>
+                </div>
+                {/* Subtle AI network lines/dots between cards */}
+                <svg className="absolute left-1/2 top-[44%] -translate-x-1/2 z-0 w-[700px] h-[320px] pointer-events-none opacity-30" viewBox="0 0 700 320" fill="none">
+                  <circle cx="120" cy="80" r="4" fill="#23BDEE" fillOpacity="0.18" />
+                  <circle cx="350" cy="60" r="5" fill="#7F57FF" fillOpacity="0.13" />
+                  <circle cx="580" cy="110" r="4" fill="#D350FF" fillOpacity="0.15" />
+                  <circle cx="220" cy="220" r="3" fill="#23BDEE" fillOpacity="0.13" />
+                  <circle cx="480" cy="250" r="3" fill="#D350FF" fillOpacity="0.13" />
+                  <circle cx="180" cy="150" r="2.5" fill="#23BDEE" fillOpacity="0.10" />
+                  <circle cx="400" cy="180" r="2.5" fill="#7F57FF" fillOpacity="0.10" />
+                  <circle cx="600" cy="200" r="2.5" fill="#D350FF" fillOpacity="0.10" />
+                  <path d="M120 80 Q350 20 580 110" stroke="#23BDEE" strokeWidth="2" opacity="0.10" />
+                  <path d="M120 80 Q220 180 350 60 Q480 140 580 110" stroke="#7F57FF" strokeWidth="2" opacity="0.10" />
+                  <path d="M220 220 Q350 300 480 250" stroke="#D350FF" strokeWidth="2" opacity="0.10" />
+                  <path d="M180 150 Q350 100 400 180 Q600 120 600 200" stroke="#23BDEE" strokeWidth="1.5" opacity="0.08" strokeDasharray="6 8" />
+                </svg>
+                {/* Extra gradient flares for depth */}
+                <div className="absolute left-[10%] top-[60%] w-32 h-32 bg-gradient-to-br from-[#23BDEE55] via-[#7F57FF33] to-[#D350FF11] rounded-full blur-2xl opacity-40 animate-float-blob" />
+                <div className="absolute right-[12%] top-[20%] w-24 h-24 bg-gradient-to-tr from-[#D350FF55] via-[#23BDEE33] to-[#7F57FF11] rounded-full blur-2xl opacity-35 animate-float-blob2" />
+                {/* Features grid will be added below */}
+              </div>
+              {/* Holographic grid and blob animations */}
+              <style jsx>{`
+                @keyframes holoGrid {
+                  0% { opacity: 0.85; transform: scale(1) translateY(0px); }
+                  50% { opacity: 1; transform: scale(1.01) translateY(-8px); }
+                  100% { opacity: 0.85; transform: scale(1) translateY(0px); }
+                }
+                .animate-holo-grid { animation: holoGrid 7s ease-in-out infinite; }
+                @keyframes floatBlob {
+                  0%,100% { transform: translateY(0) scale(1); }
+                  50% { transform: translateY(-18px) scale(1.04); }
+                }
+                .animate-float-blob { animation: floatBlob 8s ease-in-out infinite; }
+                @keyframes floatBlob2 {
+                  0%,100% { transform: translateY(0) scale(1); }
+                  50% { transform: translateY(12px) scale(1.03); }
+                }
+                .animate-float-blob2 { animation: floatBlob2 9s ease-in-out infinite; }
+                @keyframes glowBeam {
+                  0%,100% { opacity: 0.7; filter: blur(16px); }
+                  50% { opacity: 1; filter: blur(24px); }
+                }
+                .animate-glow-beam { animation: glowBeam 2.8s cubic-bezier(.7,.2,.3,1) infinite; }
+              `}</style>
+            </section>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {contentFeatures.map((feature, idx) => (
+              <div
+                key={idx}
+                className={`relative group flex flex-col items-center text-center p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-transparent shadow-xl transition-all duration-300 min-h-[260px] fade-in-up-card`}
+                style={{
+                  boxShadow: '0 6px 32px 0 #23BDEE22, 0 1.5px 8px 0 #7F57FF22',
+                  animationDelay: `${0.12 + idx * 0.13}s`,
+                }}
+                onMouseMove={e => {
+                  const card = e.currentTarget;
+                  const rect = card.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  card.style.setProperty('--x', `${x}px`);
+                  card.style.setProperty('--y', `${y}px`);
+                }}
+                onMouseLeave={e => {
+                  const card = e.currentTarget;
+                  card.style.setProperty('--x', `50%`);
+                  card.style.setProperty('--y', `50%`);
+                }}
+              >
+                {/* Neon animated border */}
+                <div className="absolute inset-0 rounded-2xl pointer-events-none z-0 border-2 border-transparent group-hover:border-gradient group-hover:from-[#23BDEE] group-hover:via-[#7F57FF] group-hover:to-[#D350FF] group-hover:animate-border-glow" style={{borderImage: 'linear-gradient(90deg,#23BDEE,#7F57FF,#D350FF) 1'}} />
+                {/* Icon and card content */}
+                <div className="relative z-10 w-14 h-14 mb-5 rounded-xl flex items-center justify-center bg-gradient-to-br from-[#23BDEE] via-[#7F57FF] to-[#D350FF] shadow-lg animate-float-icon group-hover:animate-icon-glow">
+                  {feature.icon}
+                  <span className="absolute inset-0 rounded-xl pointer-events-none opacity-0 group-hover:opacity-80 transition-opacity duration-300">
+                    <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#23BDEE88] via-[#7F57FF88] to-[#D350FF88] blur-xl" />
+                  </span>
+                </div>
+                <h3 className="relative z-10 text-xl font-semibold mb-2 text-white drop-shadow-md">{feature.title}</h3>
+                <p className="relative z-10 text-base text-slate-300 leading-relaxed">{feature.description}</p>
+                {/* Glassmorphism overlay */}
+                <div className="absolute inset-0 rounded-2xl bg-white/10 backdrop-blur-[2.5px] z-0" />
+              </div>
+            ))}
+          </div>
+          {/* Card slide-in, 3D tilt, and border light animation */}
+          <style jsx>{`
+            .fade-in-up-card {
+              opacity: 0;
+              transform: translateY(32px) scale(0.98) perspective(800px) rotateX(8deg);
+              animation: fadeInUpCard 0.85s cubic-bezier(.7,.2,.3,1) forwards;
+            }
+            @keyframes fadeInUpCard {
+              0% { opacity: 0; transform: translateY(32px) scale(0.98) perspective(800px) rotateX(8deg); }
+              80% { opacity: 1; transform: translateY(-4px) scale(1.01) perspective(800px) rotateX(0deg); }
+              100% { opacity: 1; transform: translateY(0) scale(1) perspective(800px) rotateX(0deg); }
+            }
+            .group:hover {
+              transform: translateY(-8px) scale(1.025) perspective(800px) rotateX(2deg) rotateY(calc((var(--x,50px)-56px)/32deg)) rotateX(calc((var(--y,50px)-56px)/32deg));
+              box-shadow: 0 12px 48px 0 #23BDEE44, 0 2px 16px 0 #D350FF44;
+              border-image: linear-gradient(90deg,#23BDEE,#7F57FF,#D350FF) 1;
+            }
+            .group:active {
+              transform: scale(0.98);
+            }
+            @keyframes floatIcon {
+              0%,100% { transform: translateY(0) scale(1); }
+              50% { transform: translateY(-8px) scale(1.06); }
+            }
+            .animate-float-icon { animation: floatIcon 3.2s ease-in-out infinite; }
+            @keyframes iconGlow {
+              0%,100% { filter: drop-shadow(0 0 0 #23BDEE88) drop-shadow(0 0 0 #D350FF88); }
+              50% { filter: drop-shadow(0 0 16px #23BDEE) drop-shadow(0 0 24px #D350FF); }
+            }
+            .group-hover\:animate-icon-glow:hover {
+              animation: iconGlow 1.2s cubic-bezier(.7,.2,.3,1) infinite;
+            }
+            .group:hover .group-hover\:border-gradient {
+              border-image: linear-gradient(90deg,#23BDEE,#7F57FF,#D350FF) 1;
+              border-width: 2px;
+            }
+            @keyframes borderGlow {
+              0%,100% { box-shadow: 0 0 0 0 #23BDEE44, 0 0 0 0 #D350FF44; }
+              50% { box-shadow: 0 0 24px 4px #23BDEE66, 0 0 32px 8px #D350FF66; }
+            }
+            .group-hover\:animate-border-glow {
+              animation: borderGlow 1.8s cubic-bezier(.7,.2,.3,1) infinite;
+            }
+          `}</style>
+          {/* Scroll-based fade-in logic for cards */}
+          <script dangerouslySetInnerHTML={{__html:`
+            document.addEventListener('DOMContentLoaded',function(){
+              document.querySelectorAll('.fade-in-up-card').forEach(function(el,i){
+                if(!el._fadeInObserver){
+                  el._fadeInObserver=new window.IntersectionObserver(function([entry]){
+                    if(entry.isIntersecting){el.style.opacity=1;el.style.transform='none';el._fadeInObserver.disconnect();}
+                  },{threshold:0.2});
+                  el._fadeInObserver.observe(el);
+                }
+              });
+            });
+          `}} />
+
+      {/* Engagement Manager Section */}
       <section className="py-16 md:py-24 px-4 md:px-6 border-b border-white/10">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Pillar 1: Content */}
-            <div className={`p-8 md:p-10 rounded-2xl border transition-all ${isDarkMode ? 'bg-slate-800/30 border-viral-cyan/30 hover:bg-slate-800/50' : 'bg-white border-viral-cyan/30 hover:bg-slate-50'}`}>
-              <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white mb-6">
-                <i className="fas fa-brain text-3xl"></i>
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">AI Engagement Manager Features</h2>
+            <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              Automate engagement tasks and manage audience interactions at scale with intelligent automation
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {engagementFeatures.map((feature, idx) => (
+              <div 
+                key={idx}
+                className={`p-6 rounded-2xl border transition-all hover:border-viral-purple ${
+                  isDarkMode 
+                    ? 'bg-slate-800/30 border-white/10 hover:bg-slate-800/50' 
+                    : 'bg-white border-slate-200 hover:bg-slate-50'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
+                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
+                  {feature.description}
+                </p>
               </div>
-              <h2 className="text-3xl font-bold mb-4">AI Content Engine</h2>
-              <p className={`mb-6 leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                Generates all content a social media manager would prepare: scripts, videos, captions, thumbnails, and multi-platform variants with intelligent creative scoring.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-cyan flex-shrink-0 mt-0.5" />
-                  <span>Scripts, videos & thumbnails</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-cyan flex-shrink-0 mt-0.5" />
-                  <span>Multi-platform optimization</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-cyan flex-shrink-0 mt-0.5" />
-                  <span>Creative scoring & rating</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Pillar 2: Engagement */}
-            <div className={`p-8 md:p-10 rounded-2xl border transition-all ${isDarkMode ? 'bg-slate-800/30 border-viral-purple/30 hover:bg-slate-800/50' : 'bg-white border-viral-purple/30 hover:bg-slate-50'}`}>
-              <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white mb-6">
-                <i className="fas fa-users text-3xl"></i>
-              </div>
-              <h2 className="text-3xl font-bold mb-4">AI Engagement Manager</h2>
-              <p className={`mb-6 leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                Handles all post-publishing tasks: automated comment replies, DM handling, sentiment detection, and real-time engagement at scale.
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-purple flex-shrink-0 mt-0.5" />
-                  <span>Comment & DM automation</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-purple flex-shrink-0 mt-0.5" />
-                  <span>Sentiment & spam filtering</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-viral-purple flex-shrink-0 mt-0.5" />
-                  <span>Real-time event system</span>
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Tab Navigation */}
-      <section className="border-b border-white/10 sticky top-20 z-40 bg-opacity-80 backdrop-blur-lg">
-        <div className={`max-w-7xl mx-auto px-4 md:px-6 flex gap-8 overflow-x-auto ${isDarkMode ? 'bg-[#0B0F19]/80' : 'bg-white/80'}`}>
-          <button 
-            onClick={() => setActiveTab('content')}
-            className={`py-4 px-2 font-semibold border-b-2 transition-colors whitespace-nowrap ${
-              activeTab === 'content'
-                ? 'border-viral-cyan text-viral-cyan'
-                : isDarkMode ? 'border-transparent text-slate-400 hover:text-white' : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Content Engine
-          </button>
-          <button 
-            onClick={() => setActiveTab('engagement')}
-            className={`py-4 px-2 font-semibold border-b-2 transition-colors whitespace-nowrap ${
-              activeTab === 'engagement'
-                ? 'border-viral-purple text-viral-purple'
-                : isDarkMode ? 'border-transparent text-slate-400 hover:text-white' : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Engagement Manager
-          </button>
-          <button 
-            onClick={() => setActiveTab('benefits')}
-            className={`py-4 px-2 font-semibold border-b-2 transition-colors whitespace-nowrap ${
-              activeTab === 'benefits'
-                ? 'border-viral-cyan text-viral-cyan'
-                : isDarkMode ? 'border-transparent text-slate-400 hover:text-white' : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Benefits
-          </button>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="py-16 md:py-24 px-4 md:px-6">
+      {/* Benefits Section */}
+      <section className="py-16 md:py-24 px-4 md:px-6 border-b border-white/10">
         <div className="max-w-7xl mx-auto">
-          {activeTab === 'content' && (
-            <div>
-              <div className="mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">AI Content Engine Features</h2>
-                <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Automatically generate, optimize, and manage all your social media content across platforms
-                </p>
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose AI Social Media Manager</h2>
+            <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              Get all the benefits of a dedicated social media team with AI efficiency and 24/7 availability
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {benefits.map((benefit, idx) => (
+              <div 
+                key={idx}
+                className={`flex items-start gap-4 p-6 rounded-xl border ${
+                  isDarkMode 
+                    ? 'bg-slate-800/30 border-white/10' 
+                    : 'bg-white border-slate-200'
+                }`}
+              >
+                <CheckCircle2 className="w-6 h-6 text-viral-cyan flex-shrink-0 mt-1" />
+                <p className="text-lg font-medium">{benefit}</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {contentFeatures.map((feature, idx) => (
-                  <div 
-                    key={idx}
-                    className={`p-6 rounded-2xl border transition-all hover:border-viral-cyan ${
-                      isDarkMode 
-                        ? 'bg-slate-800/30 border-white/10 hover:bg-slate-800/50' 
-                        : 'bg-white border-slate-200 hover:bg-slate-50'
-                    }`}
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white mb-4">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                    <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                      {feature.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'engagement' && (
-            <div>
-              <div className="mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">AI Engagement Manager Features</h2>
-                <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Automate engagement tasks and manage audience interactions at scale with intelligent automation
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {engagementFeatures.map((feature, idx) => (
-                  <div 
-                    key={idx}
-                    className={`p-6 rounded-2xl border transition-all hover:border-viral-purple ${
-                      isDarkMode 
-                        ? 'bg-slate-800/30 border-white/10 hover:bg-slate-800/50' 
-                        : 'bg-white border-slate-200 hover:bg-slate-50'
-                    }`}
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white mb-4">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                    <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                      {feature.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'benefits' && (
-            <div>
-              <div className="mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose AI Social Media Manager</h2>
-                <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Get all the benefits of a dedicated social media team with AI efficiency and 24/7 availability
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {benefits.map((benefit, idx) => (
-                  <div 
-                    key={idx}
-                    className={`flex items-start gap-4 p-6 rounded-xl border ${
-                      isDarkMode 
-                        ? 'bg-slate-800/30 border-white/10' 
-                        : 'bg-white border-slate-200'
-                    }`}
-                  >
-                    <CheckCircle2 className="w-6 h-6 text-viral-cyan flex-shrink-0 mt-1" />
-                    <p className="text-lg font-medium">{benefit}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className={`py-20 px-4 md:px-6 border-t border-white/10 ${isDarkMode ? 'bg-slate-800/20' : 'bg-slate-50'}`}>
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16">How It Works Together</h2>
-          
-          <div className="space-y-8">
-            <div className="flex gap-8">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white font-bold text-lg">
-                  1
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">AI Content Engine Creates</h3>
-                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                  Generate scripts, videos, captions, and thumbnails. The engine scores each idea for virality potential and adapts it to each platform's specifications.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-8">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white font-bold text-lg">
-                  2
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">Smart Publishing</h3>
-                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                  Content is automatically published at optimal times when your audience is most active, across all your connected platforms.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-8">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white font-bold text-lg">
-                  3
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">AI Engagement Manager Responds</h3>
-                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                  Real-time engagement kicks in instantly. Comments are replied to, sentiment is analyzed, spam is filtered, and audience relationships are nurtured 24/7.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-8">
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-viral-purple to-viral-cyan flex items-center justify-center text-white font-bold text-lg">
-                  4
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2">Analytics & Optimization</h3>
-                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                  Performance data feeds back into the system. AI learns what works and continuously improves content quality and engagement tactics.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
+
 
       {/* CTA Section */}
       <section className={`py-20 px-4 md:px-6 ${isDarkMode ? 'bg-gradient-to-r from-viral-cyan/10 to-viral-purple/10' : 'bg-gradient-to-r from-viral-cyan/5 to-viral-purple/5'}`}>
@@ -523,7 +672,7 @@ const AISocialMediaManagerPage: React.FC<AISocialMediaManagerPageProps> = ({
               onClick={onLaunch}
               className="px-8 py-4 rounded-full text-lg font-bold bg-gradient-to-r from-viral-cyan to-viral-purple text-white hover:opacity-90 transition-all"
             >
-              Start Your Free Trial
+              Get Activated
             </button>
             <button 
               onClick={onBack}

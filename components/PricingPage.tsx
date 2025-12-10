@@ -30,11 +30,14 @@ const SocialIcon = ({ platform }: { platform: string }) => {
 interface PricingPageProps {
   onBack: () => void;
   onSelectPlan: (plan: string) => void;
+  onAIManagerClick?: () => void;
+  onAdAutomationClick?: () => void;
+  onAITutorClick?: () => void;
   isDarkMode: boolean;
   setIsDarkMode: (value: boolean) => void;
 }
 
-const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkMode, setIsDarkMode }) => {
+const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, onAIManagerClick, onAdAutomationClick, onAITutorClick, isDarkMode, setIsDarkMode }) => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'annually'>('monthly');
 
   // Add CSS for wave animation
@@ -144,10 +147,10 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
           {/* Desktop Nav (Center) */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 transition-colors">
             <button onClick={onBack} className="transition-colors hover:text-slate-800">Home</button>
-            <a href="#ai-manager" className="transition-colors hover:text-slate-800">AI Manager</a>
-            <a href="#influencers" className="transition-colors hover:text-slate-800">Influencers</a>
-            <a href="#ai-tutor" className="transition-colors hover:text-slate-800">AI Tutor</a>
-            <a href="#ad-creator" className="transition-colors hover:text-slate-800">Ad Creator</a>
+            <button onClick={onAIManagerClick} className="transition-colors hover:text-slate-800">AI Manager</button>
+            <button onClick={onBack} className="transition-colors hover:text-slate-800">Influencers</button>
+            <button onClick={onAITutorClick} className="transition-colors hover:text-slate-800">AI Tutor</button>
+            <button onClick={onAdAutomationClick} className="transition-colors hover:text-slate-800">Ad Creator</button>
             <button className="transition-colors text-slate-600 font-bold">Pricing</button>
           </div>
 
@@ -325,7 +328,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onBack, onSelectPlan, isDarkM
         <div className={`max-w-2xl mx-auto mb-20 flex justify-center`}>
           <div className={`px-6 py-4 rounded-xl border flex items-center gap-3 ${isDarkMode ? 'border-slate-700/50 bg-slate-900/30' : 'border-slate-200 bg-slate-50'}`}>
             <svg className={`w-5 h-5 flex-shrink-0 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`} fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+              <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
             </svg>
             <p className={`text-xs ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
               Pricing for the influencer marketplace is independent from the platform and can be viewed upon registration.

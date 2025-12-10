@@ -166,7 +166,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             <button onClick={onAIManagerClick} className="transition-colors hover:text-slate-800">AI Manager</button>
             <a href="#influencers" className="transition-colors hover:text-slate-800">Influencers</a>
             <button onClick={onAITutorClick} className="transition-colors hover:text-slate-800">AI Tutor</button>
-            <button onClick={onAdAutomationClick} className="transition-colors hover:text-slate-800">Ad Creator</button>
+            <button onClick={onAdAutomationClick} className="transition-colors hover:text-slate-800">AD Creator</button>
             <button onClick={onPricing} className="transition-colors hover:text-slate-800">Pricing</button>
           </div>
 
@@ -208,7 +208,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             <button onClick={() => { setMobileMenuOpen(false); onAIManagerClick?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AI Manager</button>
             <a href="#influencers" onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Influencers</a>
             <button onClick={() => { setMobileMenuOpen(false); onAITutorClick?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AI Tutor</button>
-            <button onClick={() => { setMobileMenuOpen(false); onAdAutomationClick?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Ad Creator</button>
+            <button onClick={() => { setMobileMenuOpen(false); onAdAutomationClick?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>AD Creator</button>
             <button onClick={() => { setMobileMenuOpen(false); onPricing?.(); }} className={`text-lg font-medium ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>Pricing</button>
             
             <div className="flex items-center justify-between mt-2">
@@ -337,7 +337,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     </div>
                 </div>
 
-                {/* Card 2: Ad Automation */}
+                {/* Card 2: AD Automation */}
                 <div className={`scroll-animate animate-delay-200 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
                      <div className="absolute top-0 right-0 w-40 h-40 bg-viral-cyan/5 blur-[60px] rounded-full group-hover:bg-viral-cyan/10 transition-all opacity-0 group-hover:opacity-100"></div>
                      <div className="relative z-10 flex flex-col h-full">
@@ -345,9 +345,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                          <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
                             <i className="fas fa-gears text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple text-3xl sm:text-4xl md:text-5xl"></i>
                         </div>
-                        <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Ad Automation</h3>
+                        <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AD Automation</h3>
                         <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                            The Ads AI builds, launches, tests, and optimizes entire multi-platform ad campaigns without human intervention. It analyzes real-time performance and shifts budgets to the highest-performing variations automatically.
+                            The ADs AI builds, launches, tests, and optimizes entire multi-platform AD campaigns without human intervention. It analyzes real-time performance and shifts budgets to the highest-performing variations automatically.
                         </p>
                         
                         <button onClick={onAdAutomationClick} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
@@ -537,14 +537,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
          </div>
       </section>
 
-      {/* --- Ad Creator Section --- */}
+      {/* --- AD Creator Section --- */}
       <section id="ad-creator" className={`py-24 px-6 scroll-mt-20 border-t ${isDarkMode ? 'border-white/5' : 'border-slate-200'}`}>
          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Visual */}
              <div className="order-2 lg:order-1 relative">
                 <div className={`absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full`}></div>
                 <div className={`relative rounded-3xl p-1 border ${isDarkMode ? 'bg-slate-800 border-white/10' : 'bg-white border-slate-200 shadow-xl'}`}>
-                     {/* Abstract Ad Builder UI */}
+                     {/* Abstract AD Builder UI */}
                      <div className={`h-64 rounded-2xl flex items-center justify-center ${isDarkMode ? 'bg-[#0B0F19]' : 'bg-slate-50'}`}>
                         <div className="text-center p-6">
                             <Target size={48} className={`mx-auto mb-4 ${selectedVariant === 'A' ? 'text-viral-cyan' : selectedVariant === 'B' ? 'text-viral-purple' : 'text-blue-500'}`}/>
@@ -606,13 +606,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     </svg>
                 </div>
                 <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                    Automated <span className="text-blue-500">Ad Campaigns</span>
+                    Automated <span className="text-blue-500">AD Campaigns</span>
                 </h2>
                 <p className={`text-lg mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    We help you create winning ads and launch high-converting campaigns on Meta, TikTok, and YouTube in minutes. Our AI handles the ad creation, budget allocation, audience targeting, and creative testing automatically.
+                    We help you create winning ADs and launch high-converting campaigns on Meta, TikTok, and YouTube in minutes. Our AI handles the AD creation, budget allocation, audience targeting, and creative testing automatically.
                 </p>
                 <button className="text-blue-500 font-bold hover:underline flex items-center gap-2">
-                    Explore Ad Features <ArrowRight size={16}/>
+                    Explore AD Features <ArrowRight size={16}/>
                 </button>
              </div>
          </div>
@@ -1141,7 +1141,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                         </li>
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-teal-500" />
-                            <span className="text-sm text-slate-300">Ad Automation</span>
+                            <span className="text-sm text-slate-300">AD Automation</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <Check size={20} className="flex-shrink-0 text-teal-500" />
@@ -1274,7 +1274,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
           <div className={`relative max-w-3xl w-full mx-auto rounded-2xl shadow-2xl overflow-hidden transform transition-all ${isDarkMode ? 'bg-[#081017] text-white' : 'bg-white text-slate-900'}`}>
             <div className="flex items-start justify-between p-6 border-b" style={{ borderColor: isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(15,23,42,0.04)' }}>
               <div>
-                <h3 className="text-2xl font-bold">Ad Automation</h3>
+                <h3 className="text-2xl font-bold">AD Automation</h3>
                 <p className={`mt-1 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Automate campaign creation, testing and optimization.</p>
               </div>
               <div className="ml-4">
@@ -1291,7 +1291,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
 
             <div className="p-6 space-y-4">
               <p className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                Launch high-performing ad campaigns with minimal setup. Our AI handles creative testing, targeting, and budget optimization.
+                Launch high-performing AD campaigns with minimal setup. Our AI handles creative testing, targeting, and budget optimization.
               </p>
 
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none p-0 m-0">
