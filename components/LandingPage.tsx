@@ -193,22 +193,22 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             </button>
           </div>
 
-          {/* Mobile Theme Toggle (in navbar) */}
-          <button 
-            className={`md:hidden ml-2 p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white hover:bg-slate-800' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200'}`}
-            onClick={toggleTheme}
-            title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-          >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-
-          {/* Mobile Menu Button */}
-          <button 
-            className={`md:hidden ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`} 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </button>
+          {/* Mobile Menu Button + Theme Toggle (side by side) */}
+          <div className="md:hidden flex items-center gap-2 ml-2">
+            <button 
+              className={`p-2 rounded-full transition-colors ${isDarkMode ? 'text-slate-300 hover:text-white hover:bg-slate-800' : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200'}`}
+              onClick={toggleTheme}
+              title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button 
+              className={`${isDarkMode ? 'text-slate-300' : 'text-slate-700'} p-2 rounded-full`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Nav Dropdown */}
