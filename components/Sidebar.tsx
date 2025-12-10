@@ -39,11 +39,12 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate, isDarkMode }
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="fixed top-4 left-4 z-40 p-2 rounded-lg md:hidden transition-colors"
+        className="fixed top-4 right-4 z-40 p-2 rounded-lg md:hidden transition-colors"
         style={{
           background: isDarkMode ? '#1e293b' : '#f1f5f9',
           color: isDarkMode ? '#fff' : '#000'
         }}
+        aria-label="Close menu"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           {isMobileMenuOpen ? (
@@ -56,12 +57,12 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate, isDarkMode }
 
       {/* Sidebar - Hidden on mobile, visible on md+ */}
       <aside className={`fixed left-0 top-0 h-full w-64 border-r flex flex-col z-20 transition-all duration-300 transform ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:w-64 md:relative ${isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'} ${isMobileMenuOpen ? 'shadow-2xl' : ''}`}>
-        <div className="p-6 flex items-center justify-center h-24 border-b" style={{ borderColor: isDarkMode ? '#1e293b' : '#e2e8f0' }}>
-          {/* Logo Image - Match navbar style */}
-          <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[80px] w-auto object-contain" />
+        <div className="p-6 flex flex-col items-center justify-center h-24 border-b" style={{ borderColor: isDarkMode ? '#1e293b' : '#e2e8f0' }}>
+          {/* Logo Image - Centered */}
+          <img src="/assets/viralitics-logo.png" alt="Viralitics" className="h-[60px] w-auto object-contain mb-2" />
         </div>
 
-        <nav className="flex-1 px-4 py-4 space-y-2 overflow-y-auto flex flex-col items-center justify-center md:items-stretch md:justify-start">
+        <nav className="flex-1 px-4 py-6 space-y-4 overflow-y-auto flex flex-col items-center justify-center md:items-stretch md:justify-start">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentView === item.id;
@@ -72,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, onNavigate, isDarkMode }
                   onNavigate(item.id);
                   setIsMobileMenuOpen(false);
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group text-sm justify-center md:justify-start ${
+                className={`w-full flex flex-col items-center gap-2 px-4 py-3 rounded-xl transition-all duration-200 group text-base justify-center md:flex-row md:items-center md:gap-3 md:justify-start ${
                   isActive 
                     ? isDarkMode 
                       ? 'bg-slate-800 text-white shadow-lg shadow-purple-900/20 border border-slate-700/50'
