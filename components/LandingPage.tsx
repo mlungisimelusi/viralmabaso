@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import './LandingPage.animations.css';
 import CallToAction from './CallToAction';
 import ChatBot from './ChatBot';
 import Footer from './Footer';
@@ -60,6 +61,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
   const [showTutorModal, setShowTutorModal] = useState(false);
   const closeTutorButtonRef = useRef<HTMLButtonElement | null>(null);
   const [typedHeadlineLength, setTypedHeadlineLength] = useState(0);
+  const coachCardsRef = useRef<HTMLDivElement>(null);
+  const [coachCardsVisible, setCoachCardsVisible] = useState(false);
   
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -94,21 +97,26 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
               // Reset after animation completes (3 seconds)
               setTimeout(() => setSpinChat(false), 3000);
             }
+            // Trigger coach cards animation
+            if (entry.target.id === 'coach-cards') {
+              setCoachCardsVisible(true);
+            }
           }
         });
       },
       { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
     );
-    
     const elements = document.querySelectorAll('.scroll-animate');
     elements.forEach((el) => observerRef.current?.observe(el));
-    
     // Also observe the AI Tutor section
     const aiTutorSection = document.getElementById('ai-tutor');
     if (aiTutorSection && observerRef.current) {
       observerRef.current.observe(aiTutorSection);
     }
-    
+    // Observe coach cards
+    if (coachCardsRef.current && observerRef.current) {
+      observerRef.current.observe(coachCardsRef.current);
+    }
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
@@ -324,19 +332,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <div className={`scroll-animate animate-delay-100 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
                     <div className="absolute top-0 right-0 w-40 h-40 bg-viral-cyan/5 blur-[60px] rounded-full group-hover:bg-viral-cyan/10 transition-all opacity-0 group-hover:opacity-100"></div>
                     <div className="relative z-10 flex flex-col h-full">
-                            {/* New Icon: Users Lucide icon */}
-                            <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
+                            {/* Animated Icon: Users Lucide icon */}
+                            <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 animate-bounce-in-slow ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}> 
                               <Users size={48} className="text-viral-cyan" />
                             </div>
-                        <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
-                        <p className={`mb-2 text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors animate-fade-in-up ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
+                        <p className={`mb-2 text-sm sm:text-base md:text-lg transition-colors animate-fade-in-up animate-delay-200 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}> 
                           Generates viral ideas, scripts, thumbnails, and captions. Creates full videos using AI scenes, voiceovers, and templates.
                         </p>
-                        <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors animate-fade-in-up animate-delay-400 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}> 
                           It manages planning, content creation, scheduling, engagement, influencer collaborations, analytics, and learning systems across 15+ major platforms.
                         </p>
                         
-                        <button onClick={onAIManagerClick} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
+                        <button onClick={onAIManagerClick} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto animate-fade-in-up animate-delay-600"> 
                           Learn more <ArrowRight size={12} />
                         </button>
                     </div>
@@ -496,15 +504,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <p className={`text-xl mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     The AI Tutor teaches you how to succeed on social media, helping creators and brands grow their accounts, boost engagement, and increase their chances of going viral.
                 </p>
-                <div className="grid grid-cols-2 gap-4">
-                    <div className={`p-4 rounded-xl border ${isDarkMode ? 'bg-gradient-to-br from-viral-cyan/30 via-viral-purple/20 to-slate-800 border-white/10' : 'bg-gradient-to-br from-viral-cyan/10 via-viral-purple/10 to-white border-viral-cyan/20'}`}>
-                        <h4 className={`font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple ${isDarkMode ? '' : ''}`}>Trend Alerts</h4>
-                        <p className="text-sm text-slate-500">Get notified of rising audio and formats before they peak.</p>
-                    </div>
-                    <div className={`p-4 rounded-xl border ${isDarkMode ? 'bg-gradient-to-br from-viral-purple/30 via-viral-cyan/20 to-slate-800 border-white/10' : 'bg-gradient-to-br from-viral-purple/10 via-viral-cyan/10 to-white border-viral-purple/20'}`}>
-                        <h4 className={`font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-viral-purple to-viral-cyan ${isDarkMode ? '' : ''}`}>Step-by-Step</h4>
-                        <p className="text-sm text-slate-500">Actionable checklists to improve your content quality.</p>
-                    </div>
+                <div ref={coachCardsRef} id="coach-cards" className="grid grid-cols-2 gap-4">
+                  <div className={`p-4 rounded-xl border ${coachCardsVisible ? 'animate-bounce-in-slow animate-delay-100' : ''} ${isDarkMode ? 'bg-gradient-to-br from-viral-cyan/30 via-viral-purple/20 to-slate-800 border-white/10' : 'bg-gradient-to-br from-viral-cyan/10 via-viral-purple/10 to-white border-viral-cyan/20'}`}> 
+                    <h4 className={`font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple ${isDarkMode ? '' : ''}`}>Trend Alerts</h4>
+                    <p className="text-sm text-slate-500">Get notified of rising audio and formats before they peak.</p>
+                  </div>
+                  <div className={`p-4 rounded-xl border ${coachCardsVisible ? 'animate-bounce-in-slow animate-delay-300' : ''} ${isDarkMode ? 'bg-gradient-to-br from-viral-purple/30 via-viral-cyan/20 to-slate-800 border-white/10' : 'bg-gradient-to-br from-viral-purple/10 via-viral-cyan/10 to-white border-viral-purple/20'}`}> 
+                    <h4 className={`font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-viral-purple to-viral-cyan ${isDarkMode ? '' : ''}`}>Step-by-Step</h4>
+                    <p className="text-sm text-slate-500">Actionable checklists to improve your content quality.</p>
+                  </div>
                 </div>
              </div>
              
@@ -611,10 +619,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     </svg>
                 </div>
                 <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                    Automated <span className="text-blue-500">AD Campaigns</span>
+                  Automated <span className="text-blue-500">AD Campaigns</span>
                 </h2>
+                <p className={`text-lg mb-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                  AI-powered AD creation that generates complete campaigns with audience insights and creative variations.
+                </p>
                 <p className={`text-lg mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    We help you create winning ADs and launch high-converting campaigns on Meta, TikTok, and YouTube in minutes. Our AI handles the AD creation, budget allocation, audience targeting, and creative testing automatically.
+                  We help you create winning ADs and launch high-converting campaigns on Meta, TikTok, and YouTube in minutes. Our AI handles the AD creation, budget allocation, audience targeting, and creative testing automatically.
                 </p>
                 <button className="text-blue-500 font-bold hover:underline flex items-center gap-2">
                     Explore AD Features <ArrowRight size={16}/>
