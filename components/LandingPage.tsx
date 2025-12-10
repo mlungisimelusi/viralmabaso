@@ -318,7 +318,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-4 justify-center items-center" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-4 justify-center items-center">
                 
                 {/* Card 1: AI Social Media Manager */}
                 <div className={`scroll-animate animate-delay-100 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
