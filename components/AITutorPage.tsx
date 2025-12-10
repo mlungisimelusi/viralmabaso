@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, CheckCircle2, Menu, X, Sun, Moon } from 'lucide-react';
 import Footer from './Footer';
 
@@ -15,8 +15,12 @@ const AITutorPage: React.FC<AITutorPageProps> = ({
   isDarkMode, 
   setIsDarkMode 
 }) => {
-  const [activeTab, setActiveTab] = useState<'features' | 'benefits'>('features');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const features = [
     {
@@ -145,21 +149,54 @@ const AITutorPage: React.FC<AITutorPageProps> = ({
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-4 md:px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="pt-32 pb-16 md:pt-40 md:pb-24 px-4 md:px-6 relative overflow-visible">
+        {/* 3D Animated Background Effect */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+          {/* Animated gradient blobs */}
+          <div className="absolute left-[-10%] top-[-18%] w-[480px] h-[480px] bg-gradient-to-br from-[#23BDEE99] via-[#7F57FF55] to-[#D350FF33] rounded-full blur-[120px] opacity-70 animate-float-blob" />
+          <div className="absolute right-[-12%] bottom-[-12%] w-[340px] h-[340px] bg-gradient-to-tr from-[#D350FF88] via-[#23BDEE44] to-[#7F57FF22] rounded-full blur-[100px] opacity-60 animate-float-blob2" />
+          {/* Animated neural network lines */}
+          <svg className="absolute left-0 top-0 w-full h-full" viewBox="0 0 1440 320" fill="none">
+            <defs>
+              <linearGradient id="tutorGrid" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                <stop stopColor="#23BDEE" stopOpacity="0.13" />
+                <stop offset="1" stopColor="#7F57FF" stopOpacity="0.09" />
+              </linearGradient>
+            </defs>
+            {[...Array(12)].map((_,i)=>(
+              <line key={i} x1={i*120} y1="0" x2={i*120} y2="320" stroke="url(#tutorGrid)" strokeWidth="1" />
+            ))}
+            {[...Array(6)].map((_,i)=>(
+              <line key={i} x1="0" y1={i*54} x2="1440" y2={i*54} stroke="url(#tutorGrid)" strokeWidth="1" />
+            ))}
+            {/* 3D neural curves */}
+            <path d="M120 80 Q400 20 900 180 Q1300 300 1400 80" stroke="#23BDEE" strokeWidth="2.5" opacity="0.10" fill="none" />
+            <path d="M400 200 Q700 80 1100 220" stroke="#D350FF" strokeWidth="2" opacity="0.08" fill="none" />
+            <path d="M300 60 Q600 180 900 60 Q1200 0 1300 200" stroke="#7F57FF" strokeWidth="1.5" opacity="0.09" fill="none" />
+          </svg>
+        </div>
+        <style jsx>{`
+          @keyframes floatBlob {
+            0%,100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-18px) scale(1.04); }
+          }
+          .animate-float-blob { animation: floatBlob 8s ease-in-out infinite; }
+          @keyframes floatBlob2 {
+            0%,100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(12px) scale(1.03); }
+          }
+          .animate-float-blob2 { animation: floatBlob2 9s ease-in-out infinite; }
+        `}</style>
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-block px-4 py-1.5 rounded-full border mb-6 text-xs font-bold tracking-widest bg-viral-cyan/10 border-viral-cyan/30 text-viral-cyan">
             CORE FEATURE
           </div>
-          
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6">
-            AI Tutor & <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">Academy</span>
+            AI Tutor
           </h1>
-
           <p className={`text-xl md:text-2xl max-w-2xl mx-auto mb-8 leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            Learn social media mastery from expert instructors and AI-powered tutors. Get personalized guidance to accelerate your growth.
+            Learn social media mastery from AI-powered tutor. Get personalized guidance to accelerate your growth.
           </p>
-
           <button 
             onClick={onLaunch}
             className="px-8 py-4 rounded-full text-lg font-bold bg-gradient-to-r from-viral-cyan to-viral-purple text-white hover:opacity-90 transition-all shadow-lg shadow-viral-purple/30"
@@ -169,75 +206,55 @@ const AITutorPage: React.FC<AITutorPageProps> = ({
         </div>
       </section>
 
-      {/* Tab Navigation */}
-      <section className="border-b border-white/10 sticky top-20 z-40 bg-opacity-80 backdrop-blur-lg">
-        <div className={`max-w-7xl mx-auto px-4 md:px-6 flex gap-8 ${isDarkMode ? 'bg-[#0B0F19]/80' : 'bg-white/80'}`}>
-          <button 
-            onClick={() => setActiveTab('features')}
-            className={`py-4 px-2 font-semibold border-b-2 transition-colors ${
-              activeTab === 'features'
-                ? 'border-viral-cyan text-viral-cyan'
-                : isDarkMode ? 'border-transparent text-slate-400 hover:text-white' : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Features
-          </button>
-          <button 
-            onClick={() => setActiveTab('benefits')}
-            className={`py-4 px-2 font-semibold border-b-2 transition-colors ${
-              activeTab === 'benefits'
-                ? 'border-viral-cyan text-viral-cyan'
-                : isDarkMode ? 'border-transparent text-slate-400 hover:text-white' : 'border-transparent text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Benefits
-          </button>
+      {/* Features Section */}
+      <section className="py-16 md:py-24 px-4 md:px-6 border-b border-white/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">AI Tutor Features</h2>
+            <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              Personalized learning, instant feedback, and interactive lessons for every student.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center mb-8">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
+                <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Content */}
-      <section className="py-16 md:py-24 px-4 md:px-6">
+      {/* Benefits Section */}
+      <section className="py-16 md:py-24 px-4 md:px-6 border-b border-white/10">
         <div className="max-w-7xl mx-auto">
-          {activeTab === 'features' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {features.map((feature, idx) => (
-                <div 
-                  key={idx}
-                  className={`p-6 rounded-2xl border transition-all hover:border-viral-cyan ${
-                    isDarkMode 
-                      ? 'bg-slate-800/30 border-white/10 hover:bg-slate-800/50' 
-                      : 'bg-white border-slate-200 hover:bg-slate-50'
-                  }`}
-                >
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-viral-cyan to-viral-purple flex items-center justify-center text-white mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                  <p className={isDarkMode ? 'text-slate-400' : 'text-slate-600'}>
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {activeTab === 'benefits' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {benefits.map((benefit, idx) => (
-                <div 
-                  key={idx}
-                  className={`flex items-start gap-4 p-6 rounded-xl border ${
-                    isDarkMode 
-                      ? 'bg-slate-800/30 border-white/10' 
-                      : 'bg-white border-slate-200'
-                  }`}
-                >
-                  <CheckCircle2 className="w-6 h-6 text-viral-cyan flex-shrink-0 mt-1" />
-                  <p className="text-lg font-medium">{benefit}</p>
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose AI Tutor</h2>
+            <p className={`text-lg ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+              Unlock every learner’s potential with adaptive technology and expert guidance.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {benefits.map((benefit, idx) => (
+              <div 
+                key={idx}
+                className={`flex items-start gap-4 p-6 rounded-xl border ${
+                  isDarkMode 
+                    ? 'bg-slate-800/30 border-white/10' 
+                    : 'bg-white border-slate-200'
+                }`}
+              >
+                <CheckCircle2 className="w-6 h-6 text-viral-cyan flex-shrink-0 mt-1" />
+                <p className="text-lg font-medium">{benefit}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
