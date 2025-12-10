@@ -124,7 +124,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
         <div className={`pointer-events-auto mb-4 w-[92vw] sm:w-[380px] max-w-[420px] h-[60vh] sm:h-[500px] max-h-[80vh] border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-300 transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
           
           {/* Header */}
-          <div className={`p-3 sm:p-4 border-b flex justify-between items-center transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-200'}`}>
+          <div className={`p-3 sm:p-4 border-b flex justify-between items-center transition-colors ${isDarkMode ? 'bg-slate-800/80 border-slate-700' : 'bg-slate-50/80 border-slate-200'}`} style={{opacity: 0.92}}>
             <div className="flex items-center gap-2 sm:gap-3 min-w-0">
               <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border flex items-center justify-center overflow-hidden transition-colors flex-shrink-0 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
                 <img src="/assets/bot-icon.png" alt="TiC Bot" className="w-full h-full object-contain p-1" />

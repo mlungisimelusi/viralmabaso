@@ -29,7 +29,9 @@ import {
   Award,
   Crown,
   Linkedin,
-  Youtube
+  Youtube,
+  Users,
+  Settings
 } from 'lucide-react';
 
 interface LandingPageProps {
@@ -221,15 +223,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </button>
             </div>
 
-            <button onClick={onLaunch} className="w-full bg-gradient-to-r from-viral-cyan to-viral-purple py-3 rounded-lg font-bold text-white mt-4">
-              Get Activated
+            <button onClick={onLogin} className="w-full bg-slate-200 text-slate-900 py-3 rounded-lg font-bold mt-4 mb-2">
+              Login
+            </button>
+            <button onClick={onLaunch} className="w-full bg-gradient-to-r from-viral-cyan to-viral-purple py-3 rounded-lg font-bold text-white mb-2">
+              Sign Up
             </button>
           </div>
         )}
       </nav>
 
       {/* --- Hero Section (2-Column, Text Left, Image Right) --- */}
-      <section className="relative pt-20 pb-12 md:pt-32 md:pb-20 lg:pt-40 lg:pb-32 px-4 md:px-6 overflow-hidden flex items-center min-h-screen md:min-h-[90vh]" style={{ transform: `translateY(${scrollY * 0.1}px)` }}>
+      <section className="relative pt-28 pb-12 md:pt-32 md:pb-20 lg:pt-40 lg:pb-32 px-4 md:px-6 overflow-hidden flex items-center min-h-screen md:min-h-[90vh]" style={{ transform: `translateY(${scrollY * 0.1}px)` }}>
         
         {/* Floating Gradient Particles */}
         <div className="absolute inset-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
@@ -264,11 +269,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
            {/* Text Column (Left) */}
           <div className="relative z-10 lg:order-1 scroll-animate text-center lg:text-left">
              
-             <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan`}>
-                The All-In-One AI Social Media Management Platform that Runs Your Entire Social Media Universe
+             <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-6 sm:mb-8`}>
+               The <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">All-In-One</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">AI</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">Social Media</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">Management Platform</span> that Runs Your Entire <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">Social Media Universe</span>
              </h1>
 
-             <p className={`text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto lg:mx-0 leading-relaxed mb-6 transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
+             <p className={`text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto lg:mx-0 leading-relaxed mb-8 sm:mb-10 transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
                 Manage all your social media accounts from one platform and create viral videos, while helping brands reach wider markets through an influencer marketplace with higher conversion rates.
              </p>
 
@@ -305,30 +310,30 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     CORE FEATURES
                 </div>
                 
-                <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                    Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple">lead.</span>
+                <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 transition-colors`}>
+                  AI Built to Grow Your <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Audience</span>, <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Revenue</span>, <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Reach</span>, and <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Influence</span>.
                 </h2>
                 <p className={`text-base sm:text-lg md:text-xl max-w-4xl mx-auto leading-relaxed transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     Viralitics is an AI-first, all-in-one social media operating system designed to replace traditional social media teams with a unified AI-driven automation engine.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-4 justify-center items-center" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 
                 {/* Card 1: AI Social Media Manager */}
                 <div className={`scroll-animate animate-delay-100 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
                     <div className="absolute top-0 right-0 w-40 h-40 bg-viral-cyan/5 blur-[60px] rounded-full group-hover:bg-viral-cyan/10 transition-all opacity-0 group-hover:opacity-100"></div>
                     <div className="relative z-10 flex flex-col h-full">
-                        {/* Custom Brand Icon: Hand with interactions */}
-                        <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
-                             <i className="fas fa-robot text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple text-3xl sm:text-4xl md:text-5xl"></i>
-                        </div>
+                            {/* New Icon: Users Lucide icon */}
+                            <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
+                              <Users size={48} className="text-viral-cyan" />
+                            </div>
                         <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
                         <p className={`mb-2 text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                            Stop guessing - let AI plan, create, publish and optimize at scale.
+                          Generates viral ideas, scripts, thumbnails, and captions. Creates full videos using AI scenes, voiceovers, and templates.
                         </p>
                         <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                            It manages planning, content creation, scheduling, engagement, influencer collaborations, analytics, and learning systems across 15+ major platforms.
+                          It manages planning, content creation, scheduling, engagement, influencer collaborations, analytics, and learning systems across 15+ major platforms.
                         </p>
                         
                         <button onClick={onAIManagerClick} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
@@ -341,13 +346,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <div className={`scroll-animate animate-delay-200 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
                      <div className="absolute top-0 right-0 w-40 h-40 bg-viral-cyan/5 blur-[60px] rounded-full group-hover:bg-viral-cyan/10 transition-all opacity-0 group-hover:opacity-100"></div>
                      <div className="relative z-10 flex flex-col h-full">
-                         {/* Custom Brand Icon: Gear with Play + Arrows */}
+                         {/* New Icon: Settings Lucide icon */}
                          <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
-                            <i className="fas fa-gears text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple text-3xl sm:text-4xl md:text-5xl"></i>
+                          <Settings size={48} className="text-viral-purple" />
                         </div>
                         <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AD Automation</h3>
+                        <p className={`mb-2 text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                          Suggests ad copy and creative variants for paid campaigns. Analyzes audience data to recommend targeting and ad spend strategies.
+                        </p>
                         <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                            The ADs AI builds, launches, tests, and optimizes entire multi-platform AD campaigns without human intervention. It analyzes real-time performance and shifts budgets to the highest-performing variations automatically.
+                          Runs campaigns automatically from influencer selection to content distribution. Manages ad creation, A/B testing, optimization, and scaling.
                         </p>
                         
                         <button onClick={onAdAutomationClick} className="inline-flex items-center gap-1 text-viral-cyan font-bold text-sm hover:gap-2 transition-all mt-auto">
@@ -356,24 +364,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                      </div>
                 </div>
 
-                {/* Card 3: AI Tutor */}
-                <div className={`scroll-animate animate-delay-300 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-purple/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-purple/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
-                     <div className="absolute top-0 right-0 w-40 h-40 bg-viral-purple/5 blur-[60px] rounded-full group-hover:bg-viral-purple/10 transition-all opacity-0 group-hover:opacity-100"></div>
-                     <div className="relative z-10 flex flex-col h-full">
-                         {/* Custom Brand Icon: Tutor/Book */}
-                         <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
-                             <i className="fas fa-book text-transparent bg-clip-text bg-gradient-to-r from-viral-purple to-viral-cyan text-3xl sm:text-4xl md:text-5xl"></i>
-                        </div>
-                        <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Tutor</h3>
-                        <p className={`mb-4 flex-grow text-sm sm:text-base md:text-lg transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                             The AI Tutor teaches users how to grow faster on every platform using real data. It adapts lessons, recommendations, and strategies based on algorithm knowledge and the user's performance.
-                        </p>
-                        
-                        <button onClick={onAITutorClick} className="inline-flex items-center gap-1 text-viral-purple font-bold text-sm hover:gap-2 transition-all mt-auto">
-                          Learn more <ArrowRight size={12} />
-                        </button>
-                     </div>
-                </div>
+                {/* AI Tutor card removed as requested */}
 
             </div>
         </div>
@@ -393,7 +384,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                     Join to work with brands, help them achieve their goals, while you monetize your influence.
                 </p>
                 <p className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto transition-colors mt-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Brands and companies looking for the best creators and influencers can rely on Viralitics as the platform to explore because no matter the country, language, or region we have you covered.
+                  Brands and companies looking for the best creators and influencers can rely on Viralitics as the platform to explore because no matter the country, language, or region we have you covered.
                 </p>
             </div>
 
@@ -482,9 +473,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             </div>
 
             <div className="mt-12 text-center">
-                <button onClick={onLaunch} className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-xl font-bold text-base sm:text-lg shadow-lg transition-all inline-flex items-center gap-2">
-                    Browse Marketplace <ArrowRight size={20} className="hidden sm:block" /><ArrowRight size={16} className="sm:hidden" />
-                </button>
+              <button onClick={onLaunch} className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-viral-cyan to-viral-purple hover:opacity-90 text-white rounded-xl font-bold text-base sm:text-lg shadow-lg transition-all inline-flex items-center gap-2">
+                Browse Marketplace <ArrowRight size={20} className="hidden sm:block" /><ArrowRight size={16} className="sm:hidden" />
+              </button>
+              <p className={`text-xs max-w-2xl mx-auto mt-6 text-center italic ${isDarkMode ? 'text-slate-500' : 'text-slate-500'}`}>
+                Pricing for the influencer marketplace is independent from the platform and can be viewed upon registration.
+              </p>
             </div>
         </div>
       </section>
@@ -515,24 +509,35 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
              </div>
              
              <div className="order-2 relative">
-                 {/* Chat UI Mockup */}
-                 <div className={`max-w-md mx-auto rounded-3xl p-6 border transition-all ${spinChat ? 'animate-spin-once' : ''} ${isDarkMode ? 'bg-[#131b2c] border-white/5' : 'bg-white border-slate-200 shadow-lg'}`}>
-                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-dashed border-slate-700">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-viral-cyan to-viral-purple flex items-center justify-center text-white font-bold">AI</div>
-                        <div>
-                            <p className={`font-bold text-sm ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>Viralitics Tutor</p>
-                            <p className="text-xs text-green-400">TiC is about getting things done and ticking them off your list</p>
-                        </div>
+               {/* Creative Chatbot UI inspired by 21st.dev */}
+               <div className={`max-w-md mx-auto rounded-3xl p-0 border-0 shadow-2xl bg-gradient-to-br from-viral-cyan/60 via-white/30 to-viral-purple/40 backdrop-blur-xl relative overflow-visible animate-fade-in`} style={{boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.18)'}}>
+                {/* Floating Avatar */}
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 bg-gradient-to-tr from-viral-cyan to-viral-purple rounded-full flex items-center justify-center shadow-xl border-4 border-white/20 z-10 animate-float">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="18" cy="18" r="16" fill="#fff" fillOpacity="0.15"/>
+                    <ellipse cx="18" cy="15" rx="7" ry="7" fill="#22d3ee" fillOpacity="0.7"/>
+                    <ellipse cx="18" cy="25" rx="10" ry="4" fill="#a21caf" fillOpacity="0.2"/>
+                  </svg>
+                </div>
+                <div className="pt-12 pb-6 px-6">
+                  <div className="flex flex-col items-center mb-4">
+                    <span className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple drop-shadow" style={{opacity: 0.7}}>Viralitics Tutor</span>
+                    <span className="text-xs text-green-400 mt-1">AI Social Coach</span>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex justify-end">
+                      <div className="p-3 rounded-2xl rounded-tr-none text-sm max-w-[80%] bg-viral-cyan/20 text-viral-cyan border border-viral-cyan/20 shadow-md animate-chat-bounce">
+                        How can I grow my account and increase engagement?
+                      </div>
                     </div>
-                    <div className="space-y-4">
-                        <div className="p-3 rounded-2xl rounded-tr-none text-sm max-w-[85%] ml-auto bg-viral-cyan/20 text-viral-cyan border border-viral-cyan/20">
-                            How can I grow my account and increase engagement?
-                        </div>
-                        <div className={`p-3 rounded-2xl rounded-tl-none text-sm max-w-[85%] ${isDarkMode ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-700'}`}>
-                            Focus on consistency, trending audio, and strong hooks in the first 3 seconds. Post at peak times when your audience is most active, and engage with comments within the first hour to boost the algorithm.
-                        </div>
+                    <div className="flex justify-start">
+                      <div className={`p-3 rounded-2xl rounded-tl-none text-sm max-w-[80%] ${isDarkMode ? 'bg-slate-800 text-slate-300 border border-white/10' : 'bg-white/80 text-slate-700 border border-slate-200'} shadow-md animate-chat-fade-in`}>
+                        Focus on consistency, trending audio, and strong hooks in the first 3 seconds. Post at peak times when your audience is most active, and engage with comments within the first hour to boost the algorithm.
+                      </div>
                     </div>
-                 </div>
+                  </div>
+                </div>
+               </div>
              </div>
          </div>
       </section>
@@ -1151,19 +1156,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </div>
             </div>
 
-            {/* Disclaimer Section */}
-            <div className="text-center">
-                <div className={`max-w-2xl mx-auto flex justify-center px-4`}>
-                  <div className={`px-6 py-4 rounded-xl border flex items-center gap-3 ${isDarkMode ? 'border-slate-700/50 bg-slate-900/30' : 'border-slate-200 bg-slate-50'}`}>
-                    <svg className={`w-5 h-5 flex-shrink-0 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`} fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
-                    <p className={`text-xs ${isDarkMode ? 'text-slate-300' : 'text-slate-600'}`}>
-                      Pricing for the influencer marketplace is independent from the platform and can be viewed upon registration.
-                    </p>
-                  </div>
-                </div>
-            </div>
         </div>
       </section>
 
@@ -1185,7 +1177,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             <div className="flex items-start justify-between p-6 border-b" style={{ borderColor: isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(15,23,42,0.04)' }}>
               <div>
                 <h3 className="text-2xl font-bold">AI Social Media Manager</h3>
-                <p className={`mt-1 text-sm ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>Stop guessing - let AI plan, create, publish and optimize at scale.</p>
+                {/* Removed phrase as requested */}
               </div>
               <div className="ml-4">
                 <button
