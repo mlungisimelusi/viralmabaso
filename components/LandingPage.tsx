@@ -284,11 +284,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
           <div className="relative z-10 lg:order-1 scroll-animate text-center lg:text-left">
              
              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-6 sm:mb-8`}>
-               The <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">All-In-One</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">AI</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">Social Media</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">Management Platform</span> that Runs Your Entire <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">Social Media Universe</span>
+               The <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">All-In-One</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">AI</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">Social Media</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-viral-cyan text-transparent bg-clip-text">Management Platform</span> that Runs Your Entire <span className="text-white">Social Media Universe</span>
              </h1>
 
              <p className={`text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto lg:mx-0 leading-relaxed mb-8 sm:mb-10 transition-colors ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`}>
-                Manage all your social media accounts from one platform and create viral videos, while helping brands reach wider markets through an influencer marketplace with higher conversion rates.
+               Manage all your social media accounts from one interface and create viral videos, while helping brands reach wider markets through an influencer marketplace with higher conversion rates.
              </p>
 
              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center lg:justify-start mt-8">
@@ -307,7 +307,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
               <img
                 src="/assets/hero-image.png"
                 alt="Viralitics Influencer"
-                className="w-full h-auto object-contain drop-shadow-2xl"
+                className="w-full h-auto object-contain drop-shadow-2xl animate-viral-bounce"
               />
             </div>
           </div>
@@ -325,7 +325,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 </div>
                 
                 <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 transition-colors`}>
-                  AI Built to Grow Your <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Audience</span>, <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Revenue</span>, <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Reach</span>, and <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Influence</span>.
+                  AI Built to Grow Your <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Audience</span><span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">,</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Revenue</span><span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">,</span> <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Reach</span><span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">,</span> and <span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">Influence</span><span className="bg-gradient-to-r from-viral-cyan via-viral-purple to-pink-500 text-transparent bg-clip-text">.</span>
                 </h2>
                 <p className={`text-base sm:text-lg md:text-xl max-w-4xl mx-auto leading-relaxed transition-colors ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                     Viralitics is an AI-first, all-in-one social media operating system designed to replace traditional social media teams with a unified AI-driven automation engine.
