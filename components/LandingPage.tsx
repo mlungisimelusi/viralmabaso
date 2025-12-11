@@ -47,6 +47,7 @@ interface LandingPageProps {
 }
 
 const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing, onAIManagerClick, onAdAutomationClick, onAITutorClick, isDarkMode, setIsDarkMode }) => {
+  const [spinSocialIcon, setSpinSocialIcon] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [hoveredTier, setHoveredTier] = useState<string | null>(null);
@@ -100,6 +101,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             // Trigger coach cards animation
             if (entry.target.id === 'coach-cards') {
               setCoachCardsVisible(true);
+            }
+            // Trigger spin for AI Social Media Manager card
+            if (entry.target.classList.contains('ai-social-card')) {
+              setSpinSocialIcon(true);
+              setTimeout(() => setSpinSocialIcon(false), 1200);
             }
           }
         });
@@ -329,12 +335,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
             <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-4 justify-center items-center">
                 
                 {/* Card 1: AI Social Media Manager */}
-                <div className={`scroll-animate animate-delay-100 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}>
+                <div className={`scroll-animate ai-social-card animate-delay-100 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[400px] md:min-h-[450px] lg:min-h-[500px] transition-all group overflow-hidden relative border flex flex-col ${isDarkMode ? 'bg-slate-800/50 border-white/10 hover:border-viral-cyan/40 hover:bg-slate-800/70 shadow-sm hover:shadow-md' : 'bg-slate-50 border-slate-200 hover:border-viral-cyan/50 hover:bg-white shadow-sm hover:shadow-lg'}`}> 
                     <div className="absolute top-0 right-0 w-40 h-40 bg-viral-cyan/5 blur-[60px] rounded-full group-hover:bg-viral-cyan/10 transition-all opacity-0 group-hover:opacity-100"></div>
                     <div className="relative z-10 flex flex-col h-full">
                             {/* Animated Icon: Users Lucide icon */}
                             <div className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform flex-shrink-0 animate-bounce-in-slow ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}> 
-                              <Users size={48} className="text-viral-cyan" />
+                              <Users size={48} className={`text-viral-cyan${spinSocialIcon ? ' animate-viral-spin' : ''}`} style={{ display: 'block' }} />
                             </div>
                         <h3 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 transition-colors animate-fade-in-up ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>AI Social Media Manager</h3>
                         <p className={`mb-2 text-sm sm:text-base md:text-lg transition-colors animate-fade-in-up animate-delay-200 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}> 

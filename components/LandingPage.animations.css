@@ -1,3 +1,16 @@
+/* Spin animation for icons */
+@keyframes viral-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-viral-spin {
+  animation: viral-spin 1.2s cubic-bezier(0.23, 1, 0.32, 1) 1;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
