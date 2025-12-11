@@ -627,7 +627,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <p className={`text-lg mb-6 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
                   We help you create winning ADs and launch high-converting campaigns on Meta, TikTok, and YouTube in minutes. Our AI handles the AD creation, budget allocation, audience targeting, and creative testing automatically.
                 </p>
-                <button className="text-blue-500 font-bold hover:underline flex items-center gap-2">
+                <button
+                  className="text-blue-500 font-bold hover:underline flex items-center gap-2"
+                  onClick={onAdAutomationClick}
+                >
                     Explore AD Features <ArrowRight size={16}/>
                 </button>
              </div>
