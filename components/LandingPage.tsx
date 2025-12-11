@@ -530,7 +530,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLaunch, onLogin, onPricing,
                 <div className="pt-12 pb-6 px-6">
                   <div className="flex flex-col items-center mb-4">
                     <span className="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-viral-cyan to-viral-purple drop-shadow" style={{opacity: 0.7}}>Viralitics Tutor</span>
-                    <span className="text-xs text-green-400 mt-1">AI Social Coach</span>
+                    {/* Removed 'AI Social Coach' green label */}
                   </div>
                   <div className="space-y-4">
                     <div className="flex justify-end">
