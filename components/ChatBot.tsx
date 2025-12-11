@@ -121,10 +121,35 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
       {/* Chat Window */}
       {isOpen && (
-        <div className={`pointer-events-auto mb-4 w-[92vw] sm:w-[380px] max-w-[420px] h-[60vh] sm:h-[500px] max-h-[80vh] border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-300 transition-colors ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
-          
+        <div
+          className={`pointer-events-auto mb-4 w-[92vw] sm:w-[380px] max-w-[420px] h-[60vh] sm:h-[500px] max-h-[80vh] border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-300 transition-colors`}
+          style={{
+            background: isDarkMode
+              ? 'rgba(15,23,42,0.55)'
+              : 'rgba(255,255,255,0.55)',
+            borderColor: isDarkMode
+              ? 'rgba(51,65,85,0.4)'
+              : 'rgba(226,232,240,0.4)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            boxShadow: '0 8px 32px 0 rgba(31,38,135,0.15)',
+          }}
+        >
           {/* Header */}
-          <div className={`p-3 sm:p-4 border-b flex justify-between items-center transition-colors ${isDarkMode ? 'bg-slate-800/80 border-slate-700' : 'bg-slate-50/80 border-slate-200'}`} style={{opacity: 0.92}}>
+          <div
+            className={`p-3 sm:p-4 border-b flex justify-between items-center transition-colors`}
+            style={{
+              background: isDarkMode
+                ? 'rgba(30,41,59,0.45)'
+                : 'rgba(248,250,252,0.45)',
+              borderColor: isDarkMode
+                ? 'rgba(51,65,85,0.4)'
+                : 'rgba(226,232,240,0.4)',
+              opacity: 0.92,
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+            }}
+          >
             <div className="flex items-center gap-2 sm:gap-3 min-w-0">
               <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border flex items-center justify-center overflow-hidden transition-colors flex-shrink-0 ${isDarkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
                 <img src="/assets/bot-icon.png" alt="TiC Bot" className="w-full h-full object-contain p-1" />
@@ -145,7 +170,16 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
           </div>
 
           {/* Messages Area */}
-          <div className={`flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 transition-colors ${isDarkMode ? 'bg-[#0B0F19]' : 'bg-slate-50'}`}>
+          <div
+            className={`flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 transition-colors`}
+            style={{
+              background: isDarkMode
+                ? 'rgba(11,15,25,0.25)'
+                : 'rgba(248,250,252,0.25)',
+              backdropFilter: 'blur(4px)',
+              WebkitBackdropFilter: 'blur(4px)',
+            }}
+          >
             {messages.map((msg) => (
               <div 
                 key={msg.id} 
@@ -175,7 +209,19 @@ const ChatBot: React.FC<ChatBotProps> = ({ isDarkMode }) => {
           </div>
 
           {/* Input Area */}
-          <div className={`border-t transition-colors ${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+          <div
+            className={`border-t transition-colors`}
+            style={{
+              background: isDarkMode
+                ? 'rgba(30,41,59,0.35)'
+                : 'rgba(255,255,255,0.35)',
+              borderColor: isDarkMode
+                ? 'rgba(51,65,85,0.4)'
+                : 'rgba(226,232,240,0.4)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+            }}
+          >
             <input
               ref={fileInputRef}
               type="file"
